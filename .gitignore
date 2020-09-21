@@ -2,6 +2,13 @@
 *.suo
 *.user
 *.sln.doc.states
+*.log
+*.obj
+*.exe
+[Dd]ebug/
+[Rr]elease/
+**/obj/
+**/bin/
 
 # Visual studio profiler
 *.psess
