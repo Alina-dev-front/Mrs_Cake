@@ -7,5 +7,14 @@ namespace Mrs_Cake.Models
 {
     public class Product
     {
+<<<<<<< HEAD
+=======
+        public long Id { get; set; }
+        public ProductType Types { get; set; }
+        public string Name { get; set; }
+        public string Bakery { get; set; }
+        public string Decsription { get; set; }
+        public decimal Price { get; set; }
+>>>>>>> 72796c1... add classes
     }
 }
