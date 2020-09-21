@@ -1,0 +1,16 @@
+#user specific files
+*.suo
+*.user
+*.sln.doc.states
+
+# Visual studio profiler
+*.psess
+*.vsp
+*.vspx
+.vs/
+*.nuget.cache
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!*.[Cc]ach
