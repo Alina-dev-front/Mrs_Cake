@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <NavBar />
