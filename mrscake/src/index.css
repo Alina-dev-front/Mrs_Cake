@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.registration-btn{
+  margin: 5px;
+  position: flex;
+  display: inline-block;
+  justify-self: center;  
+}
+.cakeImage{  
+  width: auto;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(./Images/ColorCakes.jpg);
+  z-index: -1;
+}
