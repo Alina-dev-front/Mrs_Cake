@@ -1,9 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import {HomePage} from './components/HomePage';
-import {BakeryRegistration} from './components/BakeryRegistration';
-import ReactDOM from 'react-dom';
 
 import './App.css';
 
