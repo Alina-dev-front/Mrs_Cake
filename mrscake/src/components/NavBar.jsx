@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl, ButtonGroup, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavDropdown, Form, FormControl, ButtonGroup, DropdownButton, Dropdown} from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
+//import shopping_cart from '../shopping-cart-icon.png';
+import dribble_cart from '../dribble_cart.gif';
 
 function NavBar() {
   return <Navbar fixed="top" bg="light" variant="light">
@@ -79,9 +81,17 @@ function NavBar() {
   </Nav>
   <Form inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-    <Button variant="outline-primary"><img src={search1} width="25" height="25" /></Button>
+   
+    <Button variant="outline-primary"><img src={search1} width="25" height="25" alt="Cake" /></Button>
   </Form>
   <Button>Sign In</Button>
+  <button ><img 
+        width="55"
+        height="55" 
+        src={dribble_cart} 
+        alt="shoping"/>
+    </button>
+  
 </Navbar>
 }
 
