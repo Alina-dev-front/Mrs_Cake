@@ -1,14 +1,20 @@
+/* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import NavBar from './components/NavBar';
+import SignIn from './components/SignIn';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <NavBar />
+    
+    <SignIn/>
+ 
+    
     <App />
   </React.StrictMode>,
   document.getElementById('root')

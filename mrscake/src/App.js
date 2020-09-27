@@ -1,16 +1,34 @@
 import React from 'react';
-
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+  <Router>
+    <div>
+      <nav>
+      </nav>
       <Switch>
-        <Route path='/' component={HomePage} exact/>
-        <Route path='/bakeryregistration' component={BakeryRegistration}/>
+        <Route path="/SignIn">
+        <SignIn/>
+        </Route>
+        <Route path="/SignUp">
+        <SignUp/>
+        
+        </Route>
       </Switch>
-    </BrowserRouter>
+    </div>
+  </Router>
+    );
+  
+  }
 
-  );
-}
+  
 export default App;
