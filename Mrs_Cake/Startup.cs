@@ -24,6 +24,15 @@ namespace Mrs_Cake
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCors( o => o.AddPolicy("ReactPolicy", builder => 
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }
+            
+            ));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +61,7 @@ namespace Mrs_Cake
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseCors("ReactPolicy");
         }
     }
 }
