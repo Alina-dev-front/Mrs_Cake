@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl, ButtonGroup, DropdownButton, Dropdown } from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
-
+//hola
 function NavBar() {
   return <Navbar fixed="top" bg="light" variant="light">
         <Navbar.Brand href="/">
