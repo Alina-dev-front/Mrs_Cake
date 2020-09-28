@@ -5,7 +5,7 @@ import search1 from '../search1.svg';
 
 function NavBar() {
   return <Navbar fixed="top" bg="light" variant="light">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
       <img
          src={cake}
         width="30"
@@ -14,7 +14,7 @@ function NavBar() {
         alt="Mrs_Cake logo"
       />
     </Navbar.Brand>
-      <Navbar.Brand href="#home">MRS CAKE</Navbar.Brand>
+      <Navbar.Brand href="/">MRS CAKE</Navbar.Brand>
   <Nav className="mr-auto">
   <NavDropdown title="Products" id="basic-nav-dropdown">
           <div className="basic-nav-dropdown">
@@ -79,9 +79,9 @@ function NavBar() {
   </Nav>
   <Form inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-    <Button variant="outline-primary"><img src={search1} width="25" height="25" /></Button>
+    <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
   </Form>
-  <Button>Sign In</Button>
+  <Button href="/signin"> Sign In</Button>
 </Navbar>
 }
 
