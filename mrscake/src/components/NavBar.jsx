@@ -75,7 +75,7 @@ function NavBar() {
   <NavDropdown.Divider />
         <NavDropdown.Item>Show all products</NavDropdown.Item>
   </NavDropdown>
-    <Nav.Link href="">About Us</Nav.Link>
+    <Nav.Link href="/aboutus">About Us</Nav.Link>
     <Nav.Link href="">Contact Us</Nav.Link>
   </Nav>
   <Form inline>
