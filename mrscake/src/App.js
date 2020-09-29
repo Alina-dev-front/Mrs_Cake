@@ -4,6 +4,7 @@ import SignUp from './components/SignUp';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
 import {BakeryRegistration} from './components/BakeryRegistration';
+import shoppingCart from './components/shoppingCart';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
     
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/shoppingcart" component={shoppingCart}/>
         
       </Switch>
     </BrowserRouter>
