@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl, ButtonGroup, DropdownButton, Dropdown } from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
+import shoppingCart from '../ShoppingCart.png';
 
 function NavBar() {
   return <Navbar fixed="top" bg="light" variant="light">
@@ -82,6 +83,11 @@ function NavBar() {
     <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
   </Form>
   <Button href="/signin"> Sign In</Button>
+  <Button href="/shoppingCart">
+        <img 
+        width="50"
+        height="50" src={shoppingCart} alt="shopping cart"/>
+        </Button>
 </Navbar>
 }
 
