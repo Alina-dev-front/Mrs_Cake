@@ -7,9 +7,11 @@ import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FooterPage from './components/Footer';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <NavBar />
+    
     <App />
     <FooterPage />
   </React.StrictMode>,
