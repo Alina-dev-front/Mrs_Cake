@@ -6,6 +6,7 @@ import {HomePage} from './components/HomePage';
 import {BakeryRegistration} from './components/BakeryRegistration';
 import shoppingCart from './components/shoppingCart';
 import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' component={HomePage} exact />
         <Route path='/bakeryregistration' component={BakeryRegistration} />
         <Route path="/aboutus" component={AboutUs} />
+        <Route path="/contactus" component={ContactUs} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/shoppingcart" component={shoppingCart}/>
