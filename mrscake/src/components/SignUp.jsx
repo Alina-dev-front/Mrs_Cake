@@ -8,12 +8,10 @@ function SignUp() {
                 <h3>User Sign Up</h3>
    
                 <div className="form-group">
-                    <label>First Name</label>
                     
-                    <input type="name" className="form-control" placeholder="First name" />
             
-                    <label>Last Name
-                    <input type="name" className="form-control" placeholder="Last name" />
+                    <label>Name
+                    <input type="name" className="form-control" placeholder="name" />
                     </label>
                 </div>
                 <div className="form-group">
@@ -30,9 +28,24 @@ function SignUp() {
                     <label>Confirm Password</label>
                     <input type="Confirm password" className="form-control" placeholder="Enter confirm password" />
                 </div>
+                <p>Select one option </p>
+                
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Are you bakery shoper</label>  
+                    </div>
+              
 
-                <button type="submit" className="btn btn-primary btn-block">Register</button>
-               
+                
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck2" />
+                        <label className="custom-control-label" htmlFor="customCheck2">Are you customer</label>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck3" />
+                        <label className="custom-control-label" htmlFor="customCheck3">Are you Admin</label>   
+                    </div>
+                <button type="submit" className="btn btn-primary btn-block">Register</button> 
             </form>
             </div>  
         </div> 
