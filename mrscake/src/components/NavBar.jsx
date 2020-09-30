@@ -73,7 +73,7 @@ function NavBar() {
     ))}
   </div>
   <NavDropdown.Divider />
-        <NavDropdown.Item>Show all products</NavDropdown.Item>
+        <NavDropdown.Item href="/productpage">Show all products</NavDropdown.Item>
   </NavDropdown>
     <Nav.Link href="/aboutus">About Us</Nav.Link>
     <Nav.Link href="/contactus">Contact Us</Nav.Link>

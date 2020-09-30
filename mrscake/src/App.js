@@ -7,7 +7,7 @@ import {BakeryRegistration} from './components/BakeryRegistration';
 import shoppingCart from './components/shoppingCart';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
-
+import ShowProductList from './components/ProductPage';
 import './App.css';
 
 
@@ -21,11 +21,10 @@ function App() {
         <Route path="/contactus" component={ContactUs} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/shoppingcart" component={shoppingCart}/>
-        
+        <Route path="/shoppingcart" component={shoppingCart} />
+        <Route path="/productpage" component={ShowProductList} />
       </Switch>
     </BrowserRouter>
-  
     );
   }
 
