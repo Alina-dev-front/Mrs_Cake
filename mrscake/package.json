@@ -14,8 +14,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "reactjs-popup": "^2.0.4",
     "react-simple-tree-menu": "^1.1.18",
+    "reactjs-popup": "^2.0.4",
     "reactstrap": "^8.6.0"
   },
   "scripts": {
