@@ -8,12 +8,10 @@ function SignUp() {
                 <h3>User Sign Up</h3>
    
                 <div className="form-group">
-                    <label>First Name</label>
                     
-                    <input type="name" className="form-control" placeholder="First name" />
             
-                    <label>Last Name
-                    <input type="name" className="form-control" placeholder="Last name" />
+                    <label>Name
+                    <input type="name" className="form-control" placeholder="name" />
                     </label>
                 </div>
                 <div className="form-group">
@@ -30,13 +28,15 @@ function SignUp() {
                     <label>Confirm Password</label>
                     <input type="Confirm password" className="form-control" placeholder="Enter confirm password" />
                 </div>
-
-                <button type="submit" className="btn btn-primary btn-block">Register</button>
-               
+                <p>Select option for role </p>
+                <div>
+                <input type="radio" value="Male" name="gender" /> Are you bakery shoper?<br/>
+                <input type="radio" value="Female" name="gender" /> Are you Admin?<br/>
+                <input type="radio" value="Other" name="gender" /> Are you User?<br/>
+                </div>              
+                <button type="submit" className="btn btn-primary btn-block">Register</button> 
             </form>
             </div>  
         </div> 
     }
-
-
 export default SignUp;
