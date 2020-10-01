@@ -28,28 +28,15 @@ function SignUp() {
                     <label>Confirm Password</label>
                     <input type="Confirm password" className="form-control" placeholder="Enter confirm password" />
                 </div>
-                <p>Select one option </p>
-                
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Are you bakery shoper</label>  
-                    </div>
-              
-
-                
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck2" />
-                        <label className="custom-control-label" htmlFor="customCheck2">Are you customer</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck3" />
-                        <label className="custom-control-label" htmlFor="customCheck3">Are you Admin</label>   
-                    </div>
+                <p>Select option for role </p>
+                <div>
+                <input type="radio" value="Male" name="gender" /> Are you bakery shoper?<br/>
+                <input type="radio" value="Female" name="gender" /> Are you Admin?<br/>
+                <input type="radio" value="Other" name="gender" /> Are you User?<br/>
+                </div>              
                 <button type="submit" className="btn btn-primary btn-block">Register</button> 
             </form>
             </div>  
         </div> 
     }
-
-
 export default SignUp;
