@@ -5,11 +5,9 @@ function SignUp() {
     <div className="col-md-3 center">
     <form action="http://localhost:3000/SignUp.jsx"><br/><br/><br/>
        
-                <h3>User Sign Up</h3>
+                <h3>Sign Up</h3>
    
                 <div className="form-group">
-                    
-            
                     <label>Name
                     <input type="name" className="form-control" placeholder="name" />
                     </label>
@@ -30,9 +28,9 @@ function SignUp() {
                 </div>
                 <p>Select option for role </p>
                 <div>
-                <input type="radio" value="Male" name="gender" /> Are you bakery shoper?<br/>
-                <input type="radio" value="Female" name="gender" /> Are you Admin?<br/>
-                <input type="radio" value="Other" name="gender" /> Are you User?<br/>
+                <input type="radio" value="Bakery" name="login type" /> Are you bakery shoper?<br/>
+                <input type="radio" value="Admin" name="login type" /> Are you Admin?<br/>
+                <input type="radio" value="User" name="login type" /> Are you User?<br/>
                 </div>              
                 <button type="submit" className="btn btn-primary btn-block">Register</button> 
             </form>
