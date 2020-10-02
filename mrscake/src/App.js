@@ -7,12 +7,16 @@ import {BakeryRegistration} from './components/BakeryRegistration';
 import shoppingCart from './components/shoppingCart';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
-import ShowProductList from './components/ProductPage';
+import ProductTable from './components/ProductPage';
+import NavBar from './components/NavBar';
+import FooterPage from './components/Footer';
 import './App.css';
 
 
 function App() {
   return (
+    <React.Fragment>
+    <NavBar />
     <BrowserRouter>
       <Switch>
         <Route path='/' component={HomePage} exact />
@@ -22,9 +26,12 @@ function App() {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/shoppingcart" component={shoppingCart} />
-        <Route path="/productpage" component={ShowProductList} />
+        <Route path="/productpage" component={ProductTable} />
       </Switch>
     </BrowserRouter>
+    <FooterPage />
+    </React.Fragment>
+
     );
   }
 
