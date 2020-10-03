@@ -9,6 +9,7 @@ import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import ShowProductList from './components/ProductPage';
 import './App.css';
+import CarouselControlled from "./components/Carrousel";
 
 
 function App() {
@@ -23,10 +24,12 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/shoppingcart" component={shoppingCart} />
         <Route path="/productpage" component={ShowProductList} />
+        <Route path="/homepage" component={CarouselControlled}/>
       </Switch>
     </BrowserRouter>
     );
   }
+
 
   
 export default App;
