@@ -9,6 +9,9 @@
 [Rr]elease/
 **/obj/
 **/bin/
+/shelf/
+/workspace.xml
+/httpRequests/
 
 # Visual studio profiler
 *.psess
