@@ -8,6 +8,7 @@ namespace Mrs_Cake.Models
 {
     public class Order
     {
+        public long Id { get; set; }
         public int OrderNumber { get; set; }
         public decimal TotalPrice { get; set; }
         public string Address { get; set; }
