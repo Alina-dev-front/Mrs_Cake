@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Mrs_Cake.Services;
 
 namespace Mrs_Cake
 {
@@ -23,15 +26,15 @@ namespace Mrs_Cake
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddCors( o => o.AddPolicy("ReactPolicy", builder => 
+            services.AddControllers();
+            services.AddSingleton<ProductService>();
+            services.AddSingleton<UserService>();
+            services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            }
-            
-            ));
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
         }
 
@@ -42,26 +45,26 @@ namespace Mrs_Cake
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+            /*else
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
+            }*/
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
+            app.UseCors("ReactPolicy");
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
-            app.UseCors("ReactPolicy");
+
+
         }
     }
 }
