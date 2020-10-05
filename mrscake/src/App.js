@@ -28,7 +28,6 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/shoppingcart" component={shoppingCart} />
         <Route path="/productpage" component={ProductTable} />
-        <Route path="/productpage" component={ShowProductList} />
         <Route path="/homepage" component={CarouselControlled}/>
       </Switch>
     </BrowserRouter>
