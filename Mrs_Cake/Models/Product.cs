@@ -8,10 +8,11 @@ namespace Mrs_Cake.Models
     public class Product
     {
         public long Id { get; set; }
-        /*public ProductType Types { get; set; }*/
+        public ProductType Types { get; set; }
         public string Name { get; set; }
         public string Bakery { get; set; }
-        /*public string Decsription { get; set; }*/
+        public string Decsription { get; set; }
         public decimal Price { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

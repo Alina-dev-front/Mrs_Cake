@@ -13,7 +13,9 @@ namespace Mrs_Cake.Models
         public string Email { get; set; }
         public string MobilePhone { get; set; }
         public string Password { get; set; }
-        public Order Order { get; set; }
         public string Address { get; set; }
+        public string CreditCardNUmber { get; set; }
+        public UserRolls UserRolls { get; set; }
+
     }
 }
