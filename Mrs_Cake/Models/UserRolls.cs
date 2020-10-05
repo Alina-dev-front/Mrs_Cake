@@ -7,7 +7,7 @@ namespace Mrs_Cake.Models
 {
     public enum UserRolls
     {
-        Costumer,
+        Customer,
         BakeryOwner,
         Admin
         
