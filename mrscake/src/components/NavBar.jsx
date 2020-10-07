@@ -82,7 +82,7 @@ function NavBar() {
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
     <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
   </Form>
-  <Button href="/signin"> Sign In</Button>
+  <Button href="/Reg">Sign Up</Button>
   <Button href="/shoppingCart">
         <img 
         width="50"
