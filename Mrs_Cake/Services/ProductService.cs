@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Mrs_Cake.Models;
 using MongoDB.Driver;
-using System.IO;
-using System.Text;
 using Mrs_Cake.MrsCakeData;
-using Mrs_Cake.Repositories;
 
 namespace Mrs_Cake.Services
 {
@@ -42,7 +37,5 @@ namespace Mrs_Cake.Services
 
         public void Remove(string id) =>
             _products.DeleteOne(product => product.Id == id);
-
-
     }
 }

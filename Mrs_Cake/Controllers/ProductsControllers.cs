@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
