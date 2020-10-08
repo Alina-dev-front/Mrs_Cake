@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './components/Login';
-import Reg from './components/Reg';
+import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard'; 
 import './components/Dashboard.css';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
@@ -50,7 +50,7 @@ function App() {
 
       
           <Route  path='/Login' component={Login} />    
-          <Route path='/Reg' component={Reg} />    
+          <Route path='/SignUp' component={SignUp} />    
  
         </Switch>    
         <Switch>  

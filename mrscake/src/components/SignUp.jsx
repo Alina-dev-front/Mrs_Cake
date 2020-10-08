@@ -97,7 +97,7 @@ class SignUp extends Component {
                     <input type="radio" value="Admin" name="Admin" /> Are you Admin?<br/>
                     </div>
                    
-                <br/>    <Button  onClick={this.register}  
+                   <Button  onClick={this.register}  
                     color="success" block>Create Account</Button>
                   </Form>
                 </CardBody>

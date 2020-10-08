@@ -50,19 +50,7 @@ class Login extends Component {
             
             <div className="app flex-row align-items-center">
                 <Container><br/><br/><br/>
-                <nav className="navbar navbar-expand-lg navheader">   
-          <div className="collapse navbar-collapse" >    <br/>
-            <ul className="navbar-nav mr-auto">    <br/>
-              <li className="nav-item">    
-              <a class="nav-link" href="Login">Login</a>   
-              </li>    
-              <li className="nav-item">    
-              
-              <a class="nav-link" href="Reg">SignUp</a>    
-              </li>      
-            </ul>    
-          </div>    
-        </nav> <br />
+                
                     <Row className="justify-content-center">
                         <Col md="9" lg="7" xl="6">
                             <CardGroup>
@@ -85,8 +73,25 @@ class Login extends Component {
                                                 onChange={this.Password} 
                                                 placeholder="Enter Password" />
                                             </InputGroup>
+
+                                            <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                    </div>
+                </div>
                                             <Button onClick={this.login} 
                                             color="success" block>Login</Button>
+                                            <p className="forgot-password text-center">
+
+
+    <a href="abc">Forgot password?</a><br/><br/>
+
+<button >  <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
+ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
+Not Registered,Sign Up</a></button>
+</p>
+
                                         </Form>
                                     </CardBody>
                                 </Card>
