@@ -3,56 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mrs_Cake.Models;
+using MongoDB.Driver;
+using System.IO;
+using System.Text;
+using Mrs_Cake.MrsCakeData;
+using Mrs_Cake.Repositories;
 
 namespace Mrs_Cake.Services
 {
-    public class ProductService
+    public class ProductService 
     {
-        private static List<Product> products = new List<Product>();
-        private static long Count = 1;
-        private static readonly string[] names = new string[] { "Chocolate Dream", "Maple happiness", "SugarBomb", "Little Girl", "Paula's choice", "Vanila", "Berry cake" };
-        private static readonly string[] bakeries = new string[] { "Smith's", "Enjoy!", "MacDonald's edition", "Good morning", "Lilla Italien" };
-        private static readonly decimal[] prices = new decimal[] { 356, 115, 974, 451, 321, 456, 671, 1003, 4443 };
+        private readonly IMongoCollection<Product> _products;
 
-        static ProductService()
+        public ProductService(IMrsCakeDatabaseSettings settings)
         {
-            Random rnd = new Random();
-            for (int i = 0; i < 5; i++)
-            {
-                Product product = new Product
-                {
-                    Id = Count++,
-                    Name = names[rnd.Next(names.Length)],
-                    Bakery = bakeries[rnd.Next(bakeries.Length)],
-                    Price = prices[rnd.Next(prices.Length)]
-                };
-                products.Add(product);
-            }
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+            _products = database.GetCollection<Product>(settings.CollectionName);
         }
-        public List<Product> GetAll()
-        {
-            return products;
-        }
-        public Product GetById(int id)
-        {
-            return products.Where(product => product.Id == id).FirstOrDefault();
-        }
+
+        public List<Product> Get() =>
+            _products.Find(product => true).ToList();
+
+        public Product GetById(string id) =>
+            _products.Find<Product>(product => product.Id == id).FirstOrDefault();
+
         public Product Create(Product product)
         {
-            product.Id = Count++;
-            products.Add(product);
+            _products.InsertOne(product);
             return product;
         }
-        public void Update(int id, Product product)
-        {
-            Product found = products.Where(n => n.Id == id).FirstOrDefault();
-            found.Name = product.Name;
-            found.Bakery = product.Bakery;
-            found.Price = product.Price;
-        }
-        public void Delete(int id)
-        {
-            products.RemoveAll(n => n.Id == id);
-        }
+
+        public void Update(string id, Product product) =>
+            _products.ReplaceOne(product => product.Id == id, product);
+
+        public void Remove(Product productIn) =>
+            _products.DeleteOne(product => product.Id == productIn.Id);
+
+        public void Remove(string id) =>
+            _products.DeleteOne(product => product.Id == id);
+
+
     }
 }

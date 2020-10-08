@@ -10,47 +10,74 @@ using Mrs_Cake.Services;
 
 namespace Mrs_Cake.Controllers
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("ReactPolicy")]
     public class ProductsController : ControllerBase
     {
-        private readonly ProductService productService;
+        private readonly ProductService _productService;
+
         public ProductsController(ProductService productService)
         {
-            this.productService = productService;
+            _productService = productService;
         }
+
         [HttpGet]
-        public IEnumerable<Product> Get()
-        {
-            return productService.GetAll();
+        public ActionResult<List<Product>> Get() {
+            List<Product> productFromDB = _productService.Get();
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            return productFromDB;
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+
+
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        public ActionResult<Product> GetById(string id)
         {
-            return Ok(productService.GetById(id));
+            var productFromDB = _productService.GetById(id);
+
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            return productFromDB;
         }
+
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Product product)
+        public ActionResult<Product> Create(Product product)
         {
-            return CreatedAtAction("Get", new { id = product.Id }, productService.Create(product));
+            _productService.Create(product);
+
+            return CreatedAtRoute("GetProduct", new { id = product.Id.ToString() }, product);
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Product product)
+
+        [HttpPut("{id:length(24)}")]
+        public IActionResult Update(string id, Product productIn)
         {
-            productService.Update(id, product);
+            var productFromDB = _productService.GetById(id);
+
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            _productService.Update(id, productIn);
+
             return NoContent();
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(string id)
         {
-            productService.Delete(id);
+            var productFromDB = _productService.GetById(id);
+
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            _productService.Remove(productFromDB.Id);
+
             return NoContent();
-        }
-        public override NoContentResult NoContent()
-        {
-            return base.NoContent();
         }
     }
 }
