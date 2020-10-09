@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Mrs_Cake.Services;
+using Mrs_Cake.MrsCakeData;
 
 namespace Mrs_Cake
 {
@@ -27,7 +27,7 @@ namespace Mrs_Cake
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<ProductService>();
+            services.AddSingleton<DisconnectedRepository>();
             services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>
             {
                 builder.AllowAnyOrigin()

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
+using Mrs_Cake.MrsCakeData;
 
 
 namespace Mrs_Cake.Controllers
@@ -16,36 +17,36 @@ namespace Mrs_Cake.Controllers
     [EnableCors("ReactPolicy")]
     public class ProductsController : ControllerBase
     {
-        private readonly ProductService productService;
-        public ProductsController(ProductService productService)
+        private readonly DisconnectedRepository _repo ;
+        public ProductsController(DisconnectedRepository repository)
         {
-            this.productService = productService;
+            this._repo = repository;
         }
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return productService.GetAll();
+            return _repo.GetProducts();
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(productService.GetById(id));
+            return Ok(_repo.GetProductById(id));
         }
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Product product)
         {
-            return CreatedAtAction("Get", new { id = product.Id }, productService.Create(product));
+            return CreatedAtAction("Get", new { id = product.Id }, _repo.SaveNewProduct(product));
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Product product)
+        public async Task<IActionResult> Put([FromBody] Product product)
         {
-            productService.Update(id, product);
+            _repo.SaveUpdatedProduct(product);
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
-            productService.Delete(id);
+            _repo.DeleteProduct(id);
             return NoContent();
         }
         public override NoContentResult NoContent()
