@@ -23,12 +23,6 @@ export class HomePage extends Component{
 
             <div style={wrapperStyle}>
                 <CarouselControlled/>
-                <Link to="/bakeryregistration"  variant="primary" size="lg" block>
-                <Button  variant="primary" size="lg" block>
-                Register your shop today !
-                </Button>
-
-                </Link>
             </div>
         );
     }
