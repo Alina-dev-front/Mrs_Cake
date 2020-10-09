@@ -66,12 +66,12 @@ class Login extends Component {
                                             <InputGroup className="mb-3">
                                                 <Input type="text" 
                                                  onChange={this.Email} 
-                                                 placeholder="Enter Email" />
+                                                 placeholder="Email" />
                                             </InputGroup>
                                             <InputGroup className="mb-4">
                                                 <Input type="password" 
                                                 onChange={this.Password} 
-                                                placeholder="Enter Password" />
+                                                placeholder="Password" />
                                             </InputGroup>
 
                                             <div className="form-group">

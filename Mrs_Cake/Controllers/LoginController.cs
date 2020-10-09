@@ -8,10 +8,15 @@ using System.Web.Http;
 using System.Threading.Tasks;
 using Mrs_Cake.Models;
 using Mrs_Cake.LoginDetails;
-
+using System.Web.Http.Cors;
 
 namespace Mrs_Cake.Controllers
 {
+
+   
+    [Route("api/[controller]")]
+   
+    
     public class LoginController
     {
         [RoutePrefix("Api/login")]
@@ -24,10 +29,10 @@ namespace Mrs_Cake.Controllers
             {
                 try
                 {
-                    UsersLogin EL = new UsersLogin();
+                    UserLogin EL = new UserLogin();
                     if (EL.Id == 0)
                     {
-                        EL.UserName = Register.UsersName;
+                        EL.UserName = Register.UserName;
                        
                         EL.Email = Reg.Email;
                         EL.Password = Reg.Password;

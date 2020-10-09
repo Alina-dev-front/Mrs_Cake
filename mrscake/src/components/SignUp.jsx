@@ -75,25 +75,25 @@ class SignUp extends Component {
                     </div>
                     <InputGroup className="mb-3">
                       <Input type="text"  
-                      onChange={this.Name} placeholder="Enter  Name" />
+                      onChange={this.Name} placeholder="Name" />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <Input type="text"  
-                      onChange={this.Email} placeholder="Enter Email" />
+                      onChange={this.Email} placeholder="Email" />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <Input type="password"  
-                      onChange={this.Password} placeholder="Enter Password" />
+                      onChange={this.Password} placeholder="Password" />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <Input type="password"  
-                      onChange={this.cpassword} placeholder="Enter confirm password" />
+                      onChange={this.cpassword} placeholder="Confirm password" />
                     </InputGroup>
                     
                     <div onChange={this.onChangeValue}>
                     <p><b>Select one User Role : </b></p>
                     <input type="radio" value="User" name="User" /> Are you Customer?<br/>
-                    <input type="radio" value="Bakery" name="Bakery" /> Are you bakery?<br/>
+                    <input type="radio" value="Bakery" name="Bakery" /> Are you bakery Manager?<br/>
                     <input type="radio" value="Admin" name="Admin" /> Are you Admin?<br/>
                     </div>
                    
