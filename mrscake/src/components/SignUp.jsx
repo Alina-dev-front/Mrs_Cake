@@ -8,7 +8,7 @@ class SignUp extends Component {
       Name: '',
       Email: '',
       Password: '',
-        Id: '',
+      Id: '',
     }
 
     this.Email = this.Email.bind(this);
@@ -20,17 +20,13 @@ class SignUp extends Component {
 
   Id(event) {
     this.setState({ Id: event.target.value })
-}
+  }
   Email(event) {
     this.setState({ Email: event.target.value })
-  }
- 
-  
- 
+  } 
   Password(event) {
     this.setState({ Password: event.target.value })
   }
- 
   Name(event) {
     this.setState({ Name: event.target.value })
   }
@@ -73,10 +69,15 @@ class SignUp extends Component {
                         Sign Up
                         </div>
                     </div>
+                    <div>
                     <InputGroup className="mb-3">
                       <Input type="text"  
-                      onChange={this.Name} placeholder="Name" />
+                      onChange={this.Name} placeholder="First Name" />
+                   
+                      <Input type="text"  
+                      onChange={this.Name} placeholder="Last Name" />
                     </InputGroup>
+                    </div>
                     <InputGroup className="mb-3">
                       <Input type="text"  
                       onChange={this.Email} placeholder="Email" />
@@ -89,14 +90,9 @@ class SignUp extends Component {
                       <Input type="password"  
                       onChange={this.cpassword} placeholder="Confirm password" />
                     </InputGroup>
-                    
-                    <div onChange={this.onChangeValue}>
                     <p><b>Select one User Role : </b></p>
-                    <input type="radio" value="User" name="User" /> Are you Customer?<br/>
-                    <input type="radio" value="Bakery" name="Bakery" /> Are you bakery Manager?<br/>
-                    <input type="radio" value="Admin" name="Admin" /> Are you Admin?<br/>
-                    </div>
-                   
+                    <input type="radio" id="User" name="role" value="Customer" /> Are you Customer?<br/>
+                    <input type="radio" id="Bakery" name="role" value ="Bakery" /> Are you bakery Manager?<br/><br/>
                    <Button  onClick={this.register}  
                     color="success" block>Create Account</Button>
                   </Form>

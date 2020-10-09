@@ -61,7 +61,7 @@ class Login extends Component {
                                             className="mb-2 pageheading">
                                                 <div class="col-sm-12 btn btn-primary">
                                                     Login
-                             </div>
+                                                </div>
                                             </div>
                                             <InputGroup className="mb-3">
                                                 <Input type="text" 
@@ -75,22 +75,19 @@ class Login extends Component {
                                             </InputGroup>
 
                                             <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                </div>
+                                            <div className="custom-control custom-checkbox">
+                                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                                             </div>
+                                            </div>
                                             <Button onClick={this.login} 
                                             color="success" block>Login</Button>
                                             <p className="forgot-password text-center">
-
-
-    <a href="abc">Forgot password?</a><br/><br/>
-
-<button >  <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
-ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
-Not Registered,Sign Up</a></button>
-</p>
+                                            <a href="abc">Forgot password?</a><br/><br/>
+                                            <button >  <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
+                                            ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
+                                            Not Registered,Sign Up</a></button>
+                                                </p>
 
                                         </Form>
                                     </CardBody>
