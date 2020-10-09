@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Mrs_Cake.Interfaces;
 
 namespace Mrs_Cake.Models
 {
-    public class Order
+    public class Order : ImodifactionHistory
     {
+        public Order()
+        {
+            OrderedProducts = new List<Product>();
+        }
+        
         public long Id { get; set; }
         public int OrderNumber { get; set; }
         public decimal TotalPrice { get; set; }
@@ -15,7 +21,12 @@ namespace Mrs_Cake.Models
         public string Comments { get; set; }
         public bool Paid { get; set; }
         public User User { get; set; }
-        public List<Product> OrderedProducts { get; set; }
+        public virtual List<Product> OrderedProducts { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
+
+
+        public DateTime DateModified { get; set; }
+        public DateTime DateCreated { get; set; }
+        public bool IsDirty { get; set; }
     }
 }
