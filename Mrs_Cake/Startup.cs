@@ -28,6 +28,8 @@ namespace Mrs_Cake
                 sp.GetRequiredService<IOptions<MrsCakeDatabaseSettings>>().Value);
 
             services.AddSingleton<ProductService>();
+            services.AddSingleton<UserService>();
+            services.AddSingleton<OrderService>();
 
             services.AddControllers();
             services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>

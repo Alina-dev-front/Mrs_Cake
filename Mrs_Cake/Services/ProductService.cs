@@ -14,7 +14,7 @@ namespace Mrs_Cake.Services
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            _products = database.GetCollection<Product>(settings.CollectionName);
+            _products = database.GetCollection<Product>(settings.CollectionName_Products);
         }
 
         public List<Product> Get() =>

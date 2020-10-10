@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
 
-
 namespace Mrs_Cake.Controllers
 {
     [Route("api/[controller]")]
@@ -19,12 +18,12 @@ namespace Mrs_Cake.Controllers
 
         [HttpGet]
         public ActionResult<List<Product>> Get() {
-            List<Product> productFromDB = _productService.Get();
-            if (productFromDB == null)
+            List<Product> productsFromDB = _productService.Get();
+            if (productsFromDB == null)
             {
                 return NotFound();
             }
-            return productFromDB;
+            return productsFromDB;
         }
 
 
