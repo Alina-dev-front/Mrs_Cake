@@ -1,17 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-=======
-using Mrs_Cake.Interfaces;
->>>>>>> master
 
 namespace Mrs_Cake.Models
 {
-    public class User : ImodifactionHistory
+    public class User
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -23,17 +19,6 @@ namespace Mrs_Cake.Models
         public string MobilePhone { get; set; }
         public string Address { get; set; }
         public string CreditCardNUmber { get; set; }
-<<<<<<< HEAD
         public string UserRolls { get; set; }
-=======
-        public UserRolls UserRolls { get; set; }
-
-        public DateTime DateModified { get; set; }
-        public DateTime DateCreated { get; set; }
-        public bool IsDirty { get; set; }
-
-
-
->>>>>>> master
     }
 }
