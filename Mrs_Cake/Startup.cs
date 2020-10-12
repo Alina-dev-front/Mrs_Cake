@@ -3,8 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+<<<<<<< HEAD
 using Microsoft.Extensions.Options;
 using Mrs_Cake.Services;
+=======
+using Microsoft.Extensions.Logging;
+>>>>>>> master
 using Mrs_Cake.MrsCakeData;
 
 namespace Mrs_Cake
@@ -21,6 +25,7 @@ namespace Mrs_Cake
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< HEAD
             services.Configure<MrsCakeDatabaseSettings>(
                 Configuration.GetSection(nameof(MrsCakeDatabaseSettings)));
 
@@ -32,6 +37,10 @@ namespace Mrs_Cake
             services.AddSingleton<OrderService>();
 
             services.AddControllers();
+=======
+            services.AddControllers();
+            services.AddSingleton<DisconnectedRepository>();
+>>>>>>> master
             services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>
             {
                 builder.AllowAnyOrigin()

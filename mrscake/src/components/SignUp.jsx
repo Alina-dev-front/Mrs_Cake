@@ -1,40 +1,110 @@
-import React from "react";
-
-function SignUp() {
-    return <div class="row">
-    <div className="col-md-3 center">
-    <form action="http://localhost:3000/SignUp.jsx"><br/><br/><br/>
-       
-                <h3>Sign Up</h3>
-   
-                <div className="form-group">
-                    <label>Name
-                    <input type="name" className="form-control" placeholder="name" />
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>Email address
-                    <input type="email" className="form-control" placeholder="Enter email" />
-                    </label>
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter new password" />
-                </div>
-                <div className="form-group">
-                    <label>Confirm Password</label>
-                    <input type="Confirm password" className="form-control" placeholder="Enter confirm password" />
-                </div>
-                <p>Select option for role </p>
-                <div>
-                <input type="radio" value="Bakery" name="login type" /> Are you bakery shoper?<br/>
-                <input type="radio" value="Admin" name="login type" /> Are you Admin?<br/>
-                <input type="radio" value="User" name="login type" /> Are you User?<br/>
-                </div>              
-                <button type="submit" className="btn btn-primary btn-block">Register</button> 
-            </form>
-            </div>  
-        </div> 
+import React, { Component } from 'react';
+import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, 
+    Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+class SignUp extends Component {
+  constructor() {
+    super();
+    this.state = {
+      Name: '',
+      Email: '',
+      Password: '',
+      Id: '',
     }
+
+    this.Email = this.Email.bind(this);
+    this.Password = this.Password.bind(this);
+    this.Name = this.Name.bind(this);
+    this.Id = this.Id.bind(this);
+  
+  }
+
+  Id(event) {
+    this.setState({ Id: event.target.value })
+  }
+  Email(event) {
+    this.setState({ Email: event.target.value })
+  } 
+  Password(event) {
+    this.setState({ Password: event.target.value })
+  }
+  Name(event) {
+    this.setState({ Name: event.target.value })
+  }
+ 
+  register(event) {
+    fetch('http://localhost:3000/InsertUser', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        Name: this.state.Name,
+        Password: this.state.Password,
+        Email: this.state.Email,
+       Id: this.state.Id,
+       
+      })
+    }).then((Response) => Response.json())
+      .then((Result) => {
+        if (Result.Status == 'Success')
+                this.props.history.push("/Dashboard");
+        else
+          alert('Sorrrrrry !!!! Un-authenticated User !!!!!')
+      })
+  }
+ 
+  render() {
+ 
+    return (
+      <div className="app flex-row align-items-center"><br/><br/>
+        <Container><br/>
+          <Row className="justify-content-center">
+            <Col md="9" lg="7" xl="6">
+              <Card className="mx-4">
+                <CardBody className="p-4">
+                  <Form>
+                    <div class="row" className="mb-2 pageheading">
+                      <div class="col-sm-12 btn btn-primary">
+                        Sign Up
+                        </div>
+                    </div>
+                    <div>
+                    <InputGroup className="mb-3">
+                      <Input type="text"  
+                      onChange={this.Name} placeholder="First Name" />
+                   
+                      <Input type="text"  
+                      onChange={this.Name} placeholder="Last Name" />
+                    </InputGroup>
+                    </div>
+                    <InputGroup className="mb-3">
+                      <Input type="text"  
+                      onChange={this.Email} placeholder="Email" />
+                    </InputGroup>
+                    <InputGroup className="mb-3">
+                      <Input type="password"  
+                      onChange={this.Password} placeholder="Password" />
+                    </InputGroup>
+                    <InputGroup className="mb-3">
+                      <Input type="password"  
+                      onChange={this.cpassword} placeholder="Confirm password" />
+                    </InputGroup>
+                    <p><b>Select one User Role : </b></p>
+                    <input type="radio" id="User" name="role" value="Customer" /> Are you Customer?<br/>
+                    <input type="radio" id="Bakery" name="role" value ="Bakery" /> Are you bakery Manager?<br/><br/>
+                   <Button  onClick={this.register}  
+                    color="success" block>Create Account</Button>
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+}
+
 export default SignUp;
+
