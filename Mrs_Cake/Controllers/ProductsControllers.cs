@@ -1,57 +1,80 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
 using Mrs_Cake.MrsCakeData;
 
-
 namespace Mrs_Cake.Controllers
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("ReactPolicy")]
     public class ProductsController : ControllerBase
     {
-        private readonly DisconnectedRepository _repo ;
-        public ProductsController(DisconnectedRepository repository)
+        private readonly ProductService _productService;
+
+        public ProductsController(ProductService productService)
         {
-            this._repo = repository;
+            _productService = productService;
         }
+
         [HttpGet]
-        public IEnumerable<Product> Get()
-        {
-            return _repo.GetProducts();
+        public ActionResult<List<Product>> Get() {
+            List<Product> productsFromDB = _productService.Get();
+            if (productsFromDB == null)
+            {
+                return NotFound();
+            }
+            return productsFromDB;
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+
+
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        public ActionResult<Product> GetById(string id)
         {
-            return Ok(_repo.GetProductById(id));
+            var productFromDB = _productService.GetById(id);
+
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            return productFromDB;
         }
+
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Product product)
+        public ActionResult<Product> Create(Product product)
         {
-            return CreatedAtAction("Get", new { id = product.Id }, _repo.SaveNewProduct(product));
+            _productService.Create(product);
+
+            return CreatedAtRoute("GetProduct", new { id = product.Id.ToString() }, product);
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromBody] Product product)
+
+        [HttpPut("{id:length(24)}")]
+        public IActionResult Update(string id, Product productIn)
         {
-            _repo.SaveUpdatedProduct(product);
+            var productFromDB = _productService.GetById(id);
+
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            _productService.Update(id, productIn);
+
             return NoContent();
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(string id)
         {
-            _repo.DeleteProduct(id);
+            var productFromDB = _productService.GetById(id);
+
+            if (productFromDB == null)
+            {
+                return NotFound();
+            }
+            _productService.Remove(productFromDB.Id);
+
             return NoContent();
         }
-        public override NoContentResult NoContent()
-        {
-            return base.NoContent();
-        }
+        
     }
 }

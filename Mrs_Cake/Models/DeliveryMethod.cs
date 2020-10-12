@@ -7,9 +7,9 @@ namespace Mrs_Cake.Models
 {
     public enum DeliveryMethod
     {
-        TakeAway,
-        HomeDelivery,
-        PickUpPoint,
-        OtherDeliveryPlace
+        TakeAway = 1,
+        HomeDelivery = 2,
+        PickUpPoint = 3,
+        OtherDeliveryPlace = 4
     }
 }
