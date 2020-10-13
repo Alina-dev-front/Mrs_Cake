@@ -4,15 +4,18 @@ import { PRODUCTS_API_URL } from '../../constants/api_url_path';
 
 class RegistrationForm extends React.Component {
     state = {
-        id: 0,
+        id: '',
+        product_type: '',
         name: '',
+        description: '',
         bakery: '',
-        price: null
+        price: null,
+        imageUrl: ''
     }
     componentDidMount() {
         if (this.props.product) {
-            const { id, name, bakery, price } = this.props.product
-            this.setState({ id, name, bakery, price});
+            const { id, product_type, name, description, bakery, imageUrl, price } = this.props.product
+            this.setState({ id, product_type, name, description, bakery, imageUrl, price });
         }
     }
     onChange = e => {
@@ -27,8 +30,11 @@ class RegistrationForm extends React.Component {
             },
             body: JSON.stringify({
                 name: this.state.name,
+                product_type: this.state.product_type,
+                description: this.state.description,
                 bakery: this.state.bakery,
-                price: parseInt(this.state.price)
+                price: parseInt(this.state.price),
+                imageUrl: this.state.imageUrl,
             })
         })
             .then(res => res.json())
@@ -47,8 +53,11 @@ class RegistrationForm extends React.Component {
             },
             body: JSON.stringify({
                 name: this.state.name,
+                product_type: this.state.product_type,
+                description: this.state.description,
                 bakery: this.state.bakery,
-                price: this.state.price
+                price: parseInt(this.state.price),
+                imageUrl: this.state.imageUrl,
             })
         })
             .then(() => {
@@ -64,13 +73,25 @@ class RegistrationForm extends React.Component {
                 <Input type="text" name="name" onChange={this.onChange} value={this.state.name === '' ? '' : this.state.name} />
             </FormGroup>
             <FormGroup>
+                <Label for="product_type">Product type:</Label>
+                <Input required='true' type="text" name="product_type" onChange={this.onChange} value={this.state.product_type === '' ? '' : this.state.product_type} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="description">Description:</Label>
+                <Input type="text" name="description" onChange={this.onChange} value={this.state.description === '' ? '' : this.state.description} />
+            </FormGroup>
+            <FormGroup>
                 <Label for="bakery">Bakery:</Label>
-                <Input type="text" name="bakery" onChange={this.onChange} value={this.state.bakery === '' ? '' : this.state.bakery} />
+                <Input required='true' type="text" name="bakery" onChange={this.onChange} value={this.state.bakery === '' ? '' : this.state.bakery} />
             </FormGroup>
             <FormGroup>
                 <Label for="price">Price:</Label>
                 <Input required='true' type="int" name="price" onChange={this.onChange} value={this.state.price === null ? null : this.state.price}
                     placeholder="356" />
+            </FormGroup>
+            <FormGroup>
+                <Label for="imageUrl">Product image URL:</Label>
+                <Input type="text" name="imageUrl" onChange={this.onChange} value={this.state.imageUrl === '' ? '' : this.state.imageUrl} />
             </FormGroup>
             <Button>Send</Button>
         </Form>;

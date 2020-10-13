@@ -58,7 +58,7 @@ namespace Mrs_Cake.Controllers
                 return NotFound();
             }
             _productService.Update(id, productIn);
-
+            
             return NoContent();
         }
 

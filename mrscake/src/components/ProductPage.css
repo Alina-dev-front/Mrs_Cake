@@ -1,4 +1,6 @@
-.jumbotron {
-    padding-top: 8% !important;
-    height: 80% !important;
+.ProductTableContainer {
+    padding-top: 100px;
+    padding-bottom: 150px;
+    overflow: auto;
+    max-width: 90% !important;
 }

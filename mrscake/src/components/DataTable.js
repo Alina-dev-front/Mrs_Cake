@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
+import "./DataTable.css";
 
 class DataTable extends Component {
   deleteItem = id => {
@@ -24,11 +25,12 @@ class DataTable extends Component {
     return <Table striped>
       <thead className="thead-dark">
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Bakery</th>
-          <th>Price</th>
-          <th style={{ textAlign: "center" }}>Actions</th>
+          <th className="image-column">Product Picture</th>
+          <th className="name-column">Name</th>
+          <th className="description-column">Description</th>
+          <th className="bakery-column">Bakery</th>
+          <th className="price-column">Price</th>
+          <th className="action-column">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -38,27 +40,29 @@ class DataTable extends Component {
           </tr>
           : items.map(item => (
             <tr key={item.id}>
-              <th scope="row">
-                {item.id}
-              </th>
-              <td>
+              <td className="image-column">
+                {item.imageUrl}
+              </td>
+              <td className="name-column">
                 {item.name}
               </td>
-              <td>
+              <td className="description-column">
+                {item.description}
+              </td>
+              <td className="bakery-column">
                 {item.bakery}
               </td>
-              <td>
+              <td className="price-column">
                 {item.price}
               </td>
               <td align="center">
-                <div>
+                <span className="action-column">
                   <RegistrationModal
                     isNew={false}
                     product={item}
                     updateProductIntoState={this.props.updateState} />
-                  &nbsp;&nbsp;&nbsp;
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
-                </div>
+                </span>
               </td>
             </tr>
           ))}
