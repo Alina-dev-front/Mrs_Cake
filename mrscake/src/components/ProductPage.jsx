@@ -31,7 +31,7 @@ class ProductTable extends Component {
       this.setState({ items: updated })
     }
     render() {
-      return <Container style={{ paddingTop: "100px" }}>
+      return <Container className="ProductTableContainer">
         <Row>
           <Col>
             <h3>PRODUCT LIST</h3>
