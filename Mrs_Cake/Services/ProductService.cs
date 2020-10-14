@@ -29,8 +29,18 @@ namespace Mrs_Cake.Services
             return product;
         }
 
-        public void Update(string id, Product product) =>
-            _products.ReplaceOne(product => product.Id == id, product);
+        public void Update(string id, Product product)
+        {
+            Product foundProduct = _products.Find(n => n.Id == id).FirstOrDefault();
+            foundProduct.Name = product.Name;
+            foundProduct.Bakery = product.Bakery;
+            foundProduct.Description = product.Description;
+            foundProduct.Price = product.Price;
+            foundProduct.Product_Type = product.Product_Type;
+            foundProduct.ImageUrl = foundProduct.ImageUrl;
+
+            _products.ReplaceOne(product => product.Id == id, foundProduct);
+        }
 
         public void Remove(Product productIn) =>
             _products.DeleteOne(product => product.Id == productIn.Id);

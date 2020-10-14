@@ -1,0 +1,23 @@
+.description-column {
+    width: 25% !important;
+}
+
+.name-column {
+    width: 15% !important;
+}
+
+.price-column {
+    width: 10% !important;
+}
+
+.bakery-column {
+    width: 15% !important;
+}
+
+.image-column {
+    width: 20% !important;
+}
+
+.action-column {
+    width: 12% !important;
+} 
