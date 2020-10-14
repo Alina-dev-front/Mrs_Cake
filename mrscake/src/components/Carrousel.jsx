@@ -15,25 +15,25 @@ function CarouselControlled(){
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/1.jpeg")}
-                    alt="First Image"
-                    style={{height: "50vh"}}
+                    src={require("../Images/60.jpeg")}
+                    alt="First Slide"
+                    style={{height: "60vh"}}
                 />
             </Carousel.Item>
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/4.jpeg")}
-                    alt="First Image"
-                    style={{height: "50vh"}}
+                    src={require("../Images/61.jpg")}
+                    alt="Second Slide"
+                    style={{height: "60vh"}}
                 />
             </Carousel.Item>
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/3.jpeg")}
-                    alt="First Image"
-                    style={{height: "50vh"}}
+                    src={require("../Images/65.jpeg")}
+                    alt="Thirst Slide"
+                    style={{height: "60vh"}}
                 />
             </Carousel.Item>
         </Carousel>
