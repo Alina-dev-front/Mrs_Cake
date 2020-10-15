@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
 
+
+
 namespace Mrs_Cake.Controllers
 {
     [Route("api/[controller]")]
@@ -31,13 +33,13 @@ namespace Mrs_Cake.Controllers
         [HttpGet("{id:length(24)}", Name = "GetUser")]
         public ActionResult<User> GetById(string id)
         {
-            var userFromDB = _userService.GetById(id);
+            var usersFromDB = _userService.GetById(id);
 
-            if (userFromDB == null)
+            if (usersFromDB == null)
             {
                 return NotFound();
             }
-            return userFromDB;
+            return usersFromDB;
         }
 
         [HttpPost]

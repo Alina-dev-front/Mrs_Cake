@@ -5,7 +5,7 @@ import { PRODUCTS_API_URL } from '../../constants/api_url_path';
 class RegistrationForm extends React.Component {
     state = {
         id: '',
-        product_type: '',
+        productType: '',
         name: '',
         description: '',
         bakery: '',
@@ -14,11 +14,11 @@ class RegistrationForm extends React.Component {
     }
     componentDidMount() {
         if (this.props.product) {
-            const { id, product_type, name, description, bakery, imageUrl, price } = this.props.product
-            this.setState({ id, product_type, name, description, bakery, imageUrl, price });
+            const { id, productType, name, description, bakery, imageUrl, price } = this.props.product
+            this.setState({ id, productType, name, description, bakery, imageUrl, price });
         }
     }
-    onChange = e => {
+    handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
     submitNew = e => {
@@ -30,7 +30,7 @@ class RegistrationForm extends React.Component {
             },
             body: JSON.stringify({
                 name: this.state.name,
-                product_type: this.state.product_type,
+                productType: this.state.productType,
                 description: this.state.description,
                 bakery: this.state.bakery,
                 price: parseInt(this.state.price),
@@ -53,7 +53,7 @@ class RegistrationForm extends React.Component {
             },
             body: JSON.stringify({
                 name: this.state.name,
-                product_type: this.state.product_type,
+                productType: this.state.productType,
                 description: this.state.description,
                 bakery: this.state.bakery,
                 price: parseInt(this.state.price),
@@ -70,28 +70,35 @@ class RegistrationForm extends React.Component {
         return <Form onSubmit={this.props.product ? this.submitEdit : this.submitNew}>
             <FormGroup>
                 <Label for="name">Name:</Label>
-                <Input type="text" name="name" onChange={this.onChange} value={this.state.name === '' ? '' : this.state.name} />
+                <Input type="text" name="name" onChange={this.handleChange} value={this.state.name === '' ? '' : this.state.name} />
             </FormGroup>
-            <FormGroup>
-                <Label for="product_type">Product type:</Label>
-                <Input required='true' type="text" name="product_type" onChange={this.onChange} value={this.state.product_type === '' ? '' : this.state.product_type} />
+            <FormGroup >
+                <Label for="productType">Choose product type:</Label>
+                    <select name="productType" onChange={this.handleChange} value={this.state.productType === '' ? '' : this.state.productType}>
+                        <option value="Cake">Cake</option>
+                        <option value="Cupcake">Cupcake</option>
+                        <option value="Cookie">Cookie</option>
+                        <option value="Donut">Donut</option>
+                        <option value="Pie">Pie</option>
+                        <option value="Macaron">Macaron</option>
+                    </select>
             </FormGroup>
             <FormGroup>
                 <Label for="description">Description:</Label>
-                <Input type="text" name="description" onChange={this.onChange} value={this.state.description === '' ? '' : this.state.description} />
+                <Input type="text" name="description" onChange={this.handleChange} value={this.state.description === '' ? '' : this.state.description} />
             </FormGroup>
             <FormGroup>
                 <Label for="bakery">Bakery:</Label>
-                <Input required='true' type="text" name="bakery" onChange={this.onChange} value={this.state.bakery === '' ? '' : this.state.bakery} />
+                <Input required='true' type="text" name="bakery" onChange={this.handleChange} value={this.state.bakery === '' ? '' : this.state.bakery} />
             </FormGroup>
             <FormGroup>
                 <Label for="price">Price:</Label>
-                <Input required='true' type="int" name="price" onChange={this.onChange} value={this.state.price === null ? null : this.state.price}
+                <Input required='true' type="int" name="price" onChange={this.handleChange} value={this.state.price === null ? null : this.state.price}
                     placeholder="356" />
             </FormGroup>
             <FormGroup>
                 <Label for="imageUrl">Product image URL:</Label>
-                <Input type="text" name="imageUrl" onChange={this.onChange} value={this.state.imageUrl === '' ? '' : this.state.imageUrl} />
+                <Input type="text" name="imageUrl" onChange={this.handleChange} value={this.state.imageUrl === '' ? '' : this.state.imageUrl} />
             </FormGroup>
             <Button>Send</Button>
         </Form>;

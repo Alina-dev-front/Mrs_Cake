@@ -36,7 +36,7 @@ namespace Mrs_Cake.Services
             foundProduct.Bakery = product.Bakery;
             foundProduct.Description = product.Description;
             foundProduct.Price = product.Price;
-            foundProduct.Product_Type = product.Product_Type;
+            foundProduct.ProductType = product.ProductType;
             foundProduct.ImageUrl = foundProduct.ImageUrl;
 
             _products.ReplaceOne(product => product.Id == id, foundProduct);
