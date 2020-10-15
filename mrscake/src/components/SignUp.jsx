@@ -1,110 +1,142 @@
 import React, { Component } from 'react';
 import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, 
-    Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+    Input, FormGroup, FormGroupAddon, FormGroupText, Row } from 'reactstrap';
+import { USERS_API_URL } from '../constants/user_api_url.js';
+import './Login.css';
 class SignUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      Name: '',
-      Email: '',
-      Password: '',
-      Id: '',
+  state = 
+  {
+    id: "",
+    firstName: "", 
+    lastName: "",     
+    email: '',
+    password: '',
+    confirmPassword: '', 
+    userRolls: '',   
     }
+    
+    
+    
+    componentDidMount() {
+      if (this.props.user) 
+      {
+          const { id, firstName, lastName, email, password, confirmPassword, userRolls } = this.props.user
+          this.setState({ id, firstName, lastName, email, password, confirmPassword, userRolls});
+     }
+     }
 
-    this.Email = this.Email.bind(this);
-    this.Password = this.Password.bind(this);
-    this.Name = this.Name.bind(this);
-    this.Id = this.Id.bind(this);
+     handleChange = e => {
+      this.setState({ [e.target.name]: e.target.value })
+  }  
   
-  }
+  submitNew = e => {
+    e.preventDefault();
+    fetch(`${USERS_API_URL}`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword,
+            userRolls: this.state.userRolls
+        })
+    })
+    
+  .then(res => res.json())
+  .then(user => {
+      this.props.addUserToState(user);
+      this.props.toggle();
+  })
+  .catch(err => console.log(err));
+}
 
-  Id(event) {
-    this.setState({ Id: event.target.value })
-  }
-  Email(event) {
-    this.setState({ Email: event.target.value })
-  } 
-  Password(event) {
-    this.setState({ Password: event.target.value })
-  }
-  Name(event) {
-    this.setState({ Name: event.target.value })
-  }
- 
-  register(event) {
-    fetch('http://localhost:3000/InsertUser', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        Name: this.state.Name,
-        Password: this.state.Password,
-        Email: this.state.Email,
-       Id: this.state.Id,
-       
+    
+  submitEdit = e => { 
+      e.preventDefault();
+      fetch(`${USERS_API_URL}/${this.state.id}`, {
+          method: 'put',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          confirmPassword: this.state.confirmPassword, 
+          userRolls: this.state.userRolls  
+          })
       })
-    }).then((Response) => Response.json())
-      .then((Result) => {
-        if (Result.Status == 'Success')
-                this.props.history.push("/Dashboard");
-        else
-          alert('Sorrrrrry !!!! Un-authenticated User !!!!!')
-      })
-  }
- 
+          .then(() => {
+              this.props.toggle();
+              this.props.updateUserIntoState(this.state.id);
+          })
+          .catch(err => console.log(err));
+
+        }
+        SignUp = () => { 
+          document.getElementById("user-reg").reset();
+        }
   render() {
- 
-    return (
+      
+    return <Form id ="user-reg" onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
+
       <div className="app flex-row align-items-center"><br/><br/>
         <Container><br/>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
               <Card className="mx-4">
                 <CardBody className="p-4">
-                  <Form>
+               
                     <div class="row" className="mb-2 pageheading">
                       <div class="col-sm-12 btn btn-primary">
                         Sign Up
                         </div>
                     </div>
                     <div>
-                    <InputGroup className="mb-3">
-                      <Input type="text"  
-                      onChange={this.Name} placeholder="First Name" />
+
+                    <FormGroup className="mb-3">
+                    <Input required='true' type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
+                    <Input required='true' type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
                    
-                      <Input type="text"  
-                      onChange={this.Name} placeholder="Last Name" />
-                    </InputGroup>
+                    </FormGroup>
                     </div>
-                    <InputGroup className="mb-3">
-                      <Input type="text"  
-                      onChange={this.Email} placeholder="Email" />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <Input type="password"  
-                      onChange={this.Password} placeholder="Password" />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <Input type="password"  
-                      onChange={this.cpassword} placeholder="Confirm password" />
-                    </InputGroup>
+                    <FormGroup className="mb-3">
+                    <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
+                    
+                    </FormGroup>
+                    <FormGroup className="mb-3">
+                      <Input required='true' type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
+
+                    </FormGroup>
+                    <FormGroup className="mb-3">
+                    <Input required='true' type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required  onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
+
+                    </FormGroup>
                     <p><b>Select one User Role : </b></p>
-                    <input type="radio" id="User" name="role" value="Customer" /> Are you Customer?<br/>
-                    <input type="radio" id="Bakery" name="role" value ="Bakery" /> Are you bakery Manager?<br/><br/>
-                   <Button  onClick={this.register}  
-                    color="success" block>Create Account</Button>
-                  </Form>
+                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}value="Customer" /> Are you Customer?<br/>
+                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/><br/>
+                    
+                   <Button  color="success" block >Create Account</Button>
+                  
+                   
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </Container>
       </div>
-    );
+      
+      </Form>;
+      
+  
   }
 }
+
 
 export default SignUp;
 

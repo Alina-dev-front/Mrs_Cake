@@ -30,6 +30,7 @@ namespace Mrs_Cake.Services
         }
 
         public void Update(string id, User user) =>
+
             _users.ReplaceOne(user => user.Id == id, user);
 
         public void Remove(User userIn) =>
