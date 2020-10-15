@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
-         InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+         FormGroup, FormGroupAddon, FormGroupText, Row } from 'reactstrap';
 class Login extends Component {
     constructor() {
         super();
@@ -45,7 +45,7 @@ class Login extends Component {
     }
  
     render() {
-        return (
+         return <Form  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
 
             
             <div className="app flex-row align-items-center">
@@ -63,16 +63,16 @@ class Login extends Component {
                                                     Login
                                                 </div>
                                             </div>
-                                            <InputGroup className="mb-3">
-                                                <Input type="text" 
+                                            <FormGroup className="mb-3">
+                                                <Input required='true' type="email" name = "email"
                                                  onChange={this.Email} 
                                                  placeholder="Email" />
-                                            </InputGroup>
-                                            <InputGroup className="mb-4">
-                                                <Input type="password" 
+                                            </FormGroup>
+                                            <FormGroup className="mb-4">
+                                                <Input required='true' type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                                 onChange={this.Password} 
                                                 placeholder="Password" />
-                                            </InputGroup>
+                                            </FormGroup>
 
                                             <div className="form-group">
                                             <div className="custom-control custom-checkbox">
@@ -81,7 +81,7 @@ class Login extends Component {
                                              </div>
                                             </div>
                                             <Button onClick={this.login} 
-                                            color="success" block>Login</Button>
+                                            color="success" block href="/homePage" >Login</Button>
                                             <p className="forgot-password text-center">
                                             <a href="abc">Forgot password?</a><br/><br/>
                                             <button >  <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
@@ -97,7 +97,7 @@ class Login extends Component {
                     </Row>
                 </Container>
             </div>
-        );
+        </Form>
     }
 }
  
