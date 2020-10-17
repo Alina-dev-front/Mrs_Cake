@@ -21,7 +21,10 @@ class DataTable extends Component {
     }
   }
   render() {
-    const items = this.props.items;
+    let items = this.props.items;
+    if (this.props.filteredItems.length > 0) {
+      items = this.props.filteredItems;
+    }
     return <Table striped>
       <thead className="thead-dark">
         <tr>
@@ -70,4 +73,5 @@ class DataTable extends Component {
     </Table>;
   }
 }
+
 export default DataTable;
