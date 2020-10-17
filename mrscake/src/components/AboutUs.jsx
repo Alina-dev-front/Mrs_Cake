@@ -26,7 +26,7 @@ function AboutUs() {
             <div class="our-history space-bottom-20 space-top-20">
                <p> <h5>
                 <b> MrsCake</b>   Shop is a famous brand that started as a small business. 
-                The owners are <b> Parul, Alina, Abel and Nareerat </b>and MrsCake supported by owner and staff.<br /><br />
+                The owners are <b> Parul, Alina, Niloufar, Abel and Nareerat </b>and MrsCake supported by owner and staff.<br /><br />
                 Although not small any more,  our products and staff consider each customer 
                 a member in this family of cake shoppers.
                 Our mission is to make people happy.Keeping our prices reasonable are all different ways to achieve this goal.
