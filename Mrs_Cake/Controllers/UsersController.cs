@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
 
+
+
 namespace Mrs_Cake.Controllers
 {
     [Route("api/[controller]")]
@@ -15,7 +17,7 @@ namespace Mrs_Cake.Controllers
         {
             _userService = userService;
         }
-        
+
         [HttpGet]
         public ActionResult<List<User>> Get()
         {
@@ -31,13 +33,13 @@ namespace Mrs_Cake.Controllers
         [HttpGet("{id:length(24)}", Name = "GetUser")]
         public ActionResult<User> GetById(string id)
         {
-            var userFromDB = _userService.GetById(id);
+            var usersFromDB = _userService.GetById(id);
 
-            if (userFromDB == null)
+            if (usersFromDB == null)
             {
                 return NotFound();
             }
-            return userFromDB;
+            return usersFromDB;
         }
 
         [HttpPost]
@@ -47,27 +49,6 @@ namespace Mrs_Cake.Controllers
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
-
-        [Route("Login")]
-        [HttpGet]
-
-        public User User(User user)
-        {
-
-
-            List<User> usersFromDB = _userService.Get();
-
-
-            if (usersFromDB == null)
-            {
-                return new User { Status = "Invalid", Message = "Invalid User!" };
-            }
-            else
-                return new User { Status = "Success", Message = "Login Successfully!" };
-
-
-        }
-
 
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, User userIn)
@@ -97,4 +78,4 @@ namespace Mrs_Cake.Controllers
             return NoContent();
         }
     }
-}
+}   
