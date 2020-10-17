@@ -69,7 +69,7 @@ class ProductTable extends Component {
         <Form>
           <Label>Choose by form:</Label>
             <select value={this.state.item} onChange={this.handleChangeItem}>
-                <option value="none">Select an Option</option>
+                <option value="none">Show all</option>
                 {uniqueItem.map(item => (
                   <option key={item.id} value={item.productType}>
                     {item.productType}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-import "./DataTable.css";
+import './DataTable.css';
 
 class DataTable extends Component {
   deleteItem = id => {
@@ -44,7 +44,7 @@ class DataTable extends Component {
           : items.map(item => (
             <tr key={item.id}>
               <td className="image-column">
-                {item.imageUrl}
+                <img src={require('../Images/' + item.imageUrl)} alt={item.name} className="img_product_table"></img>
               </td>
               <td className="name-column">
                 {item.name}

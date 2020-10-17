@@ -21,3 +21,8 @@
 .action-column {
     width: 12% !important;
 } 
+
+.img_product_table {
+    width: 300px;
+    height: 300px;
+}
