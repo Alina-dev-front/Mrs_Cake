@@ -88,7 +88,7 @@ class SignUp extends Component {
         }
   render() {
       
-    return <Form id ="user-reg" onSubmit={this.mySubmitHandler}>
+    return <Form id ="user-reg" onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
 
       <div className="app flex-row align-items-center"><br/><br/>
         <Container><br/>
@@ -127,7 +127,7 @@ class SignUp extends Component {
                     <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager? <br/>
                     <div>
                    <Button  color="success" block >Create Account</Button>
-                   <div class="clear"></div>
+                  
                    <p className="link text-center">
                    <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/login"
                                             ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
