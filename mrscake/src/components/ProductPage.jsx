@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Container, Form, Label, Row } from 'reactstrap';
+import { Col, Container, Form, Row, Label,  } from 'reactstrap';
 import './ProductPage.css';
 import DataTable from './DataTable';
 import RegistrationModal from './form/RegistrationModal';
@@ -69,6 +69,7 @@ class ProductTable extends Component {
         <Form>
           <Label>Choose by form:</Label>
             <select value={this.state.item} onChange={this.handleChangeItem}>
+                <option value="none">Select an Option</option>
                 {uniqueItem.map(item => (
                   <option key={item.id} value={item.productType}>
                     {item.productType}
@@ -77,7 +78,8 @@ class ProductTable extends Component {
             </select>
             <div style={{display: "none"}}>{filterDropdown.map(item => (
               filteredItems.push(item)
-            ))}</div>
+            ))}
+            </div>
         </Form>
           <Row>
             <Col>
