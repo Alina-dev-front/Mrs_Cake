@@ -123,7 +123,15 @@ class SignUp extends Component {
                     
                    <Button  color="success" block >Create Account</Button>
                   
+<div>
+                   <p className="link text-center">
+                   <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/login"
+                                            ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
+                                            Already Registered,Sign in</a></b>
+                                            </p></div>
+
                    
+
                 </CardBody>
               </Card>
             </Col>
