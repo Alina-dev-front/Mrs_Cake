@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard'; 
+import ForgotPassword from './components/ForgotPassword';
 import './components/Dashboard.css';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
@@ -46,10 +47,11 @@ function App() {
       
         <Switch>    
 
-      
+        <Route  path='/ForgotPassword' component={ForgotPassword}/>
           <Route  path='/Login' component={Login} />    
           <Route path='/SignUp' component={SignUp} />    
- 
+          <Route exact path="/" component={Login} />
+        <Route path="/HomePage" component={HomePage} />
         </Switch>    
         <Switch>  
         <Route path='/Dashboard' component={Dashboard} />    
