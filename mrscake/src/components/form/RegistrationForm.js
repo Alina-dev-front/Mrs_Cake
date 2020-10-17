@@ -10,12 +10,12 @@ class RegistrationForm extends React.Component {
         description: '',
         bakery: '',
         price: null,
-        imageUrl: ''
+        imageUrl: '',
     }
     componentDidMount() {
         if (this.props.product) {
-            const { id, productType, name, description, bakery, imageUrl, price } = this.props.product
-            this.setState({ id, productType, name, description, bakery, imageUrl, price });
+            const { id, productType, name, description, bakery, price, imageUrl } = this.props.product
+            this.setState({ id, productType, name, description, bakery, price, imageUrl });
         }
     }
     handleChange = e => {

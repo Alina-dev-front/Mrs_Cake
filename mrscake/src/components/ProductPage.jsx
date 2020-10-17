@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Container, Form, Row, Label,  } from 'reactstrap';
 import './ProductPage.css';
 import DataTable from './DataTable';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
 
+
 class ProductTable extends Component {
-    state = {
-      items: []
+    constructor(props) {
+      super(props);
+      this.state = {
+        items: [],
+        item: ""
+      }
     }
+
+    handleChangeItem = event => {
+      this.setState({ item: event.target.value });
+    };
+  
     componentDidMount() {
-      this.getItens();
+      this.getItems();
     }
-    getItens = () => {
+    getItems = () => {
       fetch(PRODUCTS_API_URL)
         .then(res => res.json())
         .then(res => this.setState({ items: res }))
@@ -24,33 +34,69 @@ class ProductTable extends Component {
       }));
     }
     updateState = (id) => {
-      this.getItens();
+      this.getItems();
     }
     deleteItemFromState = id => {
       const updated = this.state.items.filter(item => item.id !== id);
       this.setState({ items: updated })
     }
+    getUnique(array, comparison) {
+      const uniqueProductType = array
+        .map(element => element[comparison])
+        .map((element, index, final) => final.indexOf(element) === index && index)
+        .filter(element => array[element])
+        .map(element => array[element]);
+  
+      return uniqueProductType;
+    }
     render() {
+      const uniqueItem = this.getUnique(this.state.items, "productType");
+      
+      const items = this.state.items;
+      const item = this.state.item;
+      const filteredItems = [];
+  
+      const filterDropdown = items.filter(function(result) {
+        return result.productType === item;
+      });
+
       return <Container className="ProductTableContainer">
         <Row>
           <Col>
             <h3>PRODUCT LIST</h3>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <DataTable
-              items={this.state.items}
-              updateState={this.updateState}
-              deleteItemFromState={this.deleteItemFromState} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <RegistrationModal isNew={true} addProductToState={this.addProductToState} />
-          </Col>
-        </Row>
-      </Container>;
+        <Form>
+          <Label>Choose by form:</Label>
+            <select value={this.state.item} onChange={this.handleChangeItem}>
+                <option value="none">Show all</option>
+                {uniqueItem.map(item => (
+                  <option key={item.id} value={item.productType}>
+                    {item.productType}
+                  </option>
+                ))}
+            </select>
+            <div style={{display: "none"}}>{filterDropdown.map(item => (
+              filteredItems.push(item)
+            ))}
+            </div>
+        </Form>
+          <Row>
+            <Col>
+              <DataTable
+                items={items}
+                filteredItems={filteredItems}
+                updateState={this.updateState}
+                deleteItemFromState={this.deleteItemFromState} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <RegistrationModal isNew={true} addProductToState={this.addProductToState} />
+            </Col>
+          </Row>
+        </Container>;
     }
-  }
+}
+
 export default ProductTable;
