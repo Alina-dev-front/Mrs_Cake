@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, 
-    Input, FormGroup, FormGroupAddon, FormGroupText, Row } from 'reactstrap';
+import { Button, Card,  CardBody,  Col, Container, Form, 
+    Input, FormGroup, Row } from 'reactstrap';
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import './Login.css';
 class SignUp extends Component {
@@ -15,7 +15,12 @@ class SignUp extends Component {
     userRolls: '',   
     }
     
-    
+    mySubmitHandler = (event) => {
+      event.preventDefault();
+      alert("You are successfully signed up ");
+    } 
+
+   
     
     componentDidMount() {
       if (this.props.user) 
@@ -83,7 +88,7 @@ class SignUp extends Component {
         }
   render() {
       
-    return <Form id ="user-reg" onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
+    return <Form id ="user-reg" onSubmit={this.mySubmitHandler}>
 
       <div className="app flex-row align-items-center"><br/><br/>
         <Container><br/>
@@ -119,11 +124,15 @@ class SignUp extends Component {
                     </FormGroup>
                     <p><b>Select one User Role : </b></p>
                     <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}value="Customer" /> Are you Customer?<br/>
-                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/><br/>
-                    
+                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager? <br/>
+                    <div>
                    <Button  color="success" block >Create Account</Button>
-                  
-                   
+                   <div class="clear"></div>
+                   <p className="link text-center">
+                   <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/login"
+                                            ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
+                                            Already Registered,Sign in</a></b>
+                                            </p></div>
                 </CardBody>
               </Card>
             </Col>

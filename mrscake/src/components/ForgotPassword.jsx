@@ -1,0 +1,76 @@
+import React, { Component } from 'react';
+import './Login.css';
+import { USERS_API_URL } from '../constants/user_api_url.js';
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
+         FormGroup,  Row } from 'reactstrap';
+
+class Login extends Component {
+    state = 
+    {    
+    
+      password: '',
+       
+      }
+  
+      componentDidMount() {
+          if (this.props.user) 
+          {
+              const {  email, password } = this.props.user
+              this.setState({  email, password,});
+         }
+         }
+       
+       handleChange = e => {
+          this.setState({ [e.target.name]: e.target.value })
+      }  
+  
+     
+  
+      Login = () => { 
+          document.getElementById("user-log").reset();
+        }
+  
+  
+    render() {
+         return <Form id ="user-log"  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
+
+            
+            <div className="app flex-row align-items-center">
+                <Container><br/><br/><br/>
+                    <Row className="justify-content-center">
+                        <Col md="9" lg="7" xl="6">
+                            <CardGroup>
+                                <Card className="p-2">
+                                    <CardBody>
+                                        <Form>
+                                            <div class="row" 
+                                            className="mb-2 pageheading">
+                                                <div >
+                                                   <b>Forgot Password</b> 
+                                                </div>
+                                            </div>
+                                            <p>To reset your password, submit your email address below. If we can find you in the database, an email will be sent to your email address, with instructions how to get access again.</p>
+                                            <FormGroup className="mb-3">
+                                            <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
+                                            </FormGroup>
+                                           
+                                          
+
+                                            
+                                            <Button  
+                                            color="success" block  block  >submit</Button>
+                                            
+
+                                        </Form>
+                                    </CardBody>
+                                </Card>
+                            </CardGroup>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        </Form>
+    }
+}
+
+export default Login;
