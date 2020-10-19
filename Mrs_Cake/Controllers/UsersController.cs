@@ -49,25 +49,20 @@ namespace Mrs_Cake.Controllers
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
-        [Route("Login")]
+        [Route("login")]
         [HttpGet]
 
         public User User(User user)
         {
-
-
             List<User> usersFromDB = _userService.Get();
-
-
             if (usersFromDB == null)
             {
                 return new User { Status = "Invalid", Message = "Invalid User!" };
             }
             else
                 return new User { Status = "Success", Message = "Login Successfully!" };
-
-
         }
+        
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, User userIn)
         {
