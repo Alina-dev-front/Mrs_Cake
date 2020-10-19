@@ -20,5 +20,7 @@ namespace Mrs_Cake.Models
         public string Address { get; set; }
         public string CreditCardNUmber { get; set; }
         public string UserRolls { get; set; }
+        public string Status {  get; set; }
+        public string Message { get; set; }
     }
 }
