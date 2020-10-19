@@ -3,6 +3,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard'; 
 import './components/Dashboard.css';
+import ForgotPassword from './components/ForgotPassword';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
 import shoppingCart from './components/shoppingCart';
@@ -19,6 +20,7 @@ function App() {
     <NavBar />
     <BrowserRouter>
       <Switch>
+        
         <Route path='/' component={HomePage} exact />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/contactus" component={ContactUs} />
@@ -49,7 +51,9 @@ function App() {
       
           <Route  path='/Login' component={Login} />    
           <Route path='/SignUp' component={SignUp} />    
- 
+          <Route  path='/ForgotPassword' component={ForgotPassword}/>
+                  
+        
         </Switch>    
         <Switch>  
         <Route path='/Dashboard' component={Dashboard} />    
