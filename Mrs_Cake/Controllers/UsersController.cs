@@ -33,13 +33,13 @@ namespace Mrs_Cake.Controllers
         [HttpGet("{id:length(24)}", Name = "GetUser")]
         public ActionResult<User> GetById(string id)
         {
-            var usersFromDB = _userService.GetById(id);
+            var userFromDB = _userService.GetById(id);
 
-            if (usersFromDB == null)
+            if (userFromDB == null)
             {
                 return NotFound();
             }
-            return usersFromDB;
+            return userFromDB;
         }
 
         [HttpPost]
@@ -49,7 +49,20 @@ namespace Mrs_Cake.Controllers
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
+        [Route("login")]
+        [HttpGet]
 
+        public User User(User user)
+        {
+            List<User> usersFromDB = _userService.Get();
+            if (usersFromDB == null)
+            {
+                return new User { Status = "Invalid", Message = "Invalid User!" };
+            }
+            else
+                return new User { Status = "Success", Message = "Login Successfully!" };
+        }
+        
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, User userIn)
         {

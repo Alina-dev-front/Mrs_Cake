@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, 
-    Input, FormGroup, FormGroupAddon, FormGroupText, Row } from 'reactstrap';
+import { Button, Card,  CardBody,  Col, Container, Form, 
+  Input, FormGroup, Row } from 'reactstrap';	  
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import './Login.css';
+
 class SignUp extends Component {
   state = 
   {
@@ -15,19 +16,25 @@ class SignUp extends Component {
     userRolls: '',   
     }
     
-    
+    mySubmitHandler = (event) => {
+      event.preventDefault();
+      this.props.history.push('/login')
+    } 
+
+    testRoute = () => {
+      // this.props.history.push('/login')
+    } 
     
     componentDidMount() {
-      if (this.props.user) 
-      {
+      if (this.props.user) {
           const { id, firstName, lastName, email, password, confirmPassword, userRolls } = this.props.user
           this.setState({ id, firstName, lastName, email, password, confirmPassword, userRolls});
-     }
-     }
+      }
+    }
 
      handleChange = e => {
       this.setState({ [e.target.name]: e.target.value })
-  }  
+     }  
   
   submitNew = e => {
     e.preventDefault();
@@ -48,13 +55,13 @@ class SignUp extends Component {
     
   .then(res => res.json())
   .then(user => {
-      this.props.addUserToState(user);
-      this.props.toggle();
+      // this.props.addUserToState(user);
+      // this.props.toggle();
+      this.props.history.push('/login')
   })
   .catch(err => console.log(err));
 }
 
-    
   submitEdit = e => { 
       e.preventDefault();
       fetch(`${USERS_API_URL}/${this.state.id}`, {
@@ -73,7 +80,9 @@ class SignUp extends Component {
       })
           .then(() => {
               this.props.toggle();
+              
               this.props.updateUserIntoState(this.state.id);
+              this.props.history.push('/login')
           })
           .catch(err => console.log(err));
 
@@ -83,8 +92,7 @@ class SignUp extends Component {
         }
   render() {
       
-    return <Form id ="user-reg" onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
-
+    return <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
       <div className="app flex-row align-items-center"><br/><br/>
         <Container><br/>
           <Row className="justify-content-center">
@@ -107,44 +115,34 @@ class SignUp extends Component {
                     </div>
                     <FormGroup className="mb-3">
                     <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
-                    
+                   
                     </FormGroup>
                     <FormGroup className="mb-3">
-                      <Input required='true' type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
+                      <Input required='true' type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
 
                     </FormGroup>
                     <FormGroup className="mb-3">
-                    <Input required='true' type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required  onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
+                    <Input required='true' type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
 
                     </FormGroup>
                     <p><b>Select one User Role : </b></p>
-                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}value="Customer" /> Are you Customer?<br/>
-                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/><br/>
-                    
-                   <Button  color="success" block >Create Account</Button>
-                  
-<div>
+                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}  /> Are you Customer?<br/>
+                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}  /> Are you bakery Manager?<br/>
+                    < div>
+                    <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button>
                    <p className="link text-center">
                    <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/login"
                                             ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
                                             Already Registered,Sign in</a></b>
                                             </p></div>
-
-                   
-
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </Container>
       </div>
-      
       </Form>;
-      
-  
   }
 }
 
-
 export default SignUp;
-

@@ -3,6 +3,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard'; 
 import './components/Dashboard.css';
+import ForgotPassword from './components/ForgotPassword';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
 import shoppingCart from './components/shoppingCart';
@@ -33,39 +34,25 @@ function App() {
               <a class="nav-link" href="Login">Login</a>   
               </li>    
               <li className="nav-item">    
-              
               <a class="nav-link" href="Signup">SignUp</a> 
               </li>      
             </ul>    
           </div>
-         
-           
         </nav> <br />  
         </div>
-      </Switch> 
-      
-        <Switch>    
-
-      
+     </Switch> 
+     <Switch>    
           <Route  path='/Login' component={Login} />    
           <Route path='/SignUp' component={SignUp} />    
- 
-        </Switch>    
-        <Switch>  
+          <Route  path='/ForgotPassword' component={ForgotPassword}/>
+     </Switch>    
+     <Switch>  
         <Route path='/Dashboard' component={Dashboard} />    
-        </Switch>  
+     </Switch>  
     </BrowserRouter>
-   
-    
-          
-     
-     
     <FooterPage />
     </React.Fragment>
-
     );
   }
-
-
   
 export default App;
