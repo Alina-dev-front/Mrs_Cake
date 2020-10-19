@@ -14,28 +14,23 @@ class Login extends Component {
     alert("You are successfully signed in ");
   } 
   componentDidMount() {
-      if (this.props.user) 
-      {
-          const {  email, password } = this.props.user
+      if (this.props.user) {
+          const { email, password } = this.props.user
           this.setState({  email, password,});
-     }
-     }
+      }
+  }
 
-   handleChange = e => {
+  handleChange = e => {
       this.setState({ [e.target.name]: e.target.value })
   }  
 
   Login = () => { 
       document.getElementById("user-log").reset();
-    }	        
- 
+  }	        
     render() {
          return <Form  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
-
-            
             <div className="app flex-row align-items-center">
                 <Container><br/><br/><br/>
-                
                     <Row className="justify-content-center">
                         <Col md="9" lg="7" xl="6">
                             <CardGroup>
@@ -64,16 +59,13 @@ class Login extends Component {
                                             <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                                              </div>
                                             </div>
-                                            <Button  
-                                            color="success" block >Login</Button>
-                                         
+                                            <Button color="success" block >Login</Button>
                                             <p className="forgot-password text-center">
                                             <b> <a href="forgotpassword">Forgot password?</a></b><br/><br/>
                                             <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
                                             ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
                                           Not Registered,Sign Up</a></b>
                                                 </p>
-
                                         </Form>
                                     </CardBody>
                                 </Card>
