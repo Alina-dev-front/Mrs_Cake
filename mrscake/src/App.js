@@ -20,7 +20,6 @@ function App() {
     <NavBar />
     <BrowserRouter>
       <Switch>
-        
         <Route path='/' component={HomePage} exact />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/contactus" component={ContactUs} />
@@ -35,41 +34,25 @@ function App() {
               <a class="nav-link" href="Login">Login</a>   
               </li>    
               <li className="nav-item">    
-              
               <a class="nav-link" href="Signup">SignUp</a> 
               </li>      
             </ul>    
           </div>
-         
-           
         </nav> <br />  
         </div>
-      </Switch> 
-      
-        <Switch>    
-
-      
+     </Switch> 
+     <Switch>    
           <Route  path='/Login' component={Login} />    
           <Route path='/SignUp' component={SignUp} />    
           <Route  path='/ForgotPassword' component={ForgotPassword}/>
-                  
-        
-        </Switch>    
-        <Switch>  
+     </Switch>    
+     <Switch>  
         <Route path='/Dashboard' component={Dashboard} />    
-        </Switch>  
+     </Switch>  
     </BrowserRouter>
-   
-    
-          
-     
-     
     <FooterPage />
     </React.Fragment>
-
     );
   }
-
-
   
 export default App;
