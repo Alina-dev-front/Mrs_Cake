@@ -1,9 +1,10 @@
 .description-column {
     width: 25% !important;
+    text-align: justify;
 }
 
 .name-column {
-    width: 15% !important;
+    width: 10% !important;
 }
 
 .price-column {
