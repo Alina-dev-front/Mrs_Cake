@@ -19,7 +19,6 @@ class SignUp extends Component {
     mySubmitHandler = (event) => {
       event.preventDefault();
       this.props.history.push('/login')
-      console.log("HELLO")
     } 
 
     testRoute = () => {
@@ -27,16 +26,15 @@ class SignUp extends Component {
     } 
     
     componentDidMount() {
-      if (this.props.user) 
-      {
+      if (this.props.user) {
           const { id, firstName, lastName, email, password, confirmPassword, userRolls } = this.props.user
           this.setState({ id, firstName, lastName, email, password, confirmPassword, userRolls});
-     }
-     }
+      }
+    }
 
      handleChange = e => {
       this.setState({ [e.target.name]: e.target.value })
-  }  
+     }  
   
   submitNew = e => {
     e.preventDefault();
@@ -64,7 +62,6 @@ class SignUp extends Component {
   .catch(err => console.log(err));
 }
 
-    
   submitEdit = e => { 
       e.preventDefault();
       fetch(`${USERS_API_URL}/${this.state.id}`, {
@@ -141,8 +138,6 @@ class SignUp extends Component {
                 </CardBody>
               </Card>
             </Col>
-            
-
           </Row>
         </Container>
       </div>
