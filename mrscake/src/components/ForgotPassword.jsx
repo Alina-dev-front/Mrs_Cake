@@ -21,17 +21,11 @@ class Login extends Component {
           this.setState({ [e.target.name]: e.target.value })
       }  
 
-
-
       Login = () => { 
           document.getElementById("user-log").reset();
         }
-
-
     render() {
          return <Form id ="user-log"  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
-
-
             <div className="app flex-row align-items-center">
                 <Container><br/><br/><br/>
                     <Row className="justify-content-center">
@@ -40,9 +34,8 @@ class Login extends Component {
                                 <Card className="p-2">
                                     <CardBody>
                                         <Form>
-                                            <div class="row" 
-                                            className="mb-2 pageheading">
-                                                <div >
+                                            <div class="row" className="mb-2 pageheading">
+                                                <div>
                                                    <b>Forgot Password</b> 
                                                 </div>
                                             </div>
@@ -50,14 +43,7 @@ class Login extends Component {
                                             <FormGroup className="mb-3">
                                             <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                                             </FormGroup>
-
-
-
-
-                                            <Button  
-                                            color="success" block   >submit</Button>
-
-
+                                            <Button color="success" block>Submit</Button>
                                         </Form>
                                     </CardBody>
                                 </Card>
