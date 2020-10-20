@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import UserDetails from './components/UserDetails';
 import Dashboard from './components/Dashboard'; 
 import './components/Dashboard.css';
 import ForgotPassword from './components/ForgotPassword';
@@ -28,7 +29,8 @@ function App() {
             <Route path="/productpage" component={ProductTable} />
             <Route path="/homepage" component={CarouselControlled}/>
             <Route  path='/Login' component={Login} />    
-            <Route path='/SignUp' component={SignUp} />    
+            <Route path='/SignUp' component={SignUp} /> 
+            <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/Dashboard' component={Dashboard} />  
           </Switch> 

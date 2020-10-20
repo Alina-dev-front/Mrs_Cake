@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
 
-
-
 namespace Mrs_Cake.Controllers
 {
     [Route("api/[controller]")]
@@ -50,9 +48,9 @@ namespace Mrs_Cake.Controllers
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
         [Route("login")]
-        [HttpGet]
+        [HttpPost]
 
-        public User User(User user)
+        public User Login(User login)
         {
             List<User> usersFromDB = _userService.Get();
             if (usersFromDB == null)
