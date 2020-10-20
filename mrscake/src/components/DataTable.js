@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-import {addProductToCart} from "../actions";
 import {connect} from 'react-redux';
-import './DataTable.css';
+import "./DataTable.css";
+//import {addProductToCart} from "../actions";
+//import ProductTable from './ProductPage';
 
 class DataTable extends Component {
+  state = {
+    cartItems:[]
+  }
   deleteItem = id => {
     let confirmDeletion = window.confirm('Do you really wish to delete it?');
     if (confirmDeletion) {
@@ -22,6 +26,20 @@ class DataTable extends Component {
         .catch(err => console.log(err));
     }
   }
+  addToCart = product => {
+    const cartItems = this.state.cartItems.slice();
+    let alreadyInCart = false;
+    cartItems.forEach((item) => {
+      if(item._id === product._id){
+      item.count++;
+      alreadyInCart = true;
+    }
+    })
+    if(!alreadyInCart) {
+      cartItems.push({...product, count : 1});
+    }
+    this.setState({cartItems});
+  };
   render() {
     let items = this.props.items;
     if (this.props.filteredItems.length > 0) {
@@ -69,7 +87,7 @@ class DataTable extends Component {
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
                   <button
                     onClick={() => {
-                        this.props.dispatch(addProductToCart({...this.props.product.id}))
+                        this.props.item(this.addToCart(item))
                     }}
                     className="btn btn-info product__add-to-cart">Add to cart
                 </button>
