@@ -48,7 +48,7 @@ namespace Mrs_Cake.Controllers
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
         [Route("login")]
-        [HttpPost]
+        [HttpGet]
 
         public User Login(User login)
         {
