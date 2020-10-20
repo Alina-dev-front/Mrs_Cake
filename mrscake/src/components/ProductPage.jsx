@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Container, Form, Row, Label,  } from 'reactstrap';
+import { Col, Container, Form, Row, Label } from 'reactstrap';
 import './ProductPage.css';
 import DataTable from './DataTable';
 import RegistrationModal from './form/RegistrationModal';
@@ -61,11 +61,10 @@ class ProductTable extends Component {
       });
 
       return <Container className="ProductTableContainer">
-        <Row>
-          <Col>
-            <h3>PRODUCT LIST</h3>
-          </Col>
-        </Row>
+        <span>
+            <Label className="product-table-title" >PRODUCT LIST</Label>
+            <RegistrationModal isNew={true} addProductToState={this.addProductToState} />
+        </span>
         <Form>
           <Label>Choose by form:</Label>
             <select value={this.state.item} onChange={this.handleChangeItem}>
@@ -88,11 +87,6 @@ class ProductTable extends Component {
                 filteredItems={filteredItems}
                 updateState={this.updateState}
                 deleteItemFromState={this.deleteItemFromState} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <RegistrationModal isNew={true} addProductToState={this.addProductToState} />
             </Col>
           </Row>
         </Container>;
