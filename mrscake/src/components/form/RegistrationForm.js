@@ -10,12 +10,12 @@ class RegistrationForm extends React.Component {
         description: '',
         bakery: '',
         price: null,
-        imageUrl: ''
+        imageUrl: '',
     }
     componentDidMount() {
         if (this.props.product) {
-            const { id, productType, name, description, bakery, imageUrl, price } = this.props.product
-            this.setState({ id, productType, name, description, bakery, imageUrl, price });
+            const { id, productType, name, description, bakery, price, imageUrl } = this.props.product
+            this.setState({ id, productType, name, description, bakery, price, imageUrl });
         }
     }
     handleChange = e => {
@@ -75,6 +75,7 @@ class RegistrationForm extends React.Component {
             <FormGroup >
                 <Label for="productType">Choose product type:</Label>
                     <select name="productType" onChange={this.handleChange} value={this.state.productType === '' ? '' : this.state.productType}>
+                        <option value="none"></option>
                         <option value="Cake">Cake</option>
                         <option value="Cupcake">Cupcake</option>
                         <option value="Cookie">Cookie</option>
@@ -93,7 +94,7 @@ class RegistrationForm extends React.Component {
             </FormGroup>
             <FormGroup>
                 <Label for="price">Price:</Label>
-                <Input required='true' type="int" name="price" onChange={this.handleChange} value={this.state.price === null ? null : this.state.price}
+                <Input required='true' type="number" name="price" onChange={this.handleChange} value={this.state.price === null ? null : this.state.price}
                     placeholder="356" />
             </FormGroup>
             <FormGroup>

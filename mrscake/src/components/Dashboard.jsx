@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, 
-         Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
   class Dashboard extends Component {
     render() {
  

@@ -3,12 +3,13 @@ import { Button, Navbar, Nav, NavDropdown, Form, FormControl, ButtonGroup, Dropd
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return <Navbar fixed="top" bg="light" variant="light">
         <Navbar.Brand href="/">
       <img
-         src={cake}
+        src={cake}
         width="30"
         height="30"
         className="d-inline-block align-top"
@@ -73,20 +74,21 @@ function NavBar() {
     ))}
   </div>
   <NavDropdown.Divider />
-        <NavDropdown.Item href="/productpage">Show all products</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/productpage">Show all products</NavDropdown.Item>
   </NavDropdown>
-    <Nav.Link href="/aboutus">About Us</Nav.Link>
-    <Nav.Link href="/contactus">Contact Us</Nav.Link>
+    <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
+    <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
   </Nav>
   <Form inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
     <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
   </Form>
-  <Button href="/login">Sign In</Button>
-  <Button href="/shoppingCart">
+  <Button as={Link} to="/login">Sign in</Button>
+  <Button as={Link} to="/login" >Sign out</Button>
+  <Button as={Link} to="/shoppingCart">
         <img 
-        width="50"
-        height="50" src={shoppingCart} alt="shopping cart"/>
+          width="23px"
+          height="23px" src={shoppingCart} alt="shopping cart"/>
         </Button>
 </Navbar>
 }

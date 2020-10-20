@@ -20,7 +20,7 @@ class RegistrationModal extends Component {
             button = <Button
                 color="success"
                 onClick={this.toggle}
-                style={{ minWidth: "200px" }}>Add</Button>;
+                style={{ minWidth: "200px", marginLeft: "70%" }}>Add new product</Button>;
         } else {
             button = <Button
                 color="warning"

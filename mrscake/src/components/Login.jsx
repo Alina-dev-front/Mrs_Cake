@@ -1,56 +1,36 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
-         InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-class Login extends Component {
-    constructor() {
-        super();
- 
-        this.state = {
-            Email: '',
-            Password: ''
-        }
- 
-        this.Password = this.Password.bind(this);
-        this.Email = this.Email.bind(this);
-        this.login = this.login.bind(this);
-    }
- 
-    Email(event) {
-        this.setState({ Email: event.target.value })
-    }
-    Password(event) {
-        this.setState({ Password: event.target.value })
-    }
-    login(event) {
-        debugger;
-        fetch('http://localhost:3000/Login', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                Email: this.state.Email,
-                Password: this.state.Password
-            })
-        }).then((Response) => Response.json())
-            .then((result) => {
-                console.log(result);
-                if (result.Status == 'Invalid')
-                    alert('Invalid User');
-                else
-                    this.props.history.push("/Dashboard");
-            })
-    }
- 
-    render() {
-        return (
+         FormGroup,Row } from 'reactstrap';
 
-            
+class Login extends Component {
+    state = 
+    {
+        Email: '',	
+        Password: '',	     
+     }
+  mySubmitHandler = (event) => {
+    event.preventDefault();
+    alert("You are successfully signed in ");
+  } 
+  componentDidMount() {
+      if (this.props.user) {
+          const { email, password } = this.props.user
+          this.setState({  email, password,});
+      }
+  }
+
+  handleChange = e => {
+      this.setState({ [e.target.name]: e.target.value })
+  }  
+
+  Login = () => { 
+      document.getElementById("user-log").reset();
+  }	        
+    render() {
+         return <Form  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
             <div className="app flex-row align-items-center">
                 <Container><br/><br/><br/>
-                
                     <Row className="justify-content-center">
                         <Col md="9" lg="7" xl="6">
                             <CardGroup>
@@ -63,16 +43,15 @@ class Login extends Component {
                                                     Login
                                                 </div>
                                             </div>
-                                            <InputGroup className="mb-3">
-                                                <Input type="text" 
-                                                 onChange={this.Email} 
-                                                 placeholder="Email" />
-                                            </InputGroup>
-                                            <InputGroup className="mb-4">
-                                                <Input type="password" 
-                                                onChange={this.Password} 
-                                                placeholder="Password" />
-                                            </InputGroup>
+                                            <FormGroup className="mb-3">
+                                                <Input required='true' type="email" name = "email" Input  onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
+                                              
+                                            </FormGroup>	                                           
+                                            <FormGroup className="mb-4">
+                                                <Input required='true' type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                                onChange={this.password} 
+                                                placeholder="password" />
+                                            </FormGroup>
 
                                             <div className="form-group">
                                             <div className="custom-control custom-checkbox">
@@ -80,15 +59,13 @@ class Login extends Component {
                                             <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                                              </div>
                                             </div>
-                                            <Button onClick={this.login} 
-                                            color="success" block>Login</Button>
+                                            <Button color="success" block >Login</Button>
                                             <p className="forgot-password text-center">
-                                            <a href="abc">Forgot password?</a><br/><br/>
-                                            <button >  <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
+                                            <b> <a href="forgotpassword">Forgot password?</a></b><br/><br/>
+                                            <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/signup"
                                             ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
-                                            Not Registered,Sign Up</a></button>
+                                          Not Registered,Sign Up</a></b>
                                                 </p>
-
                                         </Form>
                                     </CardBody>
                                 </Card>
@@ -97,7 +74,7 @@ class Login extends Component {
                     </Row>
                 </Container>
             </div>
-        );
+        </Form>
     }
 }
  

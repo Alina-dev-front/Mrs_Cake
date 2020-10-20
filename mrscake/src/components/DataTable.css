@@ -1,9 +1,10 @@
 .description-column {
     width: 25% !important;
+    text-align: justify;
 }
 
 .name-column {
-    width: 15% !important;
+    width: 10% !important;
 }
 
 .price-column {
@@ -21,3 +22,8 @@
 .action-column {
     width: 12% !important;
 } 
+
+.img_product_table {
+    width: 200px;
+    height: 200px;
+}
