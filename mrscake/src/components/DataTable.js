@@ -3,6 +3,8 @@ import { Table, Button } from 'reactstrap';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
 import "./DataTable.css";
+import {addProductToCart} from "../actions";
+import {connect} from 'react-redux';
 
 class DataTable extends Component {
   deleteItem = id => {
@@ -62,6 +64,12 @@ class DataTable extends Component {
                     product={item}
                     updateProductIntoState={this.props.updateState} />
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
+                  <button
+                    onClick={() => {
+                        this.props.dispatch(addProductToCart({...this.props.product.id}))
+                    }}
+                    className="btn btn-info product__add-to-cart">Add to cart
+                </button>
                 </span>
               </td>
             </tr>
@@ -70,4 +78,4 @@ class DataTable extends Component {
     </Table>;
   }
 }
-export default DataTable;
+export default connect()(DataTable) ;
