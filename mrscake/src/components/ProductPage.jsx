@@ -7,7 +7,8 @@ import { PRODUCTS_API_URL } from '../constants/api_url_path';
 
 class ProductTable extends Component {
     state = {
-      items: []
+      items: [],
+      cartItems:[]
     }
     componentDidMount() {
       this.getItens();
@@ -18,18 +19,22 @@ class ProductTable extends Component {
         .then(res => this.setState({ items: res }))
         .catch(err => console.log(err));
     }
-    addProductToState = product => {
-      this.setState(previous => ({
-        items: [...previous.items, product]
-      }));
-    }
-    updateState = (id) => {
-      this.getItens();
-    }
-    deleteItemFromState = id => {
-      const updated = this.state.items.filter(item => item.id !== id);
-      this.setState({ items: updated })
-    }
+    addToCart = product => {
+      const cartItems = this.state.cartItems.slice();
+      let alreadyInCart = false;
+      cartItems.forEach((item) => {
+        if(item._id === product._id){
+        item.count++;
+        alreadyInCart = true;
+      }
+      })
+      if(!alreadyInCart) {
+        cartItems.push({...product, count : 1});
+      }
+      this.setState({cartItems});
+    };
+
+    
     render() {
       return <Container className="ProductTableContainer">
         <Row>
