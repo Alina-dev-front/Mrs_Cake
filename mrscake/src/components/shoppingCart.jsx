@@ -15,7 +15,7 @@ const ShoppingCart = (props) => {
                         </div>
                         <div className="card-body">
                             {props.cartItemCount ? props.cartItems.map(cart => (
-                                <CartItem {...cart} img={cart.images[0]} />
+                                <CartItem {...cart} img={cart.images} />
                             )) : <h1 className="display-4 mt-5 text-center">There is no product in your cart</h1> }
                         </div>
                         <div className="card-footer">

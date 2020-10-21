@@ -4,7 +4,7 @@ import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
 import {connect} from 'react-redux';
 import "./DataTable.css";
-//import {addProductToCart} from "../actions";
+import {addProductToCart} from "../actions";
 //import ProductTable from './ProductPage';
 
 class DataTable extends Component {
@@ -26,20 +26,7 @@ class DataTable extends Component {
         .catch(err => console.log(err));
     }
   }
-  addToCart = product => {
-    const cartItems = this.state.cartItems.slice();
-    let alreadyInCart = false;
-    cartItems.forEach((item) => {
-      if(item._id === product._id){
-      item.count++;
-      alreadyInCart = true;
-    }
-    })
-    if(!alreadyInCart) {
-      cartItems.push({...product, count : 1});
-    }
-    this.setState({cartItems});
-  };
+ 
   render() {
     let items = this.props.items;
     if (this.props.filteredItems.length > 0) {
@@ -87,7 +74,7 @@ class DataTable extends Component {
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
                   <button
                     onClick={() => {
-                        this.props.item(this.addToCart(item))
+                        this.props.dispatch(addProductToCart({...this.props.product}))
                     }}
                     className="btn btn-info product__add-to-cart">Add to cart
                 </button>
