@@ -37,7 +37,7 @@ namespace Mrs_Cake.Services
             foundProduct.Description = product.Description;
             foundProduct.Price = product.Price;
             foundProduct.ProductType = product.ProductType;
-            foundProduct.imageUrl = foundProduct.imageUrl;
+            foundProduct.imageUrl = product.imageUrl;
 
             _products.ReplaceOne(product => product.Id == id, foundProduct);
         }
