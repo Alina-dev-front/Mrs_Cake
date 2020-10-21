@@ -74,7 +74,7 @@ class DataTable extends Component {
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
                   <button
                     onClick={() => {
-                        this.props.dispatch(addProductToCart({...this.props.product}))
+                        this.props.dispatch(addProductToCart({...this.props.item}))
                     }}
                     className="btn btn-info product__add-to-cart">Add to cart
                 </button>
