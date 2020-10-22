@@ -7,12 +7,13 @@ import { decrementCartQuantity, incrementCartQuantity, removeProductToCart} from
 
 const CartItem = (
     {
-        title,
+        name,
         price,
         description,
         quantity,
         id,
-        img,
+        imageUrl,
+        bakery,
         dispatch
     }
 ) => {
@@ -54,11 +55,11 @@ const CartItem = (
     return (
         <div className="row align-items-center mb-3">
             <div className="col-12 col-sm-12 col-md-2 text-center">
-                <img className="img-responsive" src={img} style={{height: '60%', width: '60%'}} alt={description}
+                <img className="img-responsive" src={imageUrl} style={{height: '40%', width: '40%'}} alt={description}
                       />
             </div>
             <div className="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                <h4 className="product-name"><strong>{(title)}</strong></h4>
+                <h4 className="product-name"><strong>{(name)}</strong></h4>
                 <h4>
                     <small className="product-description">{description}</small>
                 </h4>

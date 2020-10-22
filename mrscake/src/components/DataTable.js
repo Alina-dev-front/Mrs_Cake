@@ -8,9 +8,7 @@ import {addProductToCart} from "../actions";
 //import ProductTable from './ProductPage';
 
 class DataTable extends Component {
-  state = {
-    cartItems:[]
-  }
+ 
   deleteItem = id => {
     let confirmDeletion = window.confirm('Do you really wish to delete it?');
     if (confirmDeletion) {
@@ -74,7 +72,7 @@ class DataTable extends Component {
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
                   <button
                     onClick={() => {
-                        this.props.dispatch(addProductToCart({...this.props.item}))
+                        this.props.dispatch(addProductToCart(item))
                     }}
                     className="btn btn-info product__add-to-cart">Add to cart
                 </button>
