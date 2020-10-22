@@ -4,7 +4,7 @@ import './ProductPage.css';
 import DataTable from './DataTable';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-
+import {connect} from 'react-redux';
 
 class ProductTable extends Component {
     constructor(props) {
@@ -79,6 +79,7 @@ class ProductTable extends Component {
               filteredItems.push(item)
             ))}
             </div>
+           
         </Form>
           <Row>
             <Col>
@@ -93,4 +94,4 @@ class ProductTable extends Component {
     }
 }
 
-export default ProductTable;
+export default connect()(ProductTable) ;

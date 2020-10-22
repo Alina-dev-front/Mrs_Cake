@@ -1,74 +1,50 @@
-import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
-//import { Button} from 'react-bootstrap';
-import Counters from './shoppingCartComponents/counters';
+import React from 'react';
+import {connect} from 'react-redux';
+import {formatMoney} from "../pipes/priceFormatter";
+import CartItem from "../components/cartItem/CartItem";
 
-
-
-  class ShoppingCart extends Component{
-   state = {
-       counters:[
-        {id:1, value:0},
-        {id:2, value:0},
-        {id:3, value:0},
-        {id:4, value:0}
-       ]
-   };
-   handleIncrement = counter => {
-    const  counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = {...counter};
-    counters[index].value++;
-    this.setState({counters});
-}
-
-handleDecrement = counter => {
-  const  counters = [...this.state.counters];
-  const index = counters.indexOf(counter);
-  counters[index] = {...counter};
-  if(counters[index].value > 0){
-    counters[index].value--;
-  }
-  
-  this.setState({counters});
-}
-
-handleReset = () => {
-const counters =  this.state.counters.map(c => {
-         c.value = 0;
-         return c;
-      });
-     this.setState({counters}); 
+const ShoppingCart = (props) => {
+    return (
+        <>
+                <div className="container" style={{paddingTop: '6rem'}}>
+                    <div className="card shopping-cart">
+                        <div className="card-header bg-dark text-light">
+                            <i className="fa fa-shopping-cart pr-2" aria-hidden="true"></i>
+                            Shipping cart
+                            <div className="clearfix"></div>
+                        </div>
+                        <div className="card-body">
+                            {props.cartItemCount ? props.cartItems.map(cart => (
+                                <CartItem {...cart} img={cart.images} />
+                            )) : <h1 className="display-4 mt-5 text-center">There is no product in your cart</h1> }
+                        </div>
+                        <div className="card-footer">
+                            <div className="pull-right" style={{margin: '10px'}}>
+                                <div className="pull-right" style={{margin: '5px'}}>
+                                    Total price: <b>{formatMoney(props.totalPrice)}€</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+    );
 };
 
-handleDelete = counterId => {
-    const counters = this.state.counters.filter( c => c.id !== counterId);
-    this.setState({counters});
-};
 
-    render(){
-        let wrapperStyle = {
-            margin: 'auto',
-            top: '10%',
-            left: '20%',
-            position: 'absolute',
-            width: '50%',
-            height: '150px',           
-          };
-        return(
-            <div >
-                <main className="container" style={wrapperStyle} >
-                <Counters 
-                counters={this.state.counters}
-                onReset={this.handleReset}
-                onIncrement={this.handleIncrement}
-                onDelete={this.handleDelete}
-                onDecrement={this.handleDecrement}
-                />
-                </main>
+const mapStateToProps = state => {
 
-            </div>
-        );
+    console.log(state, 'state has changed');
+
+    return {
+        cartItems: state.shop.cart,
+        cartItemCount: state.shop.cart.reduce((count, curItem) => {
+            return count + curItem.quantity;
+        }, 0),
+        totalPrice: state.shop.cart.reduce((count, curItem) => {
+            return count + (curItem.price * curItem.quantity);
+        }, 0)
     }
 }
-export default ShoppingCart;
+
+export default connect(mapStateToProps, null)(ShoppingCart);
