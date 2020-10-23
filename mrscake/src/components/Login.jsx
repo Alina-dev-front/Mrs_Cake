@@ -45,7 +45,7 @@ class Login extends Component {
                                             </div>
                                             <FormGroup className="mb-3">
                                                 <Input required='true' type="email" name = "email" Input  onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
-                                              
+
                                             </FormGroup>	                                           
                                             <FormGroup className="mb-4">
                                                 <Input required='true' type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
@@ -77,5 +77,5 @@ class Login extends Component {
         </Form>
     }
 }
- 
+
 export default Login;

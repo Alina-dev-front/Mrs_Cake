@@ -75,6 +75,5 @@ namespace Mrs_Cake.Controllers
 
             return NoContent();
         }
-        
     }
 }
