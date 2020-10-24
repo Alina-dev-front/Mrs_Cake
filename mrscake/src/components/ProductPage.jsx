@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Col, Container, Form, Row, Label,  } from 'reactstrap';
+import { Col, Container, Form, Row, Label } from 'reactstrap';
 import './ProductPage.css';
 import DataTable from './DataTable';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-
+import {connect} from 'react-redux';
 
 class ProductTable extends Component {
     constructor(props) {
@@ -61,11 +61,10 @@ class ProductTable extends Component {
       });
 
       return <Container className="ProductTableContainer">
-        <Row>
-          <Col>
-            <h3>PRODUCT LIST</h3>
-          </Col>
-        </Row>
+        <span>
+            <Label className="product-table-title" >PRODUCT LIST</Label>
+            <RegistrationModal isNew={true} addProductToState={this.addProductToState} />
+        </span>
         <Form>
           <Label>Choose by form:</Label>
             <select value={this.state.item} onChange={this.handleChangeItem}>
@@ -80,6 +79,7 @@ class ProductTable extends Component {
               filteredItems.push(item)
             ))}
             </div>
+           
         </Form>
           <Row>
             <Col>
@@ -90,13 +90,8 @@ class ProductTable extends Component {
                 deleteItemFromState={this.deleteItemFromState} />
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <RegistrationModal isNew={true} addProductToState={this.addProductToState} />
-            </Col>
-          </Row>
         </Container>;
     }
 }
 
-export default ProductTable;
+export default connect()(ProductTable) ;

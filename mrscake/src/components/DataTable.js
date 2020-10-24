@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import RegistrationModal from './form/RegistrationModal';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-import './DataTable.css';
+import {connect} from 'react-redux';
+import "./DataTable.css";
+import {addProductToCart} from "../actions";
+//import ProductTable from './ProductPage';
 
 class DataTable extends Component {
+ 
   deleteItem = id => {
     let confirmDeletion = window.confirm('Do you really wish to delete it?');
     if (confirmDeletion) {
@@ -20,6 +24,7 @@ class DataTable extends Component {
         .catch(err => console.log(err));
     }
   }
+ 
   render() {
     let items = this.props.items;
     if (this.props.filteredItems.length > 0) {
@@ -65,6 +70,12 @@ class DataTable extends Component {
                     product={item}
                     updateProductIntoState={this.props.updateState} />
                   <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
+                  <button
+                    onClick={() => {
+                        this.props.dispatch(addProductToCart(item))
+                    }}
+                    className="btn btn-info product__add-to-cart">Add to cart
+                </button>
                 </span>
               </td>
             </tr>
@@ -73,5 +84,4 @@ class DataTable extends Component {
     </Table>;
   }
 }
-
-export default DataTable;
+export default connect()(DataTable) ;

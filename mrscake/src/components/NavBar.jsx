@@ -87,8 +87,8 @@ function NavBar() {
   <Button as={Link} to="/login" >Sign out</Button>
   <Button as={Link} to="/shoppingCart">
         <img 
-          width="50"
-          height="50" src={shoppingCart} alt="shopping cart"/>
+          width="23px"
+          height="23px" src={shoppingCart} alt="shopping cart"/>
         </Button>
 </Navbar>
 }
