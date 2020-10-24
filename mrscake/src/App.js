@@ -1,9 +1,7 @@
 import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import UserDetails from './components/UserDetails';
-import Dashboard from './components/Dashboard'; 
-import './components/Dashboard.css';
+import UserDetails from './components/UserDetails'; 
 import ForgotPassword from './components/ForgotPassword';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
@@ -32,7 +30,7 @@ function App() {
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
-            <Route path='/Dashboard' component={Dashboard} />  
+            
           </Switch> 
         </BrowserRouter>
       <FooterPage />

@@ -57,7 +57,7 @@ class SignUp extends Component {
   .then(user => {
       // this.props.addUserToState(user);
       // this.props.toggle();
-      this.props.history.push('/userdetails')
+      this.props.history.push('/login')
   })
   .catch(err => console.log(err));
 }
@@ -82,7 +82,7 @@ class SignUp extends Component {
               this.props.toggle();
               
               this.props.updateUserIntoState(this.state.id);
-              this.props.history.push('/userdetails')
+              this.props.history.push('/login')
           })
           .catch(err => console.log(err));
 
@@ -108,27 +108,27 @@ class SignUp extends Component {
                     <div>
 
                     <FormGroup className="mb-3">
-                    <Input required='true' type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
-                    <Input required='true' type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
+                    <Input  type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
+                    <Input  type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
                    
                     </FormGroup>
                     </div>
                     <FormGroup className="mb-3">
-                    <Input required='true' type="email" name="email" onChange={this.handleChange} 
+                    <Input  type="email" name="email" onChange={this.handleChange} 
                     value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                    
                     </FormGroup>
                     <FormGroup className="mb-3">
-                      <Input required='true' type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
+                      <Input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
 
                     </FormGroup>
                     <FormGroup className="mb-3">
-                    <Input required='true' type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
+                    <Input  type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
 
                     </FormGroup>
                     <p><b>Select one User Role : </b></p>
-                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer"  /> Are you Customer?<br/>
-                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
+                    <input type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer"  /> Are you Customer?<br/>
+                    <input  type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
                     < div>
                     <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button>
                    <p className="link text-center">

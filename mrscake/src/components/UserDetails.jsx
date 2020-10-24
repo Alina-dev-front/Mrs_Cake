@@ -70,14 +70,14 @@ class UserDetails extends Component {
            
                 <br/><br/><br/><br/> <br/><br/>  <div className="col-md-3 center">
                <h2>   <p><b>Enter more user details</b></p> </h2>   </div> 
-               <Input className="col-md-3 center" required='true' type="text" name="address" onChange={this.handleChange} value={this.state.address === '' ? '' : this.state.address} placeholder="Address" />
+               <Input className="col-md-3 center"  type="text" name="address" onChange={this.handleChange} value={this.state.address === '' ? '' : this.state.address} placeholder="Address" />
                    
                 
-                     <Input className="col-md-3 center" required='true' type="int" name="mobilePhone" onChange={this.handleChange} value={this.state.mobilePhone === '' ? '' : this.state.mobilePhone } placeholder="MobilePhone" />
+                     <Input className="col-md-3 center"  type="int" name="mobilePhone" onChange={this.handleChange} value={this.state.mobilePhone === '' ? '' : this.state.mobilePhone } placeholder="MobilePhone" />
                    
                
                    
-                    <Input className="col-md-3 center" required='true' type="int"  name="creditCardNumber" onChange={this.handleChange} 
+                    <Input className="col-md-3 center" type="int"  name="creditCardNumber" onChange={this.handleChange} 
                     value={this.state.credtCardNumber=== '' ? '' : this.state.creditCardNumber} placeholder="CreditCardNumber" />
                    
           
