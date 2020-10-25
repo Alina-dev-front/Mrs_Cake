@@ -39,7 +39,7 @@ class ForgotPassword extends Component {
        
       
     render() {
-         return <Form id ="user-log"  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
+         return <Form id ="user-log"  onSubmit={this.mySubmitHandler}>
             <div className="app flex-row align-items-center">
                 <Container><br/><br/><br/>
                     <Row className="justify-content-center">
@@ -47,7 +47,7 @@ class ForgotPassword extends Component {
                             <CardGroup>
                                 <Card className="p-2">
                                     <CardBody>
-                                        <Form>
+                                       
                                             <div class="row" className="mb-2 pageheading">
                                                 <div>
                                                    <b>Forgot Password</b> 
@@ -57,8 +57,8 @@ class ForgotPassword extends Component {
                                             <FormGroup className="mb-3">
                                             <Input  type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                                             </FormGroup>
-                                            <Button onSubmit={this.mySubmitHandler} color="success" block>Submit</Button>
-                                        </Form>
+                                            <Button color="success" block>Submit</Button>
+                                        
                                     </CardBody>
                                 </Card>
                             </CardGroup>
