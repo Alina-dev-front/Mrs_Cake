@@ -32,6 +32,7 @@ namespace Mrs_Cake
             services.AddSingleton<UserService>();
             services.AddSingleton<OrderService>();
             services.AddSingleton<BakeryService>();
+            services.AddSingleton<LoginService>();
             services.AddControllers();
             services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>
             {

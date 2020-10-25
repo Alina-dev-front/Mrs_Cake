@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Card,  CardBody,  Col, Container, Form, 
-  Input, FormGroup, Row } from 'reactstrap';	  
-import { USERS_API_URL } from '../constants/user_api_url.js';
+import { Button, Card,  CardBody,  Col, Container, Form, Input, FormGroup, Row } from 'reactstrap';	  
 import './Login.css';
+import { USERS_API_URL } from '../constants/user_api_url';
 
 class SignUp extends Component {
   state = 
@@ -21,10 +20,6 @@ class SignUp extends Component {
       this.props.history.push('/userdetails')
     } 
 
-    testRoute = () => {
-      // this.props.history.push('/login')
-    } 
-    
     componentDidMount() {
       if (this.props.user) {
           const { id, firstName, lastName, email, password, confirmPassword, userRolls } = this.props.user
@@ -55,9 +50,7 @@ class SignUp extends Component {
     
   .then(res => res.json())
   .then(user => {
-      // this.props.addUserToState(user);
-      // this.props.toggle();
-      this.props.history.push('/userdetails')
+      this.props.history.push('/login')
   })
   .catch(err => console.log(err));
 }

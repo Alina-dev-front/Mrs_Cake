@@ -5,6 +5,31 @@ using Mrs_Cake.Services;
 
 namespace Mrs_Cake.Controllers
 {
+    /*[Route("api/login")]
+    [ApiController]
+    public class LoginController : ControllerBase
+    {
+        private readonly UserService _userService;
+
+        public LoginController(UserService userService)
+        {
+            _userService = userService;
+        }
+
+        string UserEmail = "kolmykova93@gmail.com";
+        [HttpPost]
+        public string Login(string req )
+        {
+            List<User> usersFromDB = _userService.Get();
+            if (usersFromDB == null)
+            {
+                return "No connection to DB";
+            }
+            // var result = usersFromDB.Find(UserEmail == req.email)
+            return "asd";
+        }
+    }*/
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -47,20 +72,8 @@ namespace Mrs_Cake.Controllers
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
-        [Route("login")]
-        [HttpGet]
 
-        public User Login(User login)
-        {
-            List<User> usersFromDB = _userService.Get();
-            if (usersFromDB == null)
-            {
-                return new User { Status = "Invalid", Message = "Invalid User!" };
-            }
-            else
-                return new User { Status = "Success", Message = "Login Successfully!" };
-        }
-        
+
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, User userIn)
         {
