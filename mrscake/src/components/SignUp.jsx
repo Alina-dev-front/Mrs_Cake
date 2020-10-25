@@ -18,7 +18,7 @@ class SignUp extends Component {
     
     mySubmitHandler = (event) => {
       event.preventDefault();
-      this.props.history.push('/login')
+      this.props.history.push('/userdetails')
     } 
 
     testRoute = () => {
@@ -57,7 +57,7 @@ class SignUp extends Component {
   .then(user => {
       // this.props.addUserToState(user);
       // this.props.toggle();
-      this.props.history.push('/login')
+      this.props.history.push('/userdetails')
   })
   .catch(err => console.log(err));
 }
@@ -82,7 +82,7 @@ class SignUp extends Component {
               this.props.toggle();
               
               this.props.updateUserIntoState(this.state.id);
-              this.props.history.push('/login')
+              this.props.history.push('/userdetails')
           })
           .catch(err => console.log(err));
 
@@ -114,7 +114,8 @@ class SignUp extends Component {
                     </FormGroup>
                     </div>
                     <FormGroup className="mb-3">
-                    <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
+                    <Input required='true' type="email" name="email" onChange={this.handleChange} 
+                    value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                    
                     </FormGroup>
                     <FormGroup className="mb-3">
@@ -126,15 +127,13 @@ class SignUp extends Component {
 
                     </FormGroup>
                     <p><b>Select one User Role : </b></p>
-                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}  /> Are you Customer?<br/>
-                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls}  /> Are you bakery Manager?<br/>
+                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer"  /> Are you Customer?<br/>
+                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
                     < div>
                     <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button>
                    <p className="link text-center">
-                   <b> <a role="button" class="_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy" href="/login"
-                                            ajaxify="/reg/spotlight/" id="u_0_2" data-testid="open-registration-form-button" rel="async">
-                                            Already Registered,Sign in</a></b>
-                                            </p></div>
+                   <b> <a  href="/login">Already Registered,Sign in</a></b>
+                    </p></div>
                 </CardBody>
               </Card>
             </Col>
