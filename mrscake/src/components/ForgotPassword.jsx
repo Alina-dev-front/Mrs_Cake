@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Login.css';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
-         FormGroup,  Row } from 'reactstrap';
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, FormGroup,  Row } from 'reactstrap';
+import axios from 'axios';  
+
 
 class ForgotPassword extends Component {
     state = 
@@ -18,13 +19,24 @@ class ForgotPassword extends Component {
          }
          mySubmitHandler = (event) => {
             event.preventDefault();
-            this.props.history.push('/login')
-          } 
-      
-       handleChange = e => {
-          this.setState({ [e.target.name]: e.target.value })
-      }  
+            const data = {
+                email: this.email
+            }; 
+            axios.post('forgot', data).then(
+                res=>    {
+                    console.log(res)
+         }
+         
+     ).catch(
+                err => {
+                  
+                    console.log(err);
 
+   } 
+   )         
+          
+};
+       
       
     render() {
          return <Form id ="user-log"  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>

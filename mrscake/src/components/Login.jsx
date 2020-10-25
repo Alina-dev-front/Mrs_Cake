@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Login.css';
 import { Button,  CardBody, CardGroup, Col, Container, Form, Input, FormGroup,Row } from 'reactstrap';
 import { USERS_API_URL } from '../constants/user_api_url.js';
+import axios from "axios";
 
 class Login extends Component {
 
@@ -11,50 +12,44 @@ class Login extends Component {
         this.state = {
             Email: '',
             Password: ''
-        }
- 
-        this.Password = this.Password.bind(this);
-        this.Email = this.Email.bind(this);
-        this.login = this.login.bind(this);
-    }
-    mySubmitHandler = (event) => {
-        event.preventDefault();
-         this.props.history.push('/homepage')
-      } 
- 
-    Email(event) {
-        this.setState({ Email: event.target.value })
-    }
-    Password(event) {
-        this.setState({ Password: event.target.value })
-    }
-    login(event) {
-        
-        
-        // debugger;
-       
-        fetch(`${USERS_API_URL}`,{
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+           
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+      }
+      handleChange(event) {
+        this.setState({
+          [event.target.name]: event.target.value
+        });
+      }
+      handleSubmit(event) {
+        const { email, password } = this.state;
+    
+        axios
+          .post(
+            "http://localhost:3000/login",
+            {
+              user: {
+                email: email,
+                password: password
+              }
             },
-            body: JSON.stringify({
-                Email: this.state.Email,
-                Password: this.state.Password
-            })
-        }).then((User) => User.json())
-            .then((result) => {
-                console.log(result);
-                if (result.Status === 'Invalid')
-                    alert('Invalid User');
-                else
-                    this.props.history.push("/Homepage");
-            })
-            // .catch((error) => {
-            //     console.log(error);
-            // })
-    }
+            { withCredentials: true }
+          )
+          .then(response => {
+            if (response.data.logged_in) {
+              this.props.handleSuccessfulAuth(response.data);
+            }
+          })
+          .catch(error => {
+            console.log("login error", error);
+          });
+        event.preventDefault();
+      }
+    
+    
+        
  
 render() {
          return (
@@ -65,7 +60,7 @@ render() {
                             <CardGroup>
                                 {/* <Card className="p-2"> */}
                                     <CardBody>
-                                    <Form>
+                                    <Form  onSubmit={this.handleSubmit}>
                                             <div 
                                             className="mb-2 pageheading">
                                                  <div className="col-sm-12 btn btn-primary"> 
@@ -74,15 +69,20 @@ render() {
                                             </div>
                                             <FormGroup className="mb-3">
                                             <Input type="text" 
-                                                 onChange={this.Email} 
-                                                 placeholder="Enter Email" />
+                                            value={this.state.email}
+                                                  onChange={this.handleChange}
+                                                 placeholder="Enter Email" 
+                                                 required
+                                                 />
                                             </FormGroup>
 
                                             <FormGroup className="mb-4">
                                                 <Input  type = 'password' id ="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                                 title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                                onChange={this.Password} 
-                                                placeholder="password" />
+                                                value={this.state.password}
+                                                onChange={this.handleChange}
+                                                placeholder="password"  required
+                                                />
                                              </FormGroup>
 
                                             <div className="form-group">
@@ -91,7 +91,7 @@ render() {
                                             <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                                              </div>
                                             </div>
-                                            <Button onSubmit={this.mySubmitHandler} onClick={this.login} 
+                                            <Button 
                                             color="success" block>Login</Button>
 
                                             <p className="forgot-password text-center">
