@@ -7,15 +7,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore } from 'redux';
 import rootReducer from './reducers';
 import {Provider} from 'react-redux';
+import{loadStripe} from '@stripe/stripe-js';
+import{Elements} from '@stripe/react-stripe-js'
 
 export const  store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const stripePromise = loadStripe("pk_test_51He4SgJSdNwudrVaBgLpEyC75xSrRFaiOyzdz9L8UJBDTwl0fh8jTn2TPzg4ECF3u3IWOBt8ETVH4xVG2xrlhDOr003rLbwZFd");
+
 
 ReactDOM.render(
+    <Elements stripe={stripePromise}>
   <Provider store={store}>
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  </Provider>,
+  </Provider>
+    </Elements>,
   document.getElementById('root')
 );
 

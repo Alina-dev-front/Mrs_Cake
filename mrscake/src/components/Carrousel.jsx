@@ -10,14 +10,14 @@ function CarouselControlled(){
         setIndex(selectedIndex);
     };
     return(
-            //make picutre run automatic
+
         <Carousel fade="true" activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
                     src={require("../Images/31.jpeg")}
                     alt="First Slide"
-                    style={{height: "65vh"}}
+                    style={{height: "50vh"}}
                 />
             </Carousel.Item>
             <Carousel.Item>
@@ -25,7 +25,7 @@ function CarouselControlled(){
                     className="d-block min-vw-100"
                     src={require("../Images/macaron.jpg")}
                     alt="Second Slide"
-                    style={{height: "65vh"}}
+                    style={{height: "50vh"}}
                 />
             </Carousel.Item>
             <Carousel.Item>
@@ -33,7 +33,7 @@ function CarouselControlled(){
                     className="d-block min-vw-100"
                     src={require("../Images/cakeRoses.jpg")}
                     alt="Thirst Slide"
-                    style={{height: "65vh"}}
+                    style={{height: "50vh"}}
                 />
             </Carousel.Item>
             <Carousel.Item>
@@ -41,7 +41,7 @@ function CarouselControlled(){
                     className="d-block min-vw-100"
                     src={require("../Images/34.jpeg")}
                     alt="Fourth Slide"
-                    style={{height: "65vh"}}
+                    style={{height: "50vh"}}
                 />
             </Carousel.Item>
         </Carousel>
