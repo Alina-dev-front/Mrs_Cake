@@ -40,12 +40,9 @@ class Login extends Component {
             })
         })
         // .then(res => res.json())
-        .then(userData => {
-            console.log("userData")
-            console.log(userData)
-            this.setState({ user: userData })
-        })
-        console.log(this.user)
+        // .then(userData => {
+        //     this.setState({ user: userData })
+        // })
         // .catch(err => console.log(err));
     }
 
