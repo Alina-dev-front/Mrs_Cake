@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -20,7 +16,7 @@ namespace Mrs_Cake.Models
         public string Address { get; set; }
         public string CreditCardNUmber { get; set; }
         public string UserRolls { get; set; }
-        public string Status {  get; set; }
+        public string Status { get; set; }
         public string Message { get; set; }
     }
 }
