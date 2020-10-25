@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { Button,  CardBody, CardGroup, Col, Container, Form, Input, FormGroup,Row } from 'reactstrap';
-import { USERS_API_URL } from '../constants/user_api_url.js';
 import axios from "axios";
 
 class Login extends Component {
@@ -40,12 +39,13 @@ class Login extends Component {
           .then(response => {
             if (response.data.logged_in) {
               this.props.handleSuccessfulAuth(response.data);
+              this.props.history.push('/homepage')
             }
           })
           .catch(error => {
             console.log("login error", error);
           });
-        event.preventDefault();
+        
       }
     
     
@@ -77,8 +77,7 @@ render() {
                                             </FormGroup>
 
                                             <FormGroup className="mb-4">
-                                                <Input  type = 'password' id ="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                                <Input  type = 'password' id ="password"  
                                                 value={this.state.password}
                                                 onChange={this.handleChange}
                                                 placeholder="password"  required
