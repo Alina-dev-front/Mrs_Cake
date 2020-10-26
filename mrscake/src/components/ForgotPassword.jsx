@@ -3,7 +3,7 @@ import './Login.css';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
          FormGroup,  Row } from 'reactstrap';
 
-class Login extends Component {
+class ForgotPassword extends Component {
     state = 
     {    
       password: '',
@@ -16,14 +16,16 @@ class Login extends Component {
               this.setState({  email, password,});
          }
          }
-
+         mySubmitHandler = (event) => {
+            event.preventDefault();
+            this.props.history.push('/login')
+          } 
+      
        handleChange = e => {
           this.setState({ [e.target.name]: e.target.value })
       }  
 
-      Login = () => { 
-          document.getElementById("user-log").reset();
-        }
+      
     render() {
          return <Form id ="user-log"  onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
             <div className="app flex-row align-items-center">
@@ -43,7 +45,7 @@ class Login extends Component {
                                             <FormGroup className="mb-3">
                                             <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                                             </FormGroup>
-                                            <Button color="success" block>Submit</Button>
+                                            <Button onSubmit={this.mySubmitHandler} color="success" block>Submit</Button>
                                         </Form>
                                     </CardBody>
                                 </Card>
@@ -56,4 +58,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default ForgotPassword;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import UserDetails from './components/UserDetails';
 import Dashboard from './components/Dashboard'; 
 import './components/Dashboard.css';
 import ForgotPassword from './components/ForgotPassword';
@@ -13,6 +14,8 @@ import ProductTable from './components/ProductPage';
 import NavBar from './components/NavBar';
 import FooterPage from './components/Footer';
 import CarouselControlled from "./components/Carrousel";
+import CheckoutForm from "./components/CheckoutForm";
+
 import './App.css';
 
 function App() {
@@ -28,9 +31,11 @@ function App() {
             <Route path="/productpage" component={ProductTable} />
             <Route path="/homepage" component={CarouselControlled}/>
             <Route  path='/Login' component={Login} />    
-            <Route path='/SignUp' component={SignUp} />    
+            <Route path='/SignUp' component={SignUp} /> 
+            <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
-            <Route path='/Dashboard' component={Dashboard} />  
+            <Route path='/Dashboard' component={Dashboard} />
+            <Route path='/checkoutform' component={CheckoutForm} />
           </Switch> 
         </BrowserRouter>
       <FooterPage />

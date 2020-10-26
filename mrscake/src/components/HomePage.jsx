@@ -6,8 +6,8 @@ export class HomePage extends Component{
         let wrapperStyle = {
             margin: 'auto',
             top: '0%',
-            position: 'absolute',
-            width: '100%',
+            position: 'center',
+            width: '98%',
             height: '150px',           
           };
         return(
