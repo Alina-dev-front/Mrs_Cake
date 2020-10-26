@@ -4,8 +4,9 @@ import cake from '../cake.svg';
 import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 
-function NavBar() {
+function NavBar({cartLength}) {
   return <Navbar fixed="top" bg="light" variant="light">
         <Navbar.Brand href="/">
       <img
@@ -85,12 +86,18 @@ function NavBar() {
   </Form>
   <Button as={Link} to="/login">Sign in</Button>
   <Button as={Link} to="/login" >Sign out</Button>
-  <Button as={Link} to="/shoppingCart">
+  <Button as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> 
         <img 
           width="23px"
-          height="23px" src={shoppingCart} alt="shopping cart"/>
+          height="23px" src={shoppingCart} alt="shopping cart"
+          /> ({cartLength})
         </Button>
 </Navbar>
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    cartLength: state.shop.cart.length
+  }
+};
+export default connect(mapStateToProps, null)(NavBar);

@@ -38,7 +38,7 @@ const CartItem = (
         const value = itemQuantity;
         console.log(type, value);
 
-        if(type === 'inc' && value < 10) {
+        if(type === 'inc' && value < 100) {
             setItemQuantity(itemQuantity + 1);
             dispatch(incrementCartQuantity(id));
         }
@@ -55,7 +55,7 @@ const CartItem = (
     return (
         <div className="row align-items-center mb-3">
             <div className="col-12 col-sm-12 col-md-2 text-center">
-                <img className="img-responsive" src={imageUrl} style={{height: '40%', width: '40%'}} alt={description}
+                <img className="img-responsive" src={require('../../Images/' + imageUrl)} style={{height: '40%', width: '40%'}} alt={imageUrl}
                       />
             </div>
             <div className="col-12 text-sm-center col-sm-12 text-md-left col-md-6">

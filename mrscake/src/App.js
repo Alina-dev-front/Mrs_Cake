@@ -11,7 +11,6 @@ import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import ProductTable from './components/ProductPage';
 import NavBar from './components/NavBar';
-import FooterPage from './components/Footer';
 import CarouselControlled from "./components/Carrousel";
 import './App.css';
 
@@ -33,7 +32,6 @@ function App() {
             <Route path='/Dashboard' component={Dashboard} />  
           </Switch> 
         </BrowserRouter>
-      <FooterPage />
     </React.Fragment>
     );
   }
