@@ -30,23 +30,24 @@ class Login extends Component {
         }
     }
 
-    getUser = () => {
+    getUser = (request) => {
         fetch(`${LOGIN_API_URL}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                email: this.inputEmail,
-                password: this.inputPassword
+                email: request.inputEmail,
+                password: request.inputPassword
             })
         })
-        // .then(res => res.json())
+        .then(response => {
+            var dbResponse = response.json();
+            return dbResponse;
+        })
         .then(userData => {
-            console.log("userData")
             console.log(userData)
             this.setState({ user: userData })
         })
-        console.log(this.user)
-        // .catch(err => console.log(err));
+        .catch(err => console.log(err));
     }
 
     login = (e) => {
@@ -58,7 +59,13 @@ class Login extends Component {
         this.getUser(request);
     }
 
+    
+
     render() {
+        
+       
+        
+
         return <Form onSubmit={(e) => this.login(e)}>
                 <Container style={{paddingTop: "100px"}}>
                     <Row className="justify-content-center">

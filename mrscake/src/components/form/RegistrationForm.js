@@ -37,10 +37,7 @@ class RegistrationForm extends React.Component {
                 imageUrl: this.state.imageUrl,
             })
         })
-            // .then(res => {console.log(res)})
             .then(res => res.json())
-            // .then(res => {console.log(res)})
-
             .then(product => {
                 this.props.addProductToState(product);
                 this.props.toggle();
