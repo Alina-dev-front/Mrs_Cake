@@ -42,7 +42,7 @@ class ForgotPassword extends Component {
                                                 </div>
                                             </div>
                                             <p>To reset your password, submit your email address below. If we can find you in the database, an email will be sent to your email address, with instructions how to get access again.</p>
-                                            <FormGroup className="mb-3">
+                                            <FormGroup className="mb-3"><br/><br/><br/>
                                             <Input required='true' type="email" name="email" onChange={this.handleChange} value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                                             </FormGroup>
                                             <Button onSubmit={this.mySubmitHandler} color="success" block>Submit</Button>

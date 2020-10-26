@@ -86,7 +86,7 @@ function NavBar({cartLength}) {
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
     <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
   </Form>
-  <Navbar.Brand href="/userdetails">
+ <br/> <Navbar.Brand href="/userdetails">
       <img
         src={userprofile}
         width="30"
@@ -95,8 +95,8 @@ function NavBar({cartLength}) {
         alt="userprofile_a"
       />
     </Navbar.Brand>
-  <Button as={Link} to="/login">Sign in</Button>
-  <Button as={Link} to="/login" >Sign out</Button>
+    <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
+    <Nav.Link as={Link} to="/"><b>Sign out</b></Nav.Link>
   <Button as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> 
         <img 
           width="23px"
