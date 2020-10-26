@@ -10,7 +10,7 @@ function AboutUs() {
                 <p class="Protit">
                
                   <br/><br/><br/> <h2  style={{color: "Red"}}>Who are  we? </h2> 
-                </p>  
+                </p>  <br/><br/><br/><br/><br></br><br/>
                 <div className="col-md-3 center">
                 
                 <img
