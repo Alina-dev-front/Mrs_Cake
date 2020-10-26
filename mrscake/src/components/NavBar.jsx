@@ -18,7 +18,8 @@ function NavBar({cartLength}) {
         alt="Mrs_Cake logo"
       />
     </Navbar.Brand>
-      <Navbar.Brand href="/">MRS CAKE</Navbar.Brand>
+     
+      <Nav.Link as={Link} to="/">MRS CAKE</Nav.Link>
   <Nav className="mr-auto">
   <NavDropdown title="Products" id="basic-nav-dropdown">
           <div className="basic-nav-dropdown">

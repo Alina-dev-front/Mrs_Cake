@@ -10,7 +10,7 @@ import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import ProductTable from './components/ProductPage';
 import NavBar from './components/NavBar';
-import CarouselControlled from "./components/Carrousel";
+//import CarouselControlled from "./components/Carrousel";
 import CheckoutForm from "./components/CheckoutForm";
 
 import './App.css';
@@ -26,7 +26,7 @@ function App() {
             <Route path="/contactus" component={ContactUs} />
             <Route path="/shoppingcart" component={shoppingCart} />
             <Route path="/productpage" component={ProductTable} />
-            <Route path="/homepage" component={CarouselControlled}/>
+           
             <Route  path='/Login' component={Login} />    
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/UserDetails" component={UserDetails} />   
