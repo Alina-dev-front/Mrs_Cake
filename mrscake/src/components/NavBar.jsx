@@ -4,6 +4,7 @@ import cake from '../cake.svg';
 import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
 import { Link } from 'react-router-dom';
+import userprofile from '../userprofile.svg';
 
 function NavBar() {
   return <Navbar fixed="top" bg="light" variant="light">
@@ -83,6 +84,15 @@ function NavBar() {
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
     <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
   </Form>
+  <Navbar.Brand href="/userdetails">
+      <img
+        src={userprofile}
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+        alt="userprofile_a"
+      />
+    </Navbar.Brand>
   <Button as={Link} to="/login">Sign in</Button>
   <Button as={Link} to="/login" >Sign out</Button>
   <Button as={Link} to="/shoppingCart">
