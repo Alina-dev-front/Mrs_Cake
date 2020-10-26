@@ -12,6 +12,8 @@ import ProductTable from './components/ProductPage';
 import NavBar from './components/NavBar';
 import FooterPage from './components/Footer';
 import CarouselControlled from "./components/Carrousel";
+import CheckoutForm from "./components/CheckoutForm";
+
 import './App.css';
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
-            
+            <Route path='/checkoutform' component={CheckoutForm} />
           </Switch> 
         </BrowserRouter>
       <FooterPage />
