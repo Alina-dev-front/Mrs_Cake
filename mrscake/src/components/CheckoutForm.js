@@ -8,6 +8,7 @@ import {CardElement, useElements,useStripe} from '@stripe/react-stripe-js';
 import BillingDetailsFields from "./PaymentForm/BillingDetailsFields";
 import GlobalStyles from "./PaymentForm/GlobalStyles";
 import Head from "next/head";
+import {connect} from 'react-redux';
 
 
 const CardElementContainer = styled.div`
@@ -141,4 +142,11 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
     );
 };
 
-export default CheckoutForm;
+const mapStateToProps = (state) => {
+    return {
+        price : state.shop.cart.reduce((count, curItem) => {
+            return count + (curItem.price * curItem.quantity);
+        }, 0)
+    }
+  };
+export default connect(mapStateToProps,null)(CheckoutForm) ;
