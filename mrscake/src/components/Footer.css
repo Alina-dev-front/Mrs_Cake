@@ -1,6 +1,6 @@
 .footer-img {
     width: 7%;
-    height: 7%;
+    height: 65px;
     padding-right: 1%;
   }
 
@@ -18,4 +18,5 @@ p {
     padding-bottom: 0%;
     padding-top: 2%;
     margin-bottom: 0%;
+    position: absolute;
 }
