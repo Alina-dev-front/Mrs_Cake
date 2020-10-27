@@ -97,12 +97,12 @@ function NavBar({cartLength}) {
     </Navbar.Brand><br/>
     <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
     <Nav.Link as={Link} to="/login"><b>Sign out</b></Nav.Link>
-    <Nav.Link as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"></Nav.Link>
- 
-        <img 
+    <Nav.Link as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> <img 
           width="23px"
           height="23px" src={shoppingCart} alt="shopping cart"
-          /> ({cartLength})
+          /> ({cartLength})</Nav.Link>
+ 
+       
         
 </Navbar>
 }
