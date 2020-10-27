@@ -28,7 +28,7 @@ class Login extends React.Component {
         .then(userData => {
             this.setState({ user: userData })
             console.log(this.state.user)
-            this.showWelcome(this.state.user)
+            this.showWelcome(this.state.user.firstName)
         })     
         .catch(err => console.log(err));
     }
@@ -42,8 +42,8 @@ class Login extends React.Component {
         this.getUser(request);
     }
 
-    showWelcome = (user) => {
-        alert("Welcome, " + user.firstName);
+    showWelcome = (userName) => {
+        alert("Welcome, " + userName);
     }
 
     render() {
