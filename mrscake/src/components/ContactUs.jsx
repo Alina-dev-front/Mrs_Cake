@@ -14,7 +14,8 @@ return <div><br></br>
                 </p>  
                 </div>
                 <div class="our-history space-bottom-20 space-top-20">
-                <div class="col-md-6 col-sm-12">         <p> <h5>Contact us</h5><br/></p> </div>
+                <div class="col-md-6 col-sm-12">    <br/><br/><br/><br/><br/><br/><br/>  
+                   <p> <h5>Contact us</h5><br/></p> </div><br/>
                    <p> 
                     <b>Telephone numbers and opening hours</b><br/>
                     <b>Customer Service</b><br/>

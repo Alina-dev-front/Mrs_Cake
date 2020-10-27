@@ -84,9 +84,9 @@ function NavBar({cartLength}) {
   </Nav>
   <Form inline>
     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-    <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
-  </Form>
-  <Navbar.Brand href="/userdetails">
+    <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button><br/><br/><br/>
+  </Form><br/><br/>
+ <br/> <Navbar.Brand href="/userdetails">
       <img
         src={userprofile}
         width="30"
@@ -94,15 +94,16 @@ function NavBar({cartLength}) {
         className="d-inline-block align-top"
         alt="userprofile_a"
       />
-    </Navbar.Brand>
-  <Button as={Link} to="/login">Sign in</Button>
-  <Button as={Link} to="/login" >Sign out</Button>
-  <Button as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> 
-        <img 
+    </Navbar.Brand><br/>
+    <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
+    <Nav.Link as={Link} to="/login"><b>Sign out</b></Nav.Link>
+    <Nav.Link as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> <img 
           width="23px"
           height="23px" src={shoppingCart} alt="shopping cart"
-          /> ({cartLength})
-        </Button>
+          /> ({cartLength})</Nav.Link>
+ 
+       
+        
 </Navbar>
 }
 

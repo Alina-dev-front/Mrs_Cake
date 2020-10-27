@@ -119,14 +119,14 @@ class SignUp extends Component {
                     <Input required='true' type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
 
                     </FormGroup>
-                    <p><b>Select one User Role : </b></p>
+                    <p><b>Select one User Role : </b></p><br/>
                     <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer"  /> Are you Customer?<br/>
                     <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
                     < div>
-                    <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button>
-                   <p className="link text-center">
+                    <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button><br/>
+                    <p className="link text-center">
                    <b> <a  href="/login">Already Registered,Sign in</a></b>
-                    </p></div>
+                    </p></div><br/>
                 </CardBody>
               </Card>
             </Col>

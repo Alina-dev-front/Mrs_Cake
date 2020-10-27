@@ -18,13 +18,13 @@ function FooterPage() {
                     </div></div>
                     <div className="column">
                         <div margin-bottom="10%" >Customer Service</div>
-                        <p>Privacy policy</p>
-                        <p>Payment and delivery</p>
+                        <p>Privacy policy</p><br/>
+                        <p>Payment and delivery</p><br/>
                     </div>
                     <div className="column">
                         <div>Information</div>
-                        <p>FAQ</p>
-                        <p>For organizations</p>
+                        <p>FAQ</p><br/>
+                        <p>For organizations</p><br/>
                     </div>
                 </div>
                 </Container>
