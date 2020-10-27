@@ -22,7 +22,7 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
     <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
-    <Form inline style={{marginLeft:"800px"}}>
+    <Form inline style={{marginLeft:"30%"}}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
     <Nav.Link as={Link} to="/userdetails">
