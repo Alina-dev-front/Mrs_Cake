@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Card,  CardBody,  Col, Container, Form, Input, FormGroup, Row } from 'reactstrap';	  
+import { Button, Card,  CardBody,  Col, Container, Form, Input, FormGroup, Row, Label } from 'reactstrap';	  
 import './Login.css';
 import { USERS_API_URL } from '../constants/user_api_url';
+import { Link } from 'react-router-dom';
 
 class SignUp extends Component {
   state = 
@@ -84,49 +85,48 @@ class SignUp extends Component {
           document.getElementById("user-reg").reset();
         }
   render() {
-      
     return <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
-      <div className="app flex-row align-items-center"><br/><br/>
-        <Container><br/>
+      <div className="app flex-row align-items-center">
+        <Container style={{paddingTop: "100px"}}>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
               <Card className="mx-4">
                 <CardBody className="p-4">
                
-                    <div class="row" className="mb-2 pageheading">
-                      <div class="col-sm-12 btn btn-primary">
-                        Sign Up
-                        </div>
+                    <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}>
+                      <div className="col-sm-12 btn btn-primary">Sign Up</div>
+                    </Row>
+
+                    <FormGroup className="mb-3">
+                      <Input required={true} type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
+                      <Input required={true} type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
+                    </FormGroup>
+
+                    <FormGroup className="mb-3">
+                      <Input required={true} type="email" name="email" onChange={this.handleChange} 
+                      value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
+                    </FormGroup>
+
+                    <FormGroup className="mb-3">
+                      <Input required={true} type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
+                    </FormGroup>
+
+                    <FormGroup className="mb-3">
+                      <Input required={true} type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
+                    </FormGroup>
+
+                    <Label>Select your User Role:</Label><br />
+                    <div style={{marginLeft: "20px", marginBottom: "10px"}}>
+                      <Input required={true} type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer" /> Are you Customer?<br/>
+                      <Input required={true} type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
                     </div>
-                    <div>
 
-                    <FormGroup className="mb-3">
-                    <Input required='true' type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
-                    <Input required='true' type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
-                   
-                    </FormGroup>
+                    <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button>
+                    
+                    <div className="links">
+                      <Link to="/login">Already registered? Sign in</Link>
                     </div>
-                    <FormGroup className="mb-3">
-                    <Input required='true' type="email" name="email" onChange={this.handleChange} 
-                    value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
-                   
-                    </FormGroup>
-                    <FormGroup className="mb-3">
-                      <Input required='true' type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
 
-                    </FormGroup>
-                    <FormGroup className="mb-3">
-                    <Input required='true' type="password" name="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   onChange={this.handleChange} value={this.state.confirmPassword === '' ? '' : this.state.confirmPassword} placeholder="Confirm Password" />
-
-                    </FormGroup>
-                    <p><b>Select one User Role : </b></p><br/>
-                    <input required='true'type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer"  /> Are you Customer?<br/>
-                    <input required='true' type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
-                    < div>
-                    <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button><br/>
-                    <p className="link text-center">
-                   <b> <a  href="/login">Already Registered,Sign in</a></b>
-                    </p></div><br/>
                 </CardBody>
               </Card>
             </Col>

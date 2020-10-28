@@ -1,32 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Login.css';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, FormGroup,Row } from 'reactstrap';
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, FormGroup,Row, Label } from 'reactstrap';
 import { LOGIN_API_URL } from '../constants/api_url_path';
+import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          user: {
-              id: '',
-              firstName: '',
-              lastName: '',
-              email: '',
-              password: '',
-              mobilePhone: '',
-              address: '',
-              creditCardNUmber: '',
-              userRolls: '',
-              status: '',
-              message: ''
-          }
-        }
-    }
-
-    componentDidMount() {
-        if (this.props.user) {
-            const { id, firstName, lastName, email, password, mobilePhone, address, creditCardNUmber, userRolls, status, message } = this.props.product
-            this.setState({ id, firstName, lastName, email, password, mobilePhone, address, creditCardNUmber, userRolls, status, message });
+            user: {},
         }
     }
 
@@ -44,9 +26,10 @@ class Login extends Component {
             return dbResponse;
         })
         .then(userData => {
-            console.log(userData)
             this.setState({ user: userData })
-        })
+            console.log(this.state.user)
+            this.showWelcome(this.state.user.firstName)
+        })     
         .catch(err => console.log(err));
     }
 
@@ -59,48 +42,43 @@ class Login extends Component {
         this.getUser(request);
     }
 
-    
+    showWelcome = (userName) => {
+        alert("Welcome, " + userName);
+    }
 
     render() {
-        
-       
-        
-
         return <Form onSubmit={(e) => this.login(e)}>
              <div className="app flex-row align-items-center">
-                <Container><br/><br/><br/>
+                <Container style={{paddingTop: "100px"}}>
                     <Row className="justify-content-center">
                         <Col md="9" lg="7" xl="6">
                             <CardGroup>
                                 <Card className="p-2">
-                                    <CardBody>
-                                        <Form>
-                                            <Row className="mb-2 pageheading"> 
-                                                <div class="col-sm-12 btn btn-primary">
+                                    <CardBody style={{paddingBottom: "50px"}}>
+                                            <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
+                                                <div className="col-sm-12 btn btn-primary">
                                                     Login
                                                 </div>
                                             </Row>
                                             <FormGroup className="mb-3">
-                                                <Input required='true' type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
+                                                <Input type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
                                             </FormGroup>	                                           
                                             <FormGroup className="mb-4">
-                                                <Input required='true' type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "inputPassword" id="inputPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                                <Input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "inputPassword" id="inputPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                                 placeholder="Password" />
                                             </FormGroup>
-                                            <div className="form-group">
+                                            <FormGroup>
                                             <div className="custom-control custom-checkbox">
-                                                
-                                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                                <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                                                <Input type="checkbox" className="custom-control-input" />
+                                                <Label className="custom-control-label">Remember me</Label>
                                                 </div>	
+                                            </FormGroup>
+                                            <Button color="success" block>Login</Button>
+                                            <div className="links">
+                                                <Link to="/forgotpassword">Forgot password?</Link><br />
+                                                <Link to="/signup">Not Registered? Sign Up</Link>
                                             </div>
                                             
-                                            <Button color="success" block >Login</Button>
-                                            <p className="forgot-password text-center">
-                                            <b> <a href="forgotpassword">Forgot password?</a></b><br/><br/>
-                                            <b> <a href="/signup">Not Registered,Sign Up</a></b>
-                                            </p>
-                                        </Form><br/><br/><br/>
                                     </CardBody>
                                 </Card>
                             </CardGroup>
