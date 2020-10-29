@@ -1,0 +1,1 @@
+<h4>Your password is reset. Please click <link to login> here to login</link></h4>

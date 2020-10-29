@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mrs_Cake.Models;
 using Mrs_Cake.Services;
@@ -39,7 +42,7 @@ namespace Mrs_Cake.Controllers
             }
             return userFromDB;
         }
-
+        
         [HttpPost]
         public ActionResult<User> Create(User user)
         {

@@ -1,19 +1,18 @@
 import React from "react";
 import cakestore from '../cakestore.jpg';
 function AboutUs() {
-         return <div><br></br>
-         <br/>
-         <div class="container theme-container">   
+         return <div>
+         <div class="container theme-container" >   
       
             <div class="title-wrap space-bottom-20">
             <div class="col-md-6 col-sm-12">
-                <p class="Protit">
+                <p class="Protit" >
                
-                  <br/><br/><br/> <h2  style={{color: "Red"}}>Who are  we? </h2> 
-                </p>  <br/><br/><br/><br/><br></br><br/>
-                <div className="col-md-3 center">
+                   <h2  style={{color: "Red", paddingTop: "100px"}}>Who are  we? </h2> 
+                </p> 
+                <div className="col-md-3 center" style={{paddingTop: "100px"}}>
                 
-                <img
+                <img style={{paddingTop: "80px"}}
          src={cakestore}
         width="200"
         height="200"

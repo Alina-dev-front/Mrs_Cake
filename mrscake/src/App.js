@@ -9,6 +9,7 @@ import shoppingCart from './components/shoppingCart';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import ProductTable from './components/ProductPage';
+import ResetPassword from './components/ResetPassword';
 import NavBar from './components/NavBar';
 //import CarouselControlled from "./components/Carrousel";
 import CheckoutForm from "./components/CheckoutForm";
@@ -32,6 +33,7 @@ function App() {
             <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/checkoutform' component={CheckoutForm} />
+            <Route path='/ResetPassword' component={ResetPassword} />
           </Switch> 
         </BrowserRouter>
     </React.Fragment>
