@@ -73,7 +73,7 @@ class ShoppingCart extends React.Component {
                                     <div className="custom-control custom-checkbox">
 
                                         <input type="checkbox" className="custom-control-input" id="customCheck1" onInput={handleSelectBox}  />
-                                        <label className="custom-control-label" htmlFor="customCheck1">home dilivery</label>
+                                        <label className="custom-control-label" htmlFor="customCheck1">Home delivery</label>
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -87,7 +87,7 @@ class ShoppingCart extends React.Component {
                                     <div className="custom-control custom-checkbox">
 
                                         <input type="checkbox" className="custom-control-input" id="customCheck3" onInput={handleSelectBox}  />
-                                        <label className="custom-control-label" htmlFor="customCheck3">pick up from the closest store</label>
+                                        <label className="custom-control-label" htmlFor="customCheck3">Pick up from the closest store</label>
                                     </div>
                                 </div>
                                 <NavLink
