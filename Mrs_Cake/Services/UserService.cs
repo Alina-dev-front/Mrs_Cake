@@ -3,6 +3,8 @@ using System.Linq;
 using Mrs_Cake.Models;
 using MongoDB.Driver;
 using Mrs_Cake.MrsCakeData;
+using System.Threading.Tasks;
+using System;
 
 namespace Mrs_Cake.Services
 {
@@ -38,5 +40,10 @@ namespace Mrs_Cake.Services
 
         public void Remove(string id) =>
             _users.DeleteOne(user => user.Id == id);
+
+        internal static Task FindByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
