@@ -12,20 +12,29 @@ class ShoppingCart extends React.Component {
     render() {
         const handleSelectBox = (e) => {
             const name = e.target.id;
-           // const value = e.target.checked;
+            //const value = e.target.cheched;
         
            if(name === "customCheck1" && e.target.checked && name !== "customCheck3"){
+                    document.getElementById("customCheck3").checked = false;
+                    document.getElementById("customCheck2").checked = false;
                     this.setState({ totalPrice:7} ) 
+                   
            }
            
             else if(name === "customCheck3" && e.target.checked && name !== "customCheck1") {
+                document.getElementById("customCheck1").checked = false;
+                document.getElementById("customCheck2").checked = false;
                 this.setState({ totalPrice:10} )
+                  
             } 
             else if(name === "customCheck2" && e.target.checked && name !== "customCheck3" ) {
+                document.getElementById("customCheck1").checked = false;
+                document.getElementById("customCheck3").checked = false;
                 this.setState({ totalPrice:0} )
             }
-            else if(name !== "customCheck2") {
+            else  {
                 this.setState({ totalPrice:0} )
+                 console.log(name);
             }
         };
         return (
