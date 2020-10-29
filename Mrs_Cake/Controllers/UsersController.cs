@@ -14,8 +14,6 @@ namespace Mrs_Cake.Controllers
     {
         private readonly UserService _userService;
 
-       
-
         public UsersController(UserService userService)
         {
             _userService = userService;
@@ -45,7 +43,6 @@ namespace Mrs_Cake.Controllers
             return userFromDB;
         }
         
-
         [HttpPost]
         public ActionResult<User> Create(User user)
         {
