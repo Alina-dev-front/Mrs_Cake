@@ -34,10 +34,11 @@ namespace Mrs_Cake.Services
             {
                 if(result.Password == inputPassword)
                 {
+                    result.LoginStatus = "Logged in";
                     return  result;
-                    
                 }
-                return null;
+                result.LoginStatus = "Invalid password";
+                return result;
             }
             return null;
         }
