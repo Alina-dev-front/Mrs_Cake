@@ -5,7 +5,6 @@ import { PRODUCTS_API_URL } from '../constants/api_url_path';
 import {connect} from 'react-redux';
 import "./DataTable.css";
 import {addProductToCart} from "../actions";
-//import ProductTable from './ProductPage';
 
 class DataTable extends Component {
  
@@ -49,7 +48,7 @@ class DataTable extends Component {
           : items.map(item => (
             <tr key={item.id}>
               <td className="image-column">
-                <img src={require('../Images/' + item.imageUrl)} alt={item.name} className="img_product_table"></img>
+                <img src={require('../Images/' + item.imageUrl).default} alt={item.name} className="img_product_table"></img>
               </td>
               <td className="name-column">
                 {item.name}

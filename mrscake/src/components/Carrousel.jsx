@@ -2,8 +2,6 @@ import React, { useState} from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 
-
-
 function CarouselControlled(){
     let [index, setIndex] = useState(1)
     let handleSelect = (selectedIndex) =>{
@@ -15,7 +13,7 @@ function CarouselControlled(){
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/31.jpeg")}
+                    src={require("../Images/31.jpeg").default}
                     alt="First Slide"
                     style={{height: "50vh"}}
                 />
@@ -23,7 +21,7 @@ function CarouselControlled(){
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/macaron.jpg")}
+                    src={require("../Images/macaron.jpg").default}
                     alt="Second Slide"
                     style={{height: "50vh"}}
                 />
@@ -31,7 +29,7 @@ function CarouselControlled(){
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/cakeRoses.jpg")}
+                    src={require("../Images/cakeRoses.jpg").default}
                     alt="Thirst Slide"
                     style={{height: "50vh"}}
                 />
@@ -39,7 +37,7 @@ function CarouselControlled(){
             <Carousel.Item>
                 <img
                     className="d-block min-vw-100"
-                    src={require("../Images/34.jpeg")}
+                    src={require("../Images/34.jpeg").default}
                     alt="Fourth Slide"
                     style={{height: "50vh"}}
                 />
