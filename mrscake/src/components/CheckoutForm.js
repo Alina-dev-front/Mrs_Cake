@@ -7,7 +7,6 @@ import CheckoutError from "./PaymentForm/CheckoutError";
 import {CardElement, useElements,useStripe} from '@stripe/react-stripe-js';
 import BillingDetailsFields from "./PaymentForm/BillingDetailsFields";
 import GlobalStyles from "./PaymentForm/GlobalStyles";
-import Head from "next/head";
 import {connect} from 'react-redux';
 
 
@@ -27,12 +26,9 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
     const stripe = useStripe();
     const elements = useElements();
 
-
-
     const handleCardDetailsChange = ev => {
         ev.error ? setCheckoutError(ev.error.message) : setCheckoutError();
     };
-
 
     const handleFormSubmit = async ev => {
         ev.preventDefault();
@@ -83,8 +79,6 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
     };
 
 
-
-
     //stripe.com/docs.js
     const cardElementOption ={
         iconStyle: 'solid',
@@ -120,10 +114,10 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
                 <BillingDetailsFields />
             </Row>
             <GlobalStyles />
-            <Head>
+            <head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
+            </head>
             <Row>
                 <CardElementContainer>
                     <CardElement
