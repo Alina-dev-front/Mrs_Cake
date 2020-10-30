@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input } from 'reactstrap';	  
+import { Button, Form, Input, CardBody, Card, Container, Row, Col, CardGroup } from 'reactstrap';	  
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import './Login.css';
 
@@ -39,7 +39,7 @@ class UserDetails extends Component {
             body: JSON.stringify({
               mobilePhone: this.state.mobilePhone,
               address: this.state.address,
-                creditCardNumber: this.state.creditCardNumber, 
+              creditCardNumber: this.state.creditCardNumber, 
             })
         })
             .then(() => {
@@ -51,18 +51,32 @@ class UserDetails extends Component {
     }
         
   render() {
-    return <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
-        <div>
-                <br/><br/><br/><br/> <br/><br/>  <div className="col-md-3 center">
-               <h2>   <p><b>Enter more user details</b></p> </h2>   </div> 
-               <Input className="col-md-3 center"  type="text" name="address" onChange={this.handleChange} value={this.state.address === '' ? '' : this.state.address} placeholder="Address" />
-                     <Input className="col-md-3 center"  type="int" name="mobilePhone" onChange={this.handleChange} value={this.state.mobilePhone === '' ? '' : this.state.mobilePhone } placeholder="MobilePhone" />
-                    <Input className="col-md-3 center" type="int"  name="creditCardNumber" onChange={this.handleChange} 
-                    value={this.state.credtCardNumber=== '' ? '' : this.state.creditCardNumber} placeholder="CreditCardNumber" />
-                 <br/>   <Button className="col-md-3 center" onSubmit={this.mySubmitHandler} color="success" block >Submit</Button>
-                    </div>
-                    </Form>
-                }   
-  }
+        return  <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
+                  <div className="app flex-row align-items-center">
+                    <Container style={{paddingTop: "100px"}}>
+                      <Row className="justify-content-center">
+                        <Col md="9" lg="7" xl="6">
+                          <CardGroup>
+                            <Card className="p-2">
+                              <CardBody style={{paddingBottom: "50px"}}>
+                                <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
+                                  <div className="col-sm-12 btn btn-primary">
+                                    User Details
+                                  </div>
+                                </Row>
+                                <Input className="mb-3" type="text" name="address" onChange={this.handleChange} value={this.state.address === '' ? '' : this.state.address} placeholder="Address" />
+                                <Input className="mb-3"  type="int" name="mobilePhone" onChange={this.handleChange} value={this.state.mobilePhone === '' ? '' : this.state.mobilePhone } placeholder="MobilePhone" />
+                                <Input className="mb-3" type="int"  name="creditCardNumber" onChange={this.handleChange} value={this.state.credtCardNumber=== '' ? '' : this.state.creditCardNumber} placeholder="CreditCardNumber" />
+                                <Button className="mb-3" onSubmit={this.mySubmitHandler} color="success" block >Submit</Button>
+                              </CardBody>
+                            </Card>
+                          </CardGroup>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </div>
+                </Form>
+    }   
+}
 
 export default UserDetails;

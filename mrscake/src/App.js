@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import UserDetails from './components/UserDetails'; 
@@ -11,12 +11,30 @@ import ContactUs from './components/ContactUs';
 import ProductTable from './components/ProductPage';
 import ResetPassword from './components/ResetPassword';
 import NavBar from './components/NavBar';
-//import CarouselControlled from "./components/Carrousel";
 import CheckoutForm from "./components/CheckoutForm";
-
+// import { USERS_API_URL } from './constants/user_api_url';
 import './App.css';
 
 function App() {
+
+  // const [role, setRole] = useState("")
+  // const user = {}
+
+  // useEffect(() => {
+
+  // }, [])
+
+  // getusers = () => {
+  //   fetch(`${USERS_API_URL}`)
+  //     .then(response => {
+  //       var dbResponse = response.json();
+  //       return dbResponse;
+  //   })
+  //     .then(userData => this.setRole(userData.userRole))
+  //     .catch(err => console.log(err));
+  // }
+
+
   return (
     <React.Fragment>
         <BrowserRouter>
@@ -27,7 +45,6 @@ function App() {
             <Route path="/contactus" component={ContactUs} />
             <Route path="/shoppingcart" component={shoppingCart} />
             <Route path="/productpage" component={ProductTable} />
-           
             <Route  path='/Login' component={Login} />    
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/UserDetails" component={UserDetails} />   

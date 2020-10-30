@@ -45,52 +45,51 @@ class Login extends React.Component {
         }
         this.getUser(request);
     }
-
+    // temporary function until login really works
     showWelcome = (userName) => {
         alert("Welcome, " + userName);
     }
 
     render() {
         return <Form onSubmit={(e) => this.login(e)}>
-             <div className="app flex-row align-items-center">
-                <Container style={{paddingTop: "100px"}}>
-                    <Row className="justify-content-center">
-                        <Col md="9" lg="7" xl="6">
-                            <CardGroup>
-                                <Card className="p-2">
-                                    <CardBody style={{paddingBottom: "50px"}}>
-                                            <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
-                                                <div className="col-sm-12 btn btn-primary">
-                                                    Login
+                    <div className="app flex-row align-items-center">
+                        <Container style={{paddingTop: "100px"}}>
+                            <Row className="justify-content-center">
+                                <Col md="9" lg="7" xl="6">
+                                    <CardGroup>
+                                        <Card className="p-2">
+                                            <CardBody style={{paddingBottom: "50px"}}>
+                                                <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
+                                                    <div className="col-sm-12 btn btn-primary">
+                                                        Login
+                                                    </div>
+                                                </Row>
+                                                <FormGroup className="mb-3">
+                                                    <Input type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
+                                                </FormGroup>	                                           
+                                                <FormGroup className="mb-4">
+                                                    <Input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "inputPassword" id="inputPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                                    placeholder="Password" />
+                                                </FormGroup>
+                                                <FormGroup>
+                                                <div className="custom-control custom-checkbox">
+                                                    <Input type="checkbox" className="custom-control-input" />
+                                                    <Label className="custom-control-label">Remember me</Label>
+                                                    </div>	
+                                                </FormGroup>
+                                                <Button color="success" block>Login</Button>
+                                                <div className="links">
+                                                    <Link to="/forgotpassword">Forgot password?</Link><br />
+                                                    <Link to="/signup">Not Registered? Sign Up</Link>
                                                 </div>
-                                            </Row>
-                                            <FormGroup className="mb-3">
-                                                <Input type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
-                                            </FormGroup>	                                           
-                                            <FormGroup className="mb-4">
-                                                <Input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "inputPassword" id="inputPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                                placeholder="Password" />
-                                            </FormGroup>
-                                            <FormGroup>
-                                            <div className="custom-control custom-checkbox">
-                                                <Input type="checkbox" className="custom-control-input" />
-                                                <Label className="custom-control-label">Remember me</Label>
-                                                </div>	
-                                            </FormGroup>
-                                            <Button color="success" block>Login</Button>
-                                            <div className="links">
-                                                <Link to="/forgotpassword">Forgot password?</Link><br />
-                                                <Link to="/signup">Not Registered? Sign Up</Link>
-                                            </div>
-                                            
-                                    </CardBody>
-                                </Card>
-                            </CardGroup>
-                        </Col>
-                    </Row>
-                </Container>
-                </div>
-        </Form>
+                                            </CardBody>
+                                        </Card>
+                                    </CardGroup>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
+                </Form>
     }
 }
 

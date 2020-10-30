@@ -13,7 +13,7 @@ class SignUp extends Component {
     email: '',
     password: '',
     confirmPassword: '', 
-    userRolls: '',   
+    userRole: '',   
     }
     
     mySubmitHandler = (event) => {
@@ -23,8 +23,8 @@ class SignUp extends Component {
 
     componentDidMount() {
       if (this.props.user) {
-          const { id, firstName, lastName, email, password, confirmPassword, userRolls } = this.props.user
-          this.setState({ id, firstName, lastName, email, password, confirmPassword, userRolls});
+          const { id, firstName, lastName, email, password, confirmPassword, userRole } = this.props.user
+          this.setState({ id, firstName, lastName, email, password, confirmPassword, userRole});
       }
     }
 
@@ -45,7 +45,7 @@ class SignUp extends Component {
             email: this.state.email,
             password: this.state.password,
             confirmPassword: this.state.confirmPassword,
-            userRolls: this.state.userRolls
+            userRole: this.state.userRole
         })
     })
     
@@ -69,7 +69,7 @@ class SignUp extends Component {
           email: this.state.email,
           password: this.state.password,
           confirmPassword: this.state.confirmPassword, 
-          userRolls: this.state.userRolls  
+          userRole: this.state.userRole  
           })
       })
           .then(() => {
@@ -117,8 +117,8 @@ class SignUp extends Component {
 
                     <Label>Select your User Role:</Label><br />
                     <div style={{marginLeft: "20px", marginBottom: "10px"}}>
-                      <Input required={true} type="radio" id="User" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value="Customer" /> Are you Customer?<br/>
-                      <Input required={true} type="radio" id="Bakery" name="userRolls" onChange={this.handleChange} value={this.state.userRolls === '' ? '' : this.state.userRolls} value ="BakeryOwner" /> Are you bakery Manager?<br/>
+                      <Input required={true} type="radio" id="User" name="userRole" onChange={this.handleChange} value={this.state.userRole === '' ? '' : this.state.userRole} value="Customer" /> Are you Customer?<br/>
+                      <Input required={true} type="radio" id="Bakery" name="userRole" onChange={this.handleChange} value={this.state.userRole === '' ? '' : this.state.userRole} value ="BakeryOwner" /> Are you bakery Manager?<br/>
                     </div>
 
                     <Button onSubmit={this.mySubmitHandler} color="success" block >Create Account</Button>
