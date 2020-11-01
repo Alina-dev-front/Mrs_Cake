@@ -17,5 +17,6 @@ namespace Mrs_Cake.Models
         public string CreditCardNUmber { get; set; }
         public string UserRole { get; set; }
         public string LoginStatus { get; set; }
+        public string PasswordStatus { get; set; }
     }
 }

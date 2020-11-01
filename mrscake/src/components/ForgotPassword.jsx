@@ -7,7 +7,8 @@ class ForgotPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {},
+            email: '',
+           
         }
     }
     getUser = (request) => {
@@ -15,7 +16,8 @@ class ForgotPassword extends Component {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                email: request.inputEmail
+                email: request.inputEmail,
+                //password: request.password
 
             })
         })
@@ -25,8 +27,11 @@ class ForgotPassword extends Component {
         })
         .then(userData => {
             this.setState({ user: userData })
-            console.log(this.state.user)
-            
+          
+            if(this.state.user.passwordStatus === "not logged in") {
+                this.showWelcome("password reset request successfully")
+      
+            }
         })     
         .catch(err => console.log(err));
     }
@@ -49,7 +54,7 @@ class ForgotPassword extends Component {
                             <CardGroup style={{paddingBottom: "100px"}}>
                                 <Card className="p-2">
                                     <CardBody style={{paddingBottom: "100px"}}>
-                                        <Form>
+                                        
                                             <div class="row" className="mb-2 pageheading">
                                                 <div>
                                                    <b>Forgot Password</b> 
@@ -59,8 +64,8 @@ class ForgotPassword extends Component {
                                            <FormGroup className="mb-3" style={{paddingTop: "100px"}}>
                                                 <Input type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
                                             </FormGroup>
-                                            <Button onSubmit={this.mySubmitHandler} color="success" block>Submit</Button>
-                                        </Form>
+                                            <Button  color="success" block>Submit</Button>
+                                        
                                     </CardBody>
                                 </Card>
                             </CardGroup>

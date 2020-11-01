@@ -65,7 +65,10 @@ namespace Mrs_Cake.Controllers
 
             return NoContent();
         }
-
+        public User ResetUser(User user)
+        {
+            return _userService.ForgotPassword(user.Email);
+        }
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {

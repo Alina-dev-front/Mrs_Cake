@@ -7,6 +7,8 @@ using Microsoft.Extensions.Options;
 using Mrs_Cake.Services;
 using Microsoft.Extensions.Logging;
 using Mrs_Cake.MrsCakeData;
+using Mrs_Cake.Models;
+using Mrs_Cake.Repositories;
 
 namespace Mrs_Cake
 {
@@ -27,6 +29,10 @@ namespace Mrs_Cake
 
             services.AddSingleton<IMrsCakeDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<MrsCakeDatabaseSettings>>().Value);
+
+            //for mail config
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, Services.MailService>();
 
             services.AddSingleton<ProductService>();
             services.AddSingleton<UserService>();

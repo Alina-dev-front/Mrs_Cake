@@ -28,8 +28,25 @@ namespace Mrs_Cake.Services
             _users.InsertOne(user);
             return user;
         }
+        public User ForgotPassword(string inputEmail)
+        {
+            List<User> usersFromDB = _users.Find(user => true).ToList();
 
-        public void Update(string id, User user) =>
+            User result = usersFromDB.Find(user => user.Email == inputEmail);
+            if (result != null)
+            {
+                if (result.Password == null )
+                {
+                    result.PasswordStatus = "Reset password required";
+                    return result;
+                }
+               
+            }
+            return null;
+        }
+    
+
+public void Update(string id, User user) =>
 
             _users.ReplaceOne(user => user.Id == id, user);
 
