@@ -3,6 +3,7 @@ import './Login.css';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, FormGroup,Row, Label } from 'reactstrap';
 import { LOGIN_API_URL } from '../constants/api_url_path';
 import { Link } from 'react-router-dom';
+import CallCookie from './Cookie-function';
 
 class Login extends React.Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class Login extends React.Component {
             console.log(this.state.user)
             if(this.state.user.loginStatus === "Logged in") {
                 this.showWelcome(this.state.user.firstName)
+                this.props.history.push('/')
             } else if(this.state.user.loginStatus === "Invalid password") {
                 alert(this.state.user.loginStatus)
             }
@@ -75,9 +77,14 @@ class Login extends React.Component {
                                                 <div className="custom-control custom-checkbox">
                                                     <Input type="checkbox" className="custom-control-input" />
                                                     <Label className="custom-control-label">Remember me</Label>
-                                                    </div>	
+                                                </div>	
                                                 </FormGroup>
                                                 <Button color="success" block>Login</Button>
+                                                <div style={{ display: "none"}}>
+                                                    <CallCookie 
+                                                        user = {this.state.user}
+                                                    />
+                                                </div>
                                                 <div className="links">
                                                     <Link to="/forgotpassword">Forgot password?</Link><br />
                                                     <Link to="/signup">Not Registered? Sign Up</Link>
