@@ -17,7 +17,10 @@ function CallCookie(user) {
             }
         return '';
     }
-    return cookies.role;
+    if(cookies.role) {
+        return cookies.role;
+    } 
+    return '';
 }
 
 export default CallCookie;
