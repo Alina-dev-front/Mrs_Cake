@@ -20,7 +20,7 @@ function App() {
   const [cookies, setCookie] = useCookies(['name']);
   
   function SetDefaultCookie() {
-    if(cookies.role == null || cookies.role == undefined) {
+    if(cookies.role === null || cookies.role === undefined) {
       setCookie('role', "Customer", { path: '/' });
     }
     return '';
