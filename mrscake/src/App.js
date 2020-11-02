@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import UserDetails from './components/UserDetails'; 
+import BakeryDetail from './components/BakeryDetail'; 
 import ForgotPassword from './components/ForgotPassword';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
@@ -39,6 +40,7 @@ function App() {
             <Route  path='/Login' component={Login} />    
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/UserDetails" component={UserDetails} />   
+            <Route path="/BakeryDetail" component={BakeryDetail} /> 
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/checkoutform' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
