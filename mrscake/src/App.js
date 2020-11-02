@@ -12,12 +12,23 @@ import ProductTable from './components/ProductPage';
 import ResetPassword from './components/ResetPassword';
 import NavBar from './components/NavBar';
 import CheckoutForm from "./components/CheckoutForm";
+import { useCookies } from 'react-cookie';
 import './App.css';
 
 function App() {
+  const [cookies, setCookie] = useCookies(['name']);
+  
+  function SetDefaultCookie() {
+    if(cookies.role == null || cookies.role == undefined) {
+      setCookie('role', "Customer", { path: '/' });
+    }
+    return '';
+  }
+
   return (
     <React.Fragment>
         <BrowserRouter>
+        <SetDefaultCookie />
         <NavBar />
           <Switch>
             <Route path='/' component={HomePage} exact />
