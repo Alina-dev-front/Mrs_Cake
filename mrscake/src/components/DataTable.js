@@ -5,9 +5,9 @@ import { PRODUCTS_API_URL } from '../constants/api_url_path';
 import {connect} from 'react-redux';
 import "./DataTable.css";
 import {addProductToCart} from "../actions";
+import Cookies from 'js-cookie';
 
 class DataTable extends Component {
- 
   deleteItem = id => {
     let confirmDeletion = window.confirm('Do you really wish to delete it?');
     if (confirmDeletion) {
@@ -29,6 +29,14 @@ class DataTable extends Component {
     if (this.props.filteredItems.length > 0) {
       items = this.props.filteredItems;
     }
+
+    let display = ""
+    let userRole = Cookies.get('role');
+    if(userRole === 'Customer') {
+      display = 'none'
+    }
+    let displayVariable = { display: display }
+    
     return <Table striped>
       <thead className="thead-dark">
         <tr>
@@ -43,7 +51,7 @@ class DataTable extends Component {
       <tbody>
         {!items || items.length <= 0 ?
           <tr>
-            <td colSpan="6" align="center"><b>No Products yet</b></td>
+            <td colSpan="6" align="center"><b>Uploading products...</b></td>
           </tr>
           : items.map(item => (
             <tr key={item.id}>
@@ -68,7 +76,7 @@ class DataTable extends Component {
                     isNew={false}
                     product={item}
                     updateProductIntoState={this.props.updateState} />
-                  <Button color="danger" onClick={() => this.deleteItem(item.id)}>Delete</Button>
+                  <Button color="danger" style={displayVariable} onClick={() => this.deleteItem(item.id)}>Delete</Button>
                   <button
                     onClick={() => {
                         this.props.dispatch(addProductToCart(item)) 

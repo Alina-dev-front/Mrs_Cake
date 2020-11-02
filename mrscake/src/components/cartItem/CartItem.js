@@ -55,7 +55,7 @@ const CartItem = (
     return (
         <div className="row align-items-center mb-3">
             <div className="col-12 col-sm-12 col-md-2 text-center">
-                <img className="img-responsive" src={require('../../Images/' + imageUrl)} style={{height: '40%', width: '40%'}} alt={imageUrl}
+                <img className="img-responsive" src={require('../../Images/' + imageUrl).default} style={{height: '40%', width: '40%'}} alt={imageUrl}
                       />
             </div>
             <div className="col-12 text-sm-center col-sm-12 text-md-left col-md-6">

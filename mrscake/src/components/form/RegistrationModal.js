@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import RegistrationForm from './RegistrationForm';
+import Cookies from 'js-cookie';
+import './RegistrationModal.css';
 
 class RegistrationModal extends Component {
     state = {
@@ -11,20 +13,29 @@ class RegistrationModal extends Component {
             modal: !previous.modal
         }));
     }
+
     render() {
         const isNew = this.props.isNew;
         let title = 'Edit Product';
         let button = '';
+        let display = ""
+        let userRole = Cookies.get('role');
+        if(userRole === 'Customer') {
+            display = 'none'
+        }
+        let displayVariable = {
+            display: display 
+        } 
         if (isNew) {
             title = 'Add Product';
-            button = <Button
-                color="success"
+            button = <Button className="add-product-button"
                 onClick={this.toggle}
-                style={{ minWidth: "200px", marginLeft: "70%" }}>Add new product</Button>;
+                style={displayVariable}>Add new product</Button>;
         } else {
             button = <Button
                 color="warning"
-                onClick={this.toggle}>Edit</Button>;
+                onClick={this.toggle}
+                style={displayVariable}>Edit</Button>;
         }
         return <Fragment>
             {button}
