@@ -7,18 +7,17 @@ class ForgotPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            user: {},
            
         }
     }
     getUser = (request) => {
         fetch(`${USERS_API_URL}`, {
-            method: 'post',
+            method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 email: request.inputEmail,
-                //password: request.password
-
+                
             })
         })
         .then(response => {
@@ -27,8 +26,8 @@ class ForgotPassword extends Component {
         })
         .then(userData => {
             this.setState({ user: userData })
-          
-            if(this.state.user.passwordStatus === "not logged in") {
+            console.log(this.state.user)
+            if(this.state.user.passwordStatus === "") {
                 this.showWelcome("password reset request successfully")
       
             }

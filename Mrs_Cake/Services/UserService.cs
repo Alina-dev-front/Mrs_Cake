@@ -35,13 +35,12 @@ namespace Mrs_Cake.Services
             User result = usersFromDB.Find(user => user.Email == inputEmail);
             if (result != null)
             {
-                if (result.Password == null )
-                {
+                
                     result.PasswordStatus = "Reset password required";
                     return result;
                 }
                
-            }
+            
             return null;
         }
     

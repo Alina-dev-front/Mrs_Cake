@@ -65,7 +65,8 @@ namespace Mrs_Cake.Controllers
 
             return NoContent();
         }
-        public User ResetUser(User user)
+        [HttpPut]
+        public User ForgotPasswordUser(User user)
         {
             return _userService.ForgotPassword(user.Email);
         }
