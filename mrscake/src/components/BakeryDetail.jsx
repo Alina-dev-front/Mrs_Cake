@@ -7,9 +7,9 @@ class BakeryDetail extends Component {
   state = 
   {
     
-    mobilePhone: "", 
-    address: "",
-    crediCardNumber: "",     
+    mobilePhone: '', 
+    address: '',
+    crediCardNumber: '',     
      
   }
     

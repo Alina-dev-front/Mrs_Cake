@@ -35,7 +35,7 @@ namespace Mrs_Cake.Services
             foundUser.Address = user.Address;
             foundUser.MobilePhone = user.MobilePhone;
             
-            _users.ReplaceOne(user => user.Id == id, user);
+            _users.ReplaceOne(user => user.Id == id, foundUser);
             }
         public void Remove(User userIn) =>
             _users.DeleteOne(user => user.Id == userIn.Id);

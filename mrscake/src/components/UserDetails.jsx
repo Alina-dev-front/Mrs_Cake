@@ -7,27 +7,22 @@ class UserDetails extends Component {
   state = 
   {
     
-    mobilePhone: "", 
-    address: "",
-    crediCardNumber: "",     
+    mobilePhone: '', 
+    address: '',
+    crediCardNumber: ''   
      
   }
-    
-    mySubmitHandler = (event) => {
-      event.preventDefault();
-      this.props.history.push('/login')
-    } 
-
-    componentDidMount() {
-      if (this.props.user) {
-          const { mobilePhone, address, creditCardNumber } = this.props.user
-          this.setState({ mobilePhone, address, creditCardNumber });
-      }
+  componentDidMount() {
+    if (this.props.user) {
+        const {  mobilePhone, address, creditCardNumber } = this.props.user
+        this.setState({  mobilePhone, address, creditCardNumber });
     }
 
-     handleChange = e => {
-      this.setState({ [e.target.name]: e.target.value })
-     }  
+  }
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+   } 
+  
 
     submitEdit = e => { 
         e.preventDefault();
@@ -45,7 +40,7 @@ class UserDetails extends Component {
             .then(() => {
                 this.props.toggle();
                 this.props.updateUserIntoState(this.state.id);
-                this.props.history.push('/login')
+                this.props.history.push('/')
             })
             .catch(err => console.log(err));
     }
