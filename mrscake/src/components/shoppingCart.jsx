@@ -93,10 +93,10 @@ class ShoppingCart extends React.Component {
                                 <NavLink
                                     className="nav-link"
                                     style={{ margin: "5px" }}
-                                    to={"/checkoutform"}
+                                    to={"/CheckOutForm"}
                                 >
                                     <i className="" aria-hidden="true" />
-                PAY
+                Continue To Payment 
               </NavLink>
                             </div>
                         </div>

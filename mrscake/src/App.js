@@ -14,6 +14,7 @@ import NavBar from './components/NavBar';
 import CheckoutForm from "./components/CheckoutForm";
 import { useCookies } from 'react-cookie';
 import './App.css';
+import payment from './components/payment';
 
 function App() {
   const [cookies, setCookie] = useCookies(['name']);
@@ -40,8 +41,9 @@ function App() {
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
-            <Route path='/checkoutform' component={CheckoutForm} />
+            <Route path='/CheckOutForm' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
+            <Route path='/Payment' component={payment}/>
           </Switch> 
         </BrowserRouter>
     </React.Fragment>
