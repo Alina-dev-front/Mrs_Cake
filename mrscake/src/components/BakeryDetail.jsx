@@ -9,7 +9,7 @@ class BakeryDetail extends Component {
     
     mobilePhone: '', 
     address: '',
-    crediCardNumber: '',     
+      
      
   }
     
