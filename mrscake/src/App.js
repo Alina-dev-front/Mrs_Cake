@@ -40,7 +40,7 @@ function App() {
             <Route path="/productpage" component={ProductTable} />
             <Route  path='/Login' component={Login} />    
             <Route path='/SignUp' component={SignUp} /> 
-            <Route path="/FAQ" component={FAQ} /> 
+            <Route path="/faq" component={FAQ} /> 
             <Route path="/UserDetails" component={UserDetails} />   
             <Route path="/BakeryDetail" component={BakeryDetail} /> 
             <Route  path='/ForgotPassword' component={ForgotPassword}/>

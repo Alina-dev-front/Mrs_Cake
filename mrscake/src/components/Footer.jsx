@@ -25,8 +25,10 @@ function FooterPage() {
                     <div className="column">
                         <div>Information</div>
                       
-                       
-                        <p><Link to="/FAQ">FAQ</Link></p><br/>
+                        <div className="links">
+                         <Link to="/faq">FAQ</Link><br/><br/><br/>
+                    </div>
+                      
                      
                         <p>For organizations</p><br/>
                     </div>
