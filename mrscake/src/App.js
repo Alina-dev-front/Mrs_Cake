@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import FAQ from './components/FAQ'; 
 import UserDetails from './components/UserDetails'; 
 import BakeryDetail from './components/BakeryDetail'; 
 import ForgotPassword from './components/ForgotPassword';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/productpage" component={ProductTable} />
             <Route  path='/Login' component={Login} />    
             <Route path='/SignUp' component={SignUp} /> 
+            <Route path="/FAQ" component={FAQ} /> 
             <Route path="/UserDetails" component={UserDetails} />   
             <Route path="/BakeryDetail" component={BakeryDetail} /> 
             <Route  path='/ForgotPassword' component={ForgotPassword}/>

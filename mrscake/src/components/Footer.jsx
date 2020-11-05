@@ -3,6 +3,7 @@ import { Navbar, Container } from 'react-bootstrap';
 import facebook_sign from '../facebook_sign.svg';
 import insta from '../insta.svg';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 function FooterPage() {
     return (
@@ -23,7 +24,10 @@ function FooterPage() {
                     </div>
                     <div className="column">
                         <div>Information</div>
-                        <p>FAQ</p><br/>
+                      
+                       
+                        <p><Link to="/FAQ">FAQ</Link></p><br/>
+                     
                         <p>For organizations</p><br/>
                     </div>
                 </div>
