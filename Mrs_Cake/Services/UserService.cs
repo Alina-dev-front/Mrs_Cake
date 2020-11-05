@@ -34,7 +34,7 @@ namespace Mrs_Cake.Services
             User foundUser = _users.Find(n => n.Id == id).FirstOrDefault();
             foundUser.Address = user.Address;
             foundUser.MobilePhone = user.MobilePhone;
-            
+            foundUser.CreditCardNumber = user.CreditCardNumber;
             _users.ReplaceOne(user => user.Id == id, foundUser);
             }
         public void Remove(User userIn) =>
