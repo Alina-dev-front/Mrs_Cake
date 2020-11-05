@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, CardBody, Card, Container, Row, Col, CardGroup } from 'reactstrap';	  
-import { USERS_API_URL } from '../constants/user_api_url.js';
+import { BAKERIES_API_URL } from '../constants/bakeries_api_url.js';
 import './Login.css';
 
 class BakeryDetail extends Component {
@@ -19,8 +19,8 @@ class BakeryDetail extends Component {
     } 
 
     componentDidMount() {
-      if (this.props.user) {
-          const { mobilePhone, address } = this.props.user
+      if (this.props.bakery) {
+          const { mobilePhone, address } = this.props.bakery
           this.setState({ mobilePhone, address });
       }
     }
@@ -32,7 +32,7 @@ class BakeryDetail extends Component {
 
      submitEdit = e => {
         e.preventDefault();
-        fetch(`${USERS_API_URL}/${this.state.id}`, {
+        fetch(`${BAKERIES_API_URL}/${this.state.id}`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ class BakeryDetail extends Component {
         })
             .then(() => {
                 this.props.toggle();
-                this.props.updateUserIntoState(this.state.id);
+                this.props.updateBakeryIntoState(this.state.id);
             })
             .catch(err => console.log(err));
     
@@ -53,7 +53,7 @@ class BakeryDetail extends Component {
     }
         
   render() {
-        return  <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
+        return  <Form onSubmit={this.props.bakery ? this.submitEdit : this.submitNew}>
                   <div className="app flex-row align-items-center">
                     <Container style={{paddingTop: "120px"}}>
                       <Row className="justify-content-center">
