@@ -39,12 +39,12 @@ function App() {
             <Route path="/contaktus" component={ContaktUs} />
             <Route path="/shoppingcart" component={shoppingCart} />
             <Route path="/productpage" component={ProductTable} />
-            <Route  path='/Login' component={Login} />    
+            <Route path='/Login' component={Login} />    
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/faq" component={FAQ} /> 
             <Route path="/UserDetails" component={UserDetails} />   
             <Route path="/BakeryDetail" component={BakeryDetail} /> 
-            <Route  path='/ForgotPassword' component={ForgotPassword}/>
+            <Route path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/checkoutform' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
             <Route path='/admin' component={AdminPage} />
