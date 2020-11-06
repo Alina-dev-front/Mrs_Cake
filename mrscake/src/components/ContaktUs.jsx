@@ -17,7 +17,7 @@ return <div><br></br>
                    <p style={{paddingTop: "30px"}}> 
                    <div className="col-md-3 center" style={{paddingTop: "20px"}}>
                 
-                <img style={{paddingBottom: "80px"}}
+                <img style={{paddingBottom: "50px"}}
          src={contactus}
         width="400"
         height="250"
@@ -28,11 +28,17 @@ return <div><br></br>
                     <b>Telephone numbers and opening hours</b><br/>
                     <b>Customer Service</b><br/>
                     <b>Opening hours:</b> Mon–Fri 8.00 a.m. – 7.00 p.m.<br/>
-                    <b> Telephone:</b> XXXXXXXXX<br/>
-                   <b>Contact us by email</b>  XXXXXXX<br/>
+                    <b> Telephone:</b> 467894532171<br/>
+                   <b>Contact us by email</b>mrscake1509@gmail.com<br/>
                     <b>For technical inquiries about Mrs cake:</b>
-                    XXXXXXXXXXX<br/>
-                  <b>  From abroad:</b> XXXXXXXX</p>
+                    467894532171<br/><br/>
+                    <b>Owner/Bakery Info:</b><br/>
+                   <b> Name:</b>"LoveCakes" <br/>
+                  <b>Address:</b>"Sweden, Gothenburg, Nya gatan, 6"<br/>
+                 <b> Email:</b>"lovecakes_bakery@gmail.com"<br/>
+                 <b> Phone:</b>"46099827221
+                    
+                  </p>
                     </div>
                 </div>
                 </div>

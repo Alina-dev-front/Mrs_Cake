@@ -9,7 +9,7 @@ import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
 import shoppingCart from './components/shoppingCart';
 import AboutUs from './components/AboutUs';
-import ContactUs from './components/ContactUs';
+import ContaktUs from './components/ContaktUs';
 import ProductTable from './components/ProductPage';
 import ResetPassword from './components/ResetPassword';
 import NavBar from './components/NavBar';
@@ -36,7 +36,7 @@ function App() {
           <Switch>
             <Route path='/' component={HomePage} exact />
             <Route path="/aboutus" component={AboutUs} />
-            <Route path="/contactus" component={ContactUs} />
+            <Route path="/contaktus" component={ContaktUs} />
             <Route path="/shoppingcart" component={shoppingCart} />
             <Route path="/productpage" component={ProductTable} />
             <Route  path='/Login' component={Login} />    

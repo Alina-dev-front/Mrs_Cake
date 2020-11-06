@@ -30,7 +30,7 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/">MRS CAKE</Nav.Link>
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
-    <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
+    <Nav.Link as={Link} to="/contaktus">Contakt Us</Nav.Link>
     <Nav.Link as={Link} to="/admin" style={displayVariable}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -44,7 +44,7 @@ function NavBar({cartLength}) {
         alt="userprofile_a"
       />
     </Nav.Link>
-    <Nav.Link as={Link} to="/bakerydetail">
+    <Nav.Link as={Link} to="/bakeryDetail" style={displayVariable}>
       <img
         src={bakeryprofile}
         width="30"
