@@ -79,7 +79,6 @@ class ProductTable extends Component {
               filteredItems.push(item)
             ))}
             </div>
-           
         </Form>
           <Row>
             <Col>

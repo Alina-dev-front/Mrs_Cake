@@ -15,13 +15,14 @@ import ResetPassword from './components/ResetPassword';
 import NavBar from './components/NavBar';
 import CheckoutForm from "./components/CheckoutForm";
 import { useCookies } from 'react-cookie';
+import AdminPage from './components/AdminPage';
 import './App.css';
 
 function App() {
   const [cookies, setCookie] = useCookies(['name']);
   
   function SetDefaultCookie() {
-    if(cookies.role == null || cookies.role == undefined) {
+    if(cookies.role === null || cookies.role === undefined) {
       setCookie('role', "Customer", { path: '/' });
     }
     return '';
@@ -46,6 +47,7 @@ function App() {
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/checkoutform' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
+            <Route path='/admin' component={AdminPage} />
           </Switch> 
         </BrowserRouter>
     </React.Fragment>
