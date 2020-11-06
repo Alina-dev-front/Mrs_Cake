@@ -35,7 +35,7 @@ namespace Mrs_Cake.Services
             foundBakery.Name = bakery.Name;
             foundBakery.Address = bakery.Address;
             foundBakery.Email = bakery.Email;
-            foundBakery.PhoneNumber = bakery.PhoneNumber;
+            foundBakery.Phone = bakery.Phone;
 
             _bakeries.ReplaceOne(bakery => bakery.Id == id, foundBakery);
         }

@@ -5,6 +5,7 @@ import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
 import { Link } from 'react-router-dom';
 import userprofile from '../userprofile.svg';
+import bakeryprofile from '../bakeryprofile.svg';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 
@@ -29,7 +30,7 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/">MRS CAKE</Nav.Link>
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
-    <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
+    <Nav.Link as={Link} to="/contaktus">Contakt Us</Nav.Link>
     <Nav.Link as={Link} to="/admin" style={displayVariable}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -41,6 +42,15 @@ function NavBar({cartLength}) {
         height="30"
         className="d-inline-block align-top"
         alt="userprofile_a"
+      />
+    </Nav.Link>
+    <Nav.Link as={Link} to="/bakeryDetail" style={displayVariable}>
+      <img
+        src={bakeryprofile}
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+        alt="bakeryprofile_a"
       />
     </Nav.Link>
     <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
