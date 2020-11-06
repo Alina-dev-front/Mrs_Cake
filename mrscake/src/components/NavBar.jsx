@@ -59,13 +59,15 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
     <Nav.Link as={Link} to="/contaktus">Contact Us</Nav.Link>
+    <Nav.Link as={Link} to="/bakeryPage" style={{display: userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
     <Nav.Link as={Link} to="/admin" style={{display: userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
     <ShowUserDetailsSign />
     <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
-    <Nav.Link as={Link} to="/" onClick={() => SignOut()} ><b>Sign out</b></Nav.Link>
+    <Nav.Link as={Link} to="/login" onClick={() => SignOut()} ><b>Sign out</b></Nav.Link>
+    
     <Nav.Link as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> <img 
           width="23px"
           height="23px" src={shoppingCart} alt="shopping cart"
