@@ -3,6 +3,7 @@ import { Navbar, Container } from 'react-bootstrap';
 import facebook_sign from '../facebook_sign.svg';
 import insta from '../insta.svg';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 function FooterPage() {
     return (
@@ -17,14 +18,18 @@ function FooterPage() {
                         </div>
                     </div></div>
                     <div className="column">
-                        <div margin-bottom="10%" >Customer Service</div>
-                        <p>Privacy policy</p><br/>
-                        <p>Payment and delivery</p><br/>
+                        <div margin-bottom="10%" ><font color="black">Customer Service</font></div>
+                        <font color="black">Privacy policy</font><br/>
+                        <font color="black">Payment and delivery</font><br/>
                     </div>
                     <div className="column">
-                        <div>Information</div>
-                        <p>FAQ</p><br/>
-                        <p>For organizations</p><br/>
+                        <div><font color="black">Information</font></div>
+                      
+                            <Link to="/faq"><font color="black">FAQ</font></Link><br/>
+                    
+                      
+                     
+                        <font color="black">For organizations</font><br/>
                     </div>
                 </div>
                 </Container>

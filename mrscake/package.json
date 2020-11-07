@@ -50,6 +50,6 @@
     ]
   },
   "devDependencies": {
-    "@emotion/core": "^10.0.35"
+    "@emotion/core": "^10.1.1"
   }
 }
