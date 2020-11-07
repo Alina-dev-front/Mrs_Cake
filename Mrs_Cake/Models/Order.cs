@@ -19,6 +19,6 @@ namespace Mrs_Cake.Models
         public bool Paid { get; set; }
         public string UserId { get; set; }
         public string DeliveryMethod { get; set; }
-        public List<Product> OrderedProducts { get; set; } = new List<Product>();
+        public List<Product> OrderedProducts { get; set; }
     }
 }
