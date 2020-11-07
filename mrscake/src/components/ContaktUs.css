@@ -1,3 +1,7 @@
+.App {
+    text-align: center;
+    }
+
 .monospace {
     font-family: "Lucida Console", Courier, monospace;
   }
@@ -6,6 +10,7 @@
     font-family: Impact, Charcoal, sans-serif;
   }
 
+ 
   .right {
     float: right;
      width: 800px; 

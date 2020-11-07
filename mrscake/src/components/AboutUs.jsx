@@ -14,8 +14,8 @@ function AboutUs() {
                 
                 <img style={{paddingTop: "80px"}}
          src={cakestore}
-        width="200"
-        height="200"
+        width="300"
+        height="300"
         className="d-inline-block align-top"
         alt="Min cake"
       />
