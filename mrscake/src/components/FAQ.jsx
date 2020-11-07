@@ -32,13 +32,13 @@ function FAQ() {
 
                <b> Q: Am I able to get each tier a different flavor?</b><br/>
                 A: Yes! There is no additional cost to do more than one flavor.
-                The only additional cost would be if you were to add a specially batter or filling to any of those tiers!<br/><br/>
+                The only additional cost would be if you were to add a specially batter or filling to any of those layers!<br/><br/>
 
 <b>Q: When can I pick up my cake?</b><br/>
-A:  I take all days pickups for cake orders! Weekend time varies, usually from 11am-4pm. <br/><br/>
+A:  You can pickup the cakes every day! Weekend time varies, usually from 11am-4pm. <br/><br/>
 
-<b>Q: Can I pay for my cake in full when I pick it up?</b><br/>
-A: YES  
+<b>Q: Can I pay for my cake is pully paid in the web when I pick it up?</b><br/>
+A: Yes
 </p>
 </div>
         </div>

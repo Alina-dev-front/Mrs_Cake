@@ -1,0 +1,29 @@
+.monospace {
+    font-family: "Lucida Console", Courier, monospace;
+  }
+
+  p.impact {
+    font-family: Impact, Charcoal, sans-serif;
+  }
+
+  .right {
+    float: right;
+     width: 800px; 
+    padding: 100px;
+  }
+
+  .clearfix {
+    overflow: auto;
+  }
+
+  p.italic {
+    font-style: italic;
+  }
+
+p {
+    font-size: 80%;
+    padding-bottom: 0%;
+    padding-top: 2%;
+    margin-bottom: 0%;
+    position: absolute;
+}

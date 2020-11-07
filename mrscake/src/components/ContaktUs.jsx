@@ -1,6 +1,6 @@
 import React from "react";
-import contactus from '../contactus.jpg';
-
+import contactuss from '../contactuss.jpg';
+import './ContaktUs.css';
 function ContactUs() {
 
 return <div><br></br>
@@ -12,16 +12,22 @@ return <div><br></br>
                 
                 </div>
                 <div class="our-history space-bottom-20 space-top-20" style={{paddingBottom: "100px"}}>
-                <div class="col-md-6 col-sm-12" style={{paddingBottom: "100px"}}>    
-                   <p> <h5 style={{color: "Red", paddingTop: "100px"}}>Contact us</h5><br/></p> </div><br/>
-                   <p style={{paddingTop: "30px"}}> 
-                   <div className="col-md-3 center" style={{paddingTop: "20px"}}>
+                <div class="col-md-6 col-sm-12"  style={{paddingBottom: "100px"}}>    
+                   <p class="italic"> <h2 style={{color: "Red", paddingTop: "100px"}}>Contact us</h2><br/></p> </div><br/>
+
+                    <p style={{paddingTop: "100px"}}> 
+
+
+
+                   
+
+                   <div class="right">
                 
-                <img style={{paddingBottom: "50px"}}
-         src={contactus}
-        width="400"
+                <img style={{paddingBottom: "100px"}}
+         src={contactuss}
+        width="350"
         height="250"
-        className="d-inline-block align-top"
+        
         alt="Min cake"
       />
       </div>
@@ -36,12 +42,19 @@ return <div><br></br>
                    <b> Name:</b>"LoveCakes" <br/>
                   <b>Address:</b>"Sweden, Gothenburg, Nya gatan, 6"<br/>
                  <b> Email:</b>"lovecakes_bakery@gmail.com"<br/>
-                 <b> Phone:</b>"46099827221
+                 <b> Phone:</b>"46099827221"
                     
+                 
+                  
                   </p>
                     </div>
+
+                    
                 </div>
                 </div>
                 </div>
+
+
+
 }
 export default ContactUs;
