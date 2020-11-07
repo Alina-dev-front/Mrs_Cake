@@ -13,11 +13,16 @@ function BakeryPage() {
             .then(usersData => setAllProducts(usersData))
             .catch(err => console.log(err));
     
-}
-   
+        }
+// getUnique(array, comparison) 
+//     const uniqueBakery = array
+//       .map(element => element[comparison])
+//       .map((element, index, final) => final.indexOf(element) === index && index)
+//       .filter(element => array[element])
+//       .map(element => array[element]);
+//     return uniqueBakery;
+//   }
 
-  
-    
 
    return<Container style={{paddingTop: "150px"}}>
                <Label>PRODUCT LIST</Label>
@@ -80,9 +85,6 @@ function BakeryPage() {
                         ))}
                     </tbody>
                 </Table>
-            </Container>
-      
-    
-    }
-
+            </Container> 
+} 
 export default BakeryPage;
