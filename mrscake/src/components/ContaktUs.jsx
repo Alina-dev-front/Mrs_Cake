@@ -4,7 +4,6 @@ import contactus from '../contactus.svg';
 import email from '../email.svg';
 import { BAKERIES_API_URL } from '../constants/bakeries_api_url';
 
-import './ContaktUs.css';
 function ContactUs() {
   
       const [allBakeries, setAllBakeries] = useState(null)
