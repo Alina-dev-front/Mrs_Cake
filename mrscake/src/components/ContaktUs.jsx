@@ -45,14 +45,13 @@ return <div>
       </div>
        </div>
                    <h7>
-                  <br/>  <b>Customer Service  </b><br/>
+                  <br/> <b>Customer Service  </b><br/>
                     <b>Opening hours:  </b> Mon–Fri 8.00 a.m. – 7.00 p.m.<br/>
+                    <b>Email:  </b>mrscake1509@gmail.com<br/>
                     <b> Telephone:  </b> 467894532171<br/>
-                     <b>Contact us by email:  </b>mrscake1509@gmail.com<br/>
-                    <b>For technical inquiries about Mrs cake:  </b>
-                    467894532171</h7>
+                   </h7>
                     <Container style={{paddingTop: "20px"}}>
-               <Label><b>Bakeries contacts list</b></Label>
+               <Label><b>Bakeries contact list</b></Label>
                     <Table striped>
                     <thead className="thead-light">
                         <tr>
