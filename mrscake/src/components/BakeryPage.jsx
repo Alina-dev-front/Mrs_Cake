@@ -10,45 +10,19 @@ function BakeryPage() {
     function ShowAllProducts() {
             fetch(PRODUCTS_API_URL)
             .then(res => res.json())
-            .then(usersData => setAllProducts(usersData))
+            .then(productsData => setAllProducts(productsData))
             .catch(err => console.log(err));
-    
         }
-// getUnique(array, comparison) 
-//     const uniqueBakery = array
-//       .map(element => element[comparison])
-//       .map((element, index, final) => final.indexOf(element) === index && index)
-//       .filter(element => array[element])
-//       .map(element => array[element]);
-//     return uniqueBakery;
-//   }
-
 
    return<Container style={{paddingTop: "150px"}}>
                <Label>PRODUCT LIST</Label>
-               {/* <Form>
-          <Label>Choose by form:</Label>
-            <select value={this.state.item} onChange={this.handleChangeItem}>
-                <option value="none">Show all</option>
-                {uniqueItem.map(item => (
-                  <option key={item.id} value={item.Bakery}>
-                    {item.Bakery}
-                  </option>
-                ))}
-            </select>
-            <div style={{display: "none"}}>{filterDropdown.map(item => (
-              filteredItems.push(item)
-            ))}
-            </div>
-        </Form> */}
-                <Table striped>
+                 <Table striped>
                     <thead className="thead-light">
                         <tr>
                             <th>Product Id</th>
                             <th>Product Type</th>
                             <th>Name</th>
                             <th>Bakery</th>
-                            {/* <th>Description</th> */}
                             <th>Price</th>
                             <th>Image url</th>
                         </tr>
@@ -72,9 +46,6 @@ function BakeryPage() {
                             <td >
                                 {product.bakery}
                             </td>
-                            {/* <td>
-                                {product.description}
-                            </td> */}
                             <td>
                                 {product.price}
                             </td>
