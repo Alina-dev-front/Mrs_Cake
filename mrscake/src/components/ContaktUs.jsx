@@ -12,22 +12,19 @@ function ContactUs() {
       function ShowAllBakeries() {
               fetch(BAKERIES_API_URL)
               .then(res => res.json())
-              .then(usersData => setAllBakeries(usersData))
+              .then(bakeryData => setAllBakeries(bakeryData))
               .catch(err => console.log(err));
-      
           }
 return <div>
 <div class="container theme-container" >   
-
    <div class="title-wrap space-bottom-20">
    <div class="col-md-6 col-sm-12">
        <p class="italic" >
-      
         <h2   style={{color: "Red", paddingTop: "100px"}}>Contact Us </h2> 
        </p> 
        <div className="col-md-3 center" style={{paddingTop: "100px"}}>
-       
-       <img style={{paddingTop: "80px"}}
+
+         <img style={{paddingTop: "80px"}}
          src={contactus}
          width="300"
          height="300"
@@ -57,7 +54,6 @@ return <div>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +63,6 @@ return <div>
                         </tr>
                         : allBakeries.map(bakery => (
                         <tr key={bakery.id}>
-                           
                             <td>
                                 {bakery.name}
                             </td>
@@ -77,14 +72,11 @@ return <div>
                             <td >
                                 {bakery.phone}
                             </td>
-                           
                         </tr>
                         ))}
                     </tbody>
                 </Table>
             </Container> 
-                   
-               
                     </div>  
                     </div>    
                 </div>
