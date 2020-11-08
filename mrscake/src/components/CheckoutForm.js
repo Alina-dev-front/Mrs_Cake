@@ -110,31 +110,34 @@ url(){
 
      handleDeliverySelectBox = (e) => {
         const name = e.target.id;
-        //const value = e.target.cheched;
-
-        if (name === "customCheck1" && e.target.checked && name !== "customCheck3") {
+        if (name === "HomeBox" && e.target.checked) {
             document.getElementById("customCheck3").checked = false;
             document.getElementById("customCheck2").checked = false;
+            document.getElementById("CardButton").disabled = false;
             this.setState({DeliveryMethod:"Home Delivery"});
             this.setState({DeliveryPrice:7})
-
         }
-
-        else if (name === "customCheck3" && e.target.checked && name !== "customCheck1") {
-            document.getElementById("customCheck1").checked = false;
+        else if (name === "customCheck3" && e.target.checked ) {
+            document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck2").checked = false;
+            document.getElementById("CardButton").disabled = false;
             this.setState({DeliveryMethod:"Pick up from store"});
            this.setState({DeliveryPrice:10});
-
         }
-        else if (name === "customCheck2" && e.target.checked && name !== "customCheck3") {
-            document.getElementById("customCheck1").checked = false;
+        else if (name === "customCheck2" && e.target.checked) {
+            document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck3").checked = false;
+            document.getElementById("CardButton").disabled = false;
             this.setState({DeliveryMethod:"Pick up from Bakery"});
             this.setState({DeliveryPrice:0});
         }
         else {
             this.setState({DeliveryPrice:0});
+            document.getElementById("CardButton").disabled = true;
+
+
+            
+
         }
     };
 
@@ -142,43 +145,21 @@ url(){
         const name = e.target.id;
         //const value = e.target.cheched;
         if (name === "CreditCard" && e.target.checked && name !== "customCheck3") {
-            document.getElementById("Klarna").checked = false;
             document.getElementById("Swish").checked = false;
-            document.getElementById("PayWhitKlarna").style.visibility = 'hidden';
-            document.getElementById("PayWhitSwish").style.visibility = 'hidden';
             document.getElementById("PhoneForm").style.visibility = 'hidden';
             document.getElementById("CardForm").style.visibility = 'visible';
             document.getElementById("Card").style.visibility = 'visible';
             document.getElementById("Card").disabled = false;
             
         }
-
-        else if (name === "Klarna" && e.target.checked && name !== "customCheck1") {
-            document.getElementById("CreditCard").checked = false;
-            document.getElementById("Swish").checked = false;
-            document.getElementById("Card").style.visibility = 'visible';
-            document.getElementById("PayWhitSwish").style.visibility = 'hidden';
-            document.getElementById("CardForm").style.visibility = 'hidden';
-            document.getElementById("PhoneForm").style.visibility = 'hidden';
-           // document.getElementById("PayWhitKlarna").style.visibility = 'visible';
-
-        }
         else if (name === "Swish" && e.target.checked && name !== "customCheck3") {
             document.getElementById("CreditCard").checked = false;
-            document.getElementById("Klarna").checked = false;
             document.getElementById("Card").style.visibility = 'visible';
-           // document.getElementById("PayWhitKlarna").style.visibility = 'hidden';
-           document.getElementById("CardForm").style.visibility = 'hidden';
-           // document.getElementById("PayWhitSwish").style.visibility = 'visible';
+             document.getElementById("CardForm").style.visibility = 'hidden';
             document.getElementById("PhoneForm").style.visibility = 'visible';
-
-
         }
         else {
             document.getElementById("CardButton").disabled = true;
-            document.getElementById("KlarnaButton").disabled = true;
-            document.getElementById("SwishButton").disabled = true;
-
             console.log(name);
         }
         
@@ -193,7 +174,6 @@ url(){
    
     
    render(){
-       
     const FormFieldContainer = styled.div`
     display: -ms-flexbox;
     display: flex;
@@ -268,39 +248,29 @@ return (
         <Row>
             <div className="form-group">
                 <div className="custom-control custom-checkbox">
-
-                    <input type="checkbox" className="custom-control-input" id="customCheck1" onInput={this.handleDeliverySelectBox} />
-                    <label className="custom-control-label" htmlFor="customCheck1">Home delivery</label>
+                    <input type="checkbox" className="custom-control-input" id="HomeBox"  onInput={this.handleDeliverySelectBox} />
+                    <label className="custom-control-label" htmlFor="HomeBox">Home delivery</label>
                 </div>
             </div>
             <div className="form-group">
                 <div className="custom-control custom-checkbox">
-
                     <input type="checkbox" className="custom-control-input" id="customCheck2" onInput={this.handleDeliverySelectBox} />
                     <label className="custom-control-label" htmlFor="customCheck2">Pick up from bakery</label>
                 </div>
             </div>
             <div className="form-group">
                 <div className="custom-control custom-checkbox">
-
                     <input type="checkbox" className="custom-control-input" id="customCheck3" onInput={this.handleDeliverySelectBox} />
                     <label className="custom-control-label" htmlFor="customCheck3">Pick up from the closest store</label>
                 </div>
             </div>
         </Row>
-        <Row>
+        <Row id="Payment" >
             <div className="form-group">
                 <div className="custom-control custom-checkbox">
 
                     <input type="checkbox" className="custom-control-input" id="CreditCard" onInput={this.handlePaymentSelectBox} />
                     <label className="custom-control-label" htmlFor="CreditCard">Credit card</label>
-                </div>
-            </div>
-            <div className="form-group">
-                <div className="custom-control custom-checkbox">
-
-                    <input type="checkbox" className="custom-control-input" id="Klarna" onInput={this.handlePaymentSelectBox} />
-                    <label className="custom-control-label" htmlFor="Klarna">Klarna</label>
                 </div>
             </div>
             <div className="form-group">
@@ -314,33 +284,22 @@ return (
         <Row id="CardForm" style={{ visibility: 'hidden' }} >
             <CardElementContainer>
             <Form inline style={{ marginLeft: "30%" }} >
-                    <FormControl type="text" placeholder="Enter your card information" className="mr-sm-2"></FormControl></Form>
+                    <FormControl type="text" placeholder="xxxxxxxxxxxxx xx/xx" className="mr-sm-2"></FormControl></Form>
                 
             </CardElementContainer>
         </Row>
         <Row id="Card" style={{ visibility: 'hidden' }}>
-            <SubmitButton disabled={this.isProcessing ||  this.props.price === 0 || document.getElementById("customCheck1").checked === false } id="CardButton"  onClick={(e) => {this.submitNew(e); this.removeItemS()}}  >
+            <SubmitButton disabled={this.isProcessing ||  this.props.price === 0 } id="CardButton"  onClick={(e) => {this.submitNew(e); this.removeItemS()}}  >
                 {this.isProcessing ? "SUCCEFULLY PAID" : `Pay $${this.props.price + this.state.DeliveryPrice}`}
-            </SubmitButton>
-        </Row>
-        <Row id="PayWhitSwish" style={{ display: "none" }}>
-            <SubmitButton disabled={this.isProcessing  || this.props.price  === 0} id="SwishButton"  >
-                {this.isProcessing ? "SUCCEFULLY PAID" : `Pay whit Swish $${this.props.price +  this.DeliveryPrice}`}
             </SubmitButton>
         </Row>
         <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
             <CardElementContainer  >
                 <Form inline style={{ marginLeft: "30%" }} >
-                    <FormControl type="text" placeholder="Enter a phone number" className="mr-sm-2"></FormControl></Form>
+                    <FormControl type="text" placeholder="0700054540" className="mr-sm-2"></FormControl></Form>
             </CardElementContainer>
         </Row>
        
-
-        <Row id="PayWhitKlarna" style={{ visibility: "hidden" }}>
-            <SubmitButton disabled={this.isProcessing || this.props.price === 0} id="KlarnaButton" >
-                {this.isProcessing ? "SUCCEFULLY PAID" : `Pay whit Klarna $${this.props.price + this.DeliveryPrice}`}
-            </SubmitButton>
-        </Row>
     </form>
 );
 };
