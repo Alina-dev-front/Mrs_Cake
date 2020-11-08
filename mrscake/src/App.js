@@ -16,6 +16,7 @@ import NavBar from './components/NavBar';
 import CheckoutForm from "./components/CheckoutForm";
 import { useCookies } from 'react-cookie';
 import AdminPage from './components/AdminPage';
+import BakeryPage from './components/BakeryPage';
 import './App.css';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
             <Route path='/checkoutform' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
             <Route path='/admin' component={AdminPage} />
+            <Route path='/bakeryPage' component={BakeryPage} />
           </Switch> 
         </BrowserRouter>
     </React.Fragment>

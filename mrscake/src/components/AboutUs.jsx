@@ -6,16 +6,16 @@ function AboutUs() {
       
             <div class="title-wrap space-bottom-20">
             <div class="col-md-6 col-sm-12">
-                <p class="Protit" >
+                <p class="italic" >
                
-                   <h2  style={{color: "Red", paddingTop: "100px"}}>Who are  we? </h2> 
+                 <h2   style={{color: "Red", paddingTop: "100px"}}>Who are  we? </h2> 
                 </p> 
                 <div className="col-md-3 center" style={{paddingTop: "100px"}}>
                 
                 <img style={{paddingTop: "80px"}}
          src={cakestore}
-        width="200"
-        height="200"
+        width="300"
+        height="300"
         className="d-inline-block align-top"
         alt="Min cake"
       />
