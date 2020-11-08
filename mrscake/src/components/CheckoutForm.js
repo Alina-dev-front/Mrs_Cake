@@ -7,7 +7,7 @@ import SubmitButton from "./PaymentForm/SubmitButton";
 //import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import GlobalStyles from "./PaymentForm/GlobalStyles";
 import { ORDERS_API_URL } from '../constants/orders_api_url';
-import {removeAllProducts, REMOVE_ALL} from "../actions";
+import {removeAllProducts} from "../actions";
 import { connect } from 'react-redux';
 
 
