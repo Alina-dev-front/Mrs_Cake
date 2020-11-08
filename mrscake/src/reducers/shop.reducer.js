@@ -2,9 +2,9 @@ import {
     ADD_PRODUCT_TO_CART,
     DECREMENT_CART_ITEM_QUANTITY,
     INCREMENT_CART_ITEM_QUANTITY,
-    REMOVE_PRODUCT_FROM_CART
+    REMOVE_PRODUCT_FROM_CART,
+    REMOVE_ALL
 } from '../actions';
-//import {phones} from "../data/phones";
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
 
 
@@ -84,6 +84,11 @@ const shopReducer = (state = initialState, action ) => {
         default:
             return state;
 
+            case REMOVE_ALL:
+                updatedCart = [...state.cart];
+                updatedCart = [];
+                return {...state, cart: updatedCart};
+             
     }
 };
 

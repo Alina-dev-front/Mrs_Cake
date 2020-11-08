@@ -7,6 +7,7 @@ import SubmitButton from "./PaymentForm/SubmitButton";
 //import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import GlobalStyles from "./PaymentForm/GlobalStyles";
 import { ORDERS_API_URL } from '../constants/orders_api_url';
+import {removeAllProducts, REMOVE_ALL} from "../actions";
 import { connect } from 'react-redux';
 
 
@@ -19,6 +20,7 @@ const CardElementContainer = styled.div`
     padding: 30px;
   }
 `;
+
 class CheckoutForm extends React.Component {
     constructor(props){
         super(props);
@@ -48,6 +50,9 @@ class CheckoutForm extends React.Component {
 
 
     }
+     removeItemS = () => {
+        this.props.dispatch(removeAllProducts());
+    };
      handleNameChange(e){
         this.setState({name: e.target.value});
         console.log(this.state.name);
@@ -85,7 +90,7 @@ class CheckoutForm extends React.Component {
                 address: this.state.adress + "" + this.state.city + "" + this.state.country,
                 comments: "",
                 paid: true,
-                DeliveryMethod: e.target.value,
+                DeliveryMethod: this.state.DeliveryMethod,
                 OrderedProducts: this.props.cartItems
 
             })
@@ -314,7 +319,7 @@ return (
             </CardElementContainer>
         </Row>
         <Row id="Card" style={{ visibility: 'hidden' }}>
-            <SubmitButton disabled={this.isProcessing ||  this.props.price === 0 || document.getElementById("customCheck1").checked === false } id="CardButton" value={`Pay $${this.props.price + this.state.DeliveryPrice}`} onClick={(e) => {this.submitNew(e); this.url()}}  >
+            <SubmitButton disabled={this.isProcessing ||  this.props.price === 0 || document.getElementById("customCheck1").checked === false } id="CardButton"  onClick={(e) => {this.submitNew(e); this.removeItemS()}}  >
                 {this.isProcessing ? "SUCCEFULLY PAID" : `Pay $${this.props.price + this.state.DeliveryPrice}`}
             </SubmitButton>
         </Row>
