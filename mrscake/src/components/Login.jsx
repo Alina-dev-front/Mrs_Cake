@@ -3,7 +3,7 @@ import './Login.css';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, FormGroup,Row, Label } from 'reactstrap';
 import { LOGIN_API_URL } from '../constants/api_url_path';
 import { Link } from 'react-router-dom';
-import CallCookie from './Cookie-function';
+import CallCookie from './CookieFunction';
 
 class Login extends React.Component {
     constructor(props) {
@@ -47,7 +47,6 @@ class Login extends React.Component {
         }
         this.getUser(request);
     }
-    // temporary function until login really works
     showWelcome = (userName) => {
         alert("Welcome, " + userName);
     }
