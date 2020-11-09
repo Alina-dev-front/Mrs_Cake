@@ -82,7 +82,7 @@ class CheckoutForm extends React.Component {
             },
             body: JSON.stringify({
                 totalPrice: this.props.price + this.state.DeliveryPrice,
-                userId: this.state.name + this.state.email + this.state.lastName,
+                userId:  this.state.email,
                 address: this.state.adress + "" + this.state.city + "" + this.state.country,
                 comments: "",
                 paid: true,
