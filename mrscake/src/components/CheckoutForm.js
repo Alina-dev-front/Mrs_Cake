@@ -47,7 +47,7 @@ class CheckoutForm extends React.Component {
     }
     removeItemS = () => {
         this.props.dispatch(removeAllProducts());
-        this.setState({ DeliveryPrice: 0 });
+        this.setState({ DeliveryPrice:0});
     };
     handleNameChange(e) {
         this.setState({ name: e.target.value });
@@ -109,27 +109,27 @@ class CheckoutForm extends React.Component {
         if (name === "HomeBox" && e.target.checked) {
             document.getElementById("customCheck3").checked = false;
             document.getElementById("customCheck2").checked = false;
-            document.getElementById("CardButton").disabled = false;
+            document.getElementById("Card").style.visibility = 'visible';
             this.setState({ DeliveryMethod: "Home Delivery" });
             this.setState({ DeliveryPrice: 7 })
         }
         else if (name === "customCheck3" && e.target.checked) {
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck2").checked = false;
-            document.getElementById("CardButton").disabled = false;
+            document.getElementById("Card").style.visibility = 'visible';
             this.setState({ DeliveryMethod: "Pick up from store" });
             this.setState({ DeliveryPrice: 10 });
         }
         else if (name === "customCheck2" && e.target.checked) {
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck3").checked = false;
-            document.getElementById("CardButton").disabled = false;
+            document.getElementById("Card").style.visibility = 'visible';
             this.setState({ DeliveryMethod: "Pick up from Bakery" });
             this.setState({ DeliveryPrice: 0 });
         }
         else {
             this.setState({ DeliveryPrice: 0 });
-            document.getElementById("CardButton").disabled = true;
+            document.getElementById("Card").style.visibility = 'hidden';
         }
     };
 
@@ -151,7 +151,9 @@ class CheckoutForm extends React.Component {
             document.getElementById("PhoneForm").style.visibility = 'visible';
         }
         else {
-            // document.getElementById("CardButton").disabled = true;
+            document.getElementById("Card").style.visibility = 'hidden';
+            document.getElementById("CardForm").style.visibility = 'hidden';
+            document.getElementById("PhoneForm").style.visibility = 'hidden';
             console.log(name);
         }
 
