@@ -6,37 +6,8 @@ import { NavLink } from "react-router-dom";
 
 
 class ShoppingCart extends React.Component {
-    state = {
-        totalPrice:0,
-    }
+  
     render() {
-        const handleSelectBox = (e) => {
-            const name = e.target.id;
-            //const value = e.target.cheched;
-        
-           if(name === "customCheck1" && e.target.checked && name !== "customCheck3"){
-                    document.getElementById("customCheck3").checked = false;
-                    document.getElementById("customCheck2").checked = false;
-                    this.setState({ totalPrice:7} ) 
-                   
-           }
-           
-            else if(name === "customCheck3" && e.target.checked && name !== "customCheck1") {
-                document.getElementById("customCheck1").checked = false;
-                document.getElementById("customCheck2").checked = false;
-                this.setState({ totalPrice:10} )
-                  
-            } 
-            else if(name === "customCheck2" && e.target.checked && name !== "customCheck3" ) {
-                document.getElementById("customCheck1").checked = false;
-                document.getElementById("customCheck3").checked = false;
-                this.setState({ totalPrice:0} )
-            }
-            else  {
-                this.setState({ totalPrice:0} )
-                 console.log(name);
-            }
-        };
         return (
             <>
                 <div className="container" style={{ paddingTop: "6rem" }}>
@@ -67,36 +38,15 @@ class ShoppingCart extends React.Component {
                         <div className="cart-footer">
                             <div className="pull-right" style={{ margin: "10px" }}>
                                 <div className="pull-right" style={{ margin: "5px" }}>
-                                    Total price Inclusive moms: <b>{formatMoney( this.props.totalPrice + this.state.totalPrice)}$</b>
-                                </div>
-                                <div className="form-group">
-                                    <div className="custom-control custom-checkbox">
-
-                                        <input type="checkbox" className="custom-control-input" id="customCheck1" onInput={handleSelectBox}  />
-                                        <label className="custom-control-label" htmlFor="customCheck1">Home delivery</label>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="custom-control custom-checkbox">
-
-                                        <input type="checkbox" className="custom-control-input" id="customCheck2" onInput={handleSelectBox}  />
-                                        <label className="custom-control-label" htmlFor="customCheck2">Pick up from bakery</label>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="custom-control custom-checkbox">
-
-                                        <input type="checkbox" className="custom-control-input" id="customCheck3" onInput={handleSelectBox}  />
-                                        <label className="custom-control-label" htmlFor="customCheck3">Pick up from the closest store</label>
-                                    </div>
+                                    Total price Inclusive moms: <b>{formatMoney( this.props.totalPrice )}$</b>
                                 </div>
                                 <NavLink
                                     className="nav-link"
                                     style={{ margin: "5px" }}
-                                    to={"/checkoutform"}
+                                    to={"/CheckOutForm"}
                                 >
                                     <i className="" aria-hidden="true" />
-                PAY
+                Continue To Payment 
               </NavLink>
                             </div>
                         </div>

@@ -36,7 +36,7 @@ const CartItem = (
 
     const incrementOrDecrement = (e, type) => {
         const value = itemQuantity;
-        console.log(type, value);
+       // console.log(type, value);
 
         if(type === 'inc' && value < 100) {
             setItemQuantity(itemQuantity + 1);

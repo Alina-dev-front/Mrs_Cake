@@ -18,6 +18,7 @@ import { useCookies } from 'react-cookie';
 import AdminPage from './components/AdminPage';
 import BakeryPage from './components/BakeryPage';
 import './App.css';
+//import orders from './components/orders';
 
 function App() {
   const [cookies, setCookie] = useCookies(['name']);
@@ -44,6 +45,8 @@ function App() {
             <Route path='/SignUp' component={SignUp} /> 
             <Route path="/faq" component={FAQ} /> 
             <Route path="/UserDetails" component={UserDetails} />   
+            <Route  path='/ForgotPassword' component={ForgotPassword}/>
+            <Route path='/CheckOutForm' component={CheckoutForm} />
             <Route path="/BakeryDetail" component={BakeryDetail} /> 
             <Route path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/checkoutform' component={CheckoutForm} />

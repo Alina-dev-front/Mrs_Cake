@@ -2,6 +2,7 @@ export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
 export const INCREMENT_CART_ITEM_QUANTITY = 'INCREMENT_CART_ITEM_QUANTITY';
 export const DECREMENT_CART_ITEM_QUANTITY = 'DECREMENT_CART_ITEM_QUANTITY';
+export const REMOVE_ALL = 'REMOVE_ALL';
 
 export const addProductToCart = product => {
     return {
@@ -49,6 +50,13 @@ export const removeBrandFromFilter = brand => {
         brand
     }
 };
+
+export const removeAllProducts = () =>{
+    return  {
+        type : REMOVE_ALL
+        
+    }
+}
 
 export const ORDER_BY_ASC = 'ORDER_BY_ASC';
 export const ORDER_BY_DESC = 'ORDER_BY_DESC';

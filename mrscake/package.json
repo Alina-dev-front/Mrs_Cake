@@ -25,6 +25,7 @@
     "react-select": "^3.1.0",
     "react-simple-tree-menu": "^1.1.18",
     "reactjs-popup": "^2.0.4",
+    "reactstrap": "^8.7.1",
     "reactstrap": "^8.7.0",
     "redux": "^4.0.5"
   },
