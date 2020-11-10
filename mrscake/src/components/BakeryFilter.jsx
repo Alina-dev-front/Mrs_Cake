@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {  Container, Form,  Label } from 'reactstrap';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-import BakeryPage from './BakeryPage';
+import BakeryTable from './BakeryTable';
 import {connect} from 'react-redux';
+import './ProductPage.css';
+
 class BakeryFilter extends Component {
     constructor(props) {
       super(props);
@@ -51,8 +53,11 @@ class BakeryFilter extends Component {
      
       const uniqueItem = this.getUnique(this.state.items, "bakery");
       
-      const items = this.state.items;
-      const item = this.state.item;
+    const items = this.state.items;
+       const item = this.state.item;
+      
+   
+
       const filteredItems = [];
   
       const filterDropdown = items.filter(function(result) {
@@ -82,16 +87,12 @@ class BakeryFilter extends Component {
             </div>
         </Form>
           
-           
-            
-              <BakeryPage
+              <BakeryTable
                 items={items}
                 filteredItems={filteredItems}
                 updateState={this.updateState}
                 deleteItemFromState={this.deleteItemFromState} />
-        
-        
-            
+    
         </Container>;
     }
 }
