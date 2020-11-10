@@ -63,7 +63,7 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
     <Nav.Link as={Link} to="/contaktus">Contact Us</Nav.Link>
-    <Nav.Link as={Link} to="/bakeryPage" style={{display: userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
+    <Nav.Link as={Link} to="/bakeryFilter" style={{display: userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
     <Nav.Link as={Link} to="/admin" style={{display: userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
