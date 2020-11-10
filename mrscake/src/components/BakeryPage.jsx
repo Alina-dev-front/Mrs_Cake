@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container, Label, Table } from 'reactstrap';
+import { Container, Table } from 'reactstrap';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
-
+import {connect} from 'react-redux';
 
 function BakeryPage() {
     const [allProducts, setAllProducts] = useState(null)
@@ -15,7 +15,7 @@ function BakeryPage() {
         }
 
    return<Container style={{paddingTop: "150px"}}>
-               <Label>PRODUCT LIST</Label>
+               {/* <Label>PRODUCT LIST</Label> */}
                  <Table striped>
                     <thead className="thead-light">
                         <tr>
@@ -43,7 +43,7 @@ function BakeryPage() {
                             <td>
                                 {product.name}
                             </td>
-                            <td >
+                            <td>
                                 {product.bakery}
                             </td>
                             <td>
@@ -58,4 +58,4 @@ function BakeryPage() {
                 </Table>
             </Container> 
 } 
-export default BakeryPage;
+export default connect()(BakeryPage);

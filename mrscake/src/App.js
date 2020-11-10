@@ -17,6 +17,7 @@ import CheckoutForm from "./components/CheckoutForm";
 import { useCookies } from 'react-cookie';
 import AdminPage from './components/AdminPage';
 import BakeryPage from './components/BakeryPage';
+import BakeryFilter from './components/BakeryFilter';
 import './App.css';
 //import orders from './components/orders';
 
@@ -49,6 +50,7 @@ function App() {
             <Route path='/CheckOutForm' component={CheckoutForm} />
             <Route path="/BakeryDetail" component={BakeryDetail} /> 
             <Route path='/ForgotPassword' component={ForgotPassword}/>
+            <Route path='/bakeryFilter' component={BakeryFilter}/>
             <Route path='/checkoutform' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
             <Route path='/admin' component={AdminPage} />
