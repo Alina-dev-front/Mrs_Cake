@@ -49,29 +49,19 @@ class BakeryFilter extends Component {
       return uniqueBakery;
     }
     render() {
-
-     
       const uniqueItem = this.getUnique(this.state.items, "bakery");
-      
-    const items = this.state.items;
+      const items = this.state.items;
        const item = this.state.item;
-      
-   
-
       const filteredItems = [];
-  
       const filterDropdown = items.filter(function(result) {
         return result.bakery === item;
       });
-
       return <Container className="ProductTableContainer">
-
-
         <span>
             <Label className="product-table-title" >PRODUCT LIST</Label>
         </span>
         <Form>
-          <Label>Bakery:</Label>
+          <Label>Choose by bakery: </Label>
           
             <select value={this.state.item} onChange={this.handleChangeItem}>
                 <option value="none">Show all</option>
@@ -86,7 +76,6 @@ class BakeryFilter extends Component {
             ))}
             </div>
         </Form>
-          
               <BakeryTable
                 items={items}
                 filteredItems={filteredItems}
