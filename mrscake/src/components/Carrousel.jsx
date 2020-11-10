@@ -1,50 +1,26 @@
-import React, { useState} from "react";
-import Carousel from "react-bootstrap/Carousel";
-
+import React from "react";
+import { Carousel } from 'react-bootstrap';
+import cakeRose from "../Images/cakeRose.jpg";
+import carousel_pic from "../Images/carousel_pic.jpeg";
+import carousel_pic2 from "../Images/carousel_pic2.jpg";
+import sale from "../Images/sale.jpg";
+import "./Carrousel.css";
 
 function CarouselControlled(){
-    let [index, setIndex] = useState(1)
-    let handleSelect = (selectedIndex) =>{
-        setIndex(selectedIndex);
-    };
-    return(
-
-        <Carousel fade="true" activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item>
-                <img
-                    className="d-block min-vw-100"
-                    src={require("../Images/31.jpeg").default}
-                    alt="First Slide"
-                    style={{height: "50vh"}}
-                />
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block min-vw-100"
-                    src={require("../Images/macaron.jpg").default}
-                    alt="Second Slide"
-                    style={{height: "50vh"}}
-                />
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block min-vw-100"
-                    src={require("../Images/cakeRoses.jpg").default}
-                    alt="Thirst Slide"
-                    style={{height: "50vh"}}
-                />
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block min-vw-100"
-                    src={require("../Images/34.jpeg").default}
-                    alt="Fourth Slide"
-                    style={{height: "50vh"}}
-                />
-            </Carousel.Item>
-        </Carousel>
-
-    );
+    const carouselPictures = [cakeRose, carousel_pic, carousel_pic2, sale];
+    
+    return (<Carousel className="carousel">
+            {carouselPictures.map((item, i) => 
+                (<Carousel.Item key={i} >
+                    <img className="carousel-picture"
+                    src={item}
+                    alt="Carousel"
+                    />
+                </Carousel.Item>
+                ))
+            }
+            </Carousel>
+    )
 }
 
 export default CarouselControlled;

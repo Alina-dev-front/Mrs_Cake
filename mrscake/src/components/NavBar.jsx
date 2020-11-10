@@ -9,6 +9,7 @@ import bakeryprofile from '../bakeryprofile.svg';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
+import { useHistory } from 'react-router-dom';
 
 
 function NavBar({cartLength}) {
@@ -40,8 +41,11 @@ function NavBar({cartLength}) {
     }
   }
   const [cookies, setCookie] = useCookies(['name']);
+  const history = useHistory();
+
   function SignOut() {
     setCookie('role', "Customer", { path: '/' });
+    history.push("/");
     window.location.reload(true);
   }
 
