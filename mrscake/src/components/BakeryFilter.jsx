@@ -71,7 +71,7 @@ class BakeryFilter extends Component {
             <Label className="product-table-title" >PRODUCT LIST</Label>
         </span>
         <Form>
-          <Label>Select products as per Bakery:</Label>
+          <Label>Bakery:</Label>
           
             <select value={this.state.item} onChange={this.handleChangeItem}>
                 <option value="none">Show all</option>

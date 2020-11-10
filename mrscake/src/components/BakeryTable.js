@@ -46,7 +46,7 @@ class DataTable extends Component {
       <tbody>
         {!items || items.length <= 0 ?
           <tr>
-            <td colSpan="3" align="center"><b>Uploading products...</b></td>
+            
           </tr>
           : items.map(item => (
             <tr key={item.id}>
