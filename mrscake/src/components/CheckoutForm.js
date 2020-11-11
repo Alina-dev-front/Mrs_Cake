@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, FormControl } from 'react-bootstrap';
 import styled from "@emotion/styled";
+import { CardElement } from "@stripe/react-stripe-js";
 import Row from "./PaymentForm/Row";
 import SubmitButton from "./PaymentForm/SubmitButton";
 import GlobalStyles from "./PaymentForm/GlobalStyles";
@@ -32,7 +33,8 @@ class CheckoutForm extends React.Component {
             city: "",
             country: "",
             zipcode: "",
-            DeliveryMethod: ""
+            DeliveryMethod: "",
+            CreditCardNumber:""
         });
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -43,7 +45,7 @@ class CheckoutForm extends React.Component {
         this.handleCountryChange = this.handleCountryChange.bind(this);
         this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
         this.submitNew = this.submitNew.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.mySubmitHandler = this.mySubmitHandler.bind(this);
     }
     removeItemS = () => {
         this.props.dispatch(removeAllProducts());
@@ -99,9 +101,20 @@ class CheckoutForm extends React.Component {
             .catch(err => console.log(err));
     }
 
-    url() {
-        document.location.href =
-            'http://localhost:3000';
+     cardnumber()
+    {
+        //document.getElementsByName("cardForm").value = this.state.CreditCardNumber;
+        //this.setState({CreditCardNumber : document.getElementById("formCard").value});
+      var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+      if(this.state.CreditCardNumber.match(cardno))
+            {
+          return true;
+            }
+          else
+            {
+            alert("Not a valid Visa credit card number!");
+            return false;
+            }
     }
 
     handleDeliverySelectBox = (e) => {
@@ -109,27 +122,30 @@ class CheckoutForm extends React.Component {
         if (name === "HomeBox" && e.target.checked) {
             document.getElementById("customCheck3").checked = false;
             document.getElementById("customCheck2").checked = false;
-            document.getElementById("Card").style.visibility = 'visible';
+            document.getElementById("Payment").style.visibility = 'visible';
+
             this.setState({ DeliveryMethod: "Home Delivery" });
             this.setState({ DeliveryPrice: 7 })
         }
         else if (name === "customCheck3" && e.target.checked) {
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck2").checked = false;
-            document.getElementById("Card").style.visibility = 'visible';
+            document.getElementById("Payment").style.visibility = 'visible';
+
             this.setState({ DeliveryMethod: "Pick up from store" });
             this.setState({ DeliveryPrice: 10 });
         }
         else if (name === "customCheck2" && e.target.checked) {
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck3").checked = false;
-            document.getElementById("Card").style.visibility = 'visible';
+            document.getElementById("Payment").style.visibility = 'visible';
             this.setState({ DeliveryMethod: "Pick up from Bakery" });
             this.setState({ DeliveryPrice: 0 });
         }
         else {
             this.setState({ DeliveryPrice: 0 });
-            document.getElementById("Card").style.visibility = 'hidden';
+            document.getElementById("Payment").style.visibility = 'hidden';
+            
         }
     };
 
@@ -141,7 +157,9 @@ class CheckoutForm extends React.Component {
             document.getElementById("PhoneForm").style.visibility = 'hidden';
             document.getElementById("CardForm").style.visibility = 'visible';
             document.getElementById("Card").style.visibility = 'visible';
-            // document.getElementById("Card").disabled = false;
+            document.getElementById("phoneform").required = false;
+            document.getElementById("cardform").required = true;
+
 
         }
         else if (name === "Swish" && e.target.checked && name !== "customCheck3") {
@@ -149,20 +167,25 @@ class CheckoutForm extends React.Component {
             document.getElementById("Card").style.visibility = 'visible';
             document.getElementById("CardForm").style.visibility = 'hidden';
             document.getElementById("PhoneForm").style.visibility = 'visible';
+            document.getElementById("phoneform").required = true;
+            document.getElementById("cardform").required = false;
+
+
         }
         else {
             document.getElementById("Card").style.visibility = 'hidden';
             document.getElementById("CardForm").style.visibility = 'hidden';
             document.getElementById("PhoneForm").style.visibility = 'hidden';
+
             console.log(name);
         }
 
     };
+  
 
-    handleSubmit(event) {
-        // alert('An essay was submitted: ' + this.state.value);
-        event.preventDefault();
-    }
+    mySubmitHandler(){
+        this.props.history.push('/')
+      }
 
     render() {
         const FormFieldContainer = styled.div`
@@ -202,9 +225,10 @@ class CheckoutForm extends React.Component {
       color: #87bbfd;
     }
   `;
-        return (
 
-            <form onSubmit={this.handleSubmit} >
+        return (
+            
+            <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS(); this.mySubmitHandler()}} >
                 <Row>
                     <FormFieldContainer >
                         <Label htmlFor="name">Name</Label>
@@ -256,7 +280,7 @@ class CheckoutForm extends React.Component {
                         </div>
                     </div>
                 </Row>
-                <Row id="Payment" >
+                <Row id="Payment" style={{ visibility: 'hidden' }} >
                     <div className="form-group">
                         <div className="custom-control custom-checkbox">
 
@@ -274,30 +298,24 @@ class CheckoutForm extends React.Component {
                 </Row>
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
                     <CardElementContainer>
-                        <Form inline style={{ marginLeft: "30%" }} >
-                            <FormControl type="text" placeholder="xxxxxxxxxxxxx xx/xx" className="mr-sm-2"></FormControl></Form>
-
+                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="text" placeholder="45879966522145456   10/22        cvc" maxlength="20" minlength="20" className="mr-sm-2"></Input>
                     </CardElementContainer>
                 </Row>
                 <Row id="Card" style={{ visibility: 'hidden' }}>
-                    <SubmitButton disabled={this.isProcessing || this.props.price === 0} id="CardButton" onClick={(e) => {this.submitNew(e); this.removeItemS()}}  >
+                    <SubmitButton disabled={this.isProcessing || this.props.price === 0 ||CardElement.value === null } id="CardButton"  >
                         {this.isProcessing ? "SUCCEFULLY PAID" : `Pay $${this.props.price + this.state.DeliveryPrice}`}
                     </SubmitButton>
                 </Row>
                 <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
-                    <CardElementContainer  >
-                        <Form inline style={{ marginLeft: "30%" }} >
-                            <FormControl type="text" placeholder="0700054540" className="mr-sm-2"></FormControl></Form>
-                    </CardElementContainer>
+                    <FormFieldContainer  >
+                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="text" placeholder="070 005 4540" maxlength="10" minlength="10" className="mr-sm-2" ></Input>
+                    </FormFieldContainer>
                 </Row>
 
-            </form>
+            </Form>
         );
     };
 }
-
-
-
 
 const mapStateToProps = (state) => {
     return {
