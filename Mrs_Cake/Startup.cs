@@ -7,6 +7,9 @@ using Microsoft.Extensions.Options;
 using Mrs_Cake.Services;
 using Microsoft.Extensions.Logging;
 using Mrs_Cake.MrsCakeData;
+using System;
+using System.Reflection;
+using System.IO;
 
 namespace Mrs_Cake
 {
@@ -34,6 +37,7 @@ namespace Mrs_Cake
             services.AddSingleton<BakeryService>();
             services.AddSingleton<LoginService>();
             services.AddControllers();
+            services.AddSwaggerGen();
             services.AddCors(o => o.AddPolicy("ReactPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -41,15 +45,29 @@ namespace Mrs_Cake
                        .AllowAnyHeader();
             }));
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+
+
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();
