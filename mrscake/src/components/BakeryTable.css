@@ -4,21 +4,20 @@
 }
 
 .productType-column {
-    width: 8% !important;
+    width: 10% !important;
 }
 
 .name-column {
-    width: 3% !important;
-}
-
-.price-column {
-    width: 2% !important;
+    width: 10% !important;
 }
 
 .bakery-column {
-    width: 3% !important;
+    width: 10% !important;
 }
 
+.price-column {
+    width: 10% !important;
+}
 
 
 

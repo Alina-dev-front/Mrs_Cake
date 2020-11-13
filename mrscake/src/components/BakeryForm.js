@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, CardBody, Card, Container, Row, Col, CardGroup, FormGroup } from 'reactstrap';	  
+import { Button, Form, Input, Row,  FormGroup } from 'reactstrap';	  
 import { BAKERIES_API_URL } from '../constants/bakeries_api_url.js';
-
 
 class BakeryForm extends Component {
   state = 
   {
+    id: '',
     name: '',
     email:'',
     phone: '', 
@@ -13,8 +13,8 @@ class BakeryForm extends Component {
   }
     componentDidMount() {
       if (this.props.bakery) {
-          const { name, email, phone, address } = this.props.bakery
-          this.setState({ name, email, phone, address });
+          const { id, name, email, phone, address } = this.props.bakery
+          this.setState({ id, name, email, phone, address });
       }
     }
 
@@ -73,23 +73,18 @@ class BakeryForm extends Component {
   render() {
         return  <Form onSubmit={this.props.bakery ? this.submitEdit : this.submitNew}>
                   <div className="app flex-row align-items-center">
-                    <Container style={{paddingTop: "120px"}}>
-                      <Row className="justify-content-center">
-                        <Col md="9" lg="7" xl="6">
-                          <CardGroup>
-                            <Card className="p-2">
-                              <CardBody style={{paddingBottom: "100px"}}>
+                    
                                 <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
-                                  <div className="col-sm-12 btn btn-primary">
-                                    Bakery Details
+                                  <div >
+                                    <b>Bakery Details</b>
                                   </div>
                                 </Row>
                                 
-                      <FormGroup className="mb-3">
+                      <FormGroup >
                       <Input  type="text" name="name" onChange={this.handleChange} 
                       value={this.state.name === '' ? '' : this.state.name} placeholder="Name" />
                       </FormGroup>
-                      <FormGroup className="mb-3">
+                      <FormGroup >
                       <Input  type="email" name="email" onChange={this.handleChange} 
                       value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
                      </FormGroup>
@@ -100,12 +95,7 @@ class BakeryForm extends Component {
                       <Input className="mb-3"  type="int" name="phone" onChange={this.handleChange} value={this.state.phone === '' ? '' : this.state.phone } placeholder="Phone" />
                       </FormGroup>
                                 <Button color="success" block >Submit</Button>
-                              </CardBody>
-                            </Card>
-                          </CardGroup>
-                        </Col>
-                      </Row>
-                    </Container>
+                            
                   </div>
                 </Form>
     }   

@@ -4,10 +4,7 @@ import {connect} from 'react-redux';
 import "./BakTab.css";
 import BakeryModal from './BakeryModal';
 
-
 class BakTab extends Component {
-
-
   render() {
     let items = this.props.items;
     if (this.props.filteredItems.length > 0) {

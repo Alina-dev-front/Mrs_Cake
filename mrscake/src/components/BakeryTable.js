@@ -3,7 +3,6 @@ import { Table } from 'reactstrap';
 import {connect} from 'react-redux';
 import "./BakeryTable.css";
 
-
 class BakeryTable extends Component {
 
   render() {
