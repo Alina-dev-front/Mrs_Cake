@@ -2,8 +2,7 @@ import React from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import FAQ from './components/FAQ'; 
-import UserDetails from './components/UserDetails'; 
-import BakeryDetail from './components/BakeryDetail'; 
+import UserDetails from './components/UserDetails';  
 import ForgotPassword from './components/ForgotPassword';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import {HomePage} from './components/HomePage';
@@ -17,6 +16,7 @@ import CheckoutForm from "./components/CheckoutForm";
 import { useCookies } from 'react-cookie';
 import AdminPage from './components/AdminPage';
 import BakeryFilter from './components/BakeryFilter';
+import BakeryPage from './components/BakeryPage';
 import './App.css';
 //import orders from './components/orders';
 
@@ -47,12 +47,12 @@ function App() {
             <Route path="/UserDetails" component={UserDetails} />   
             <Route  path='/ForgotPassword' component={ForgotPassword}/>
             <Route path='/CheckOutForm' component={CheckoutForm} />
-            <Route path="/BakeryDetail" component={BakeryDetail} /> 
             <Route path='/ForgotPassword' component={ForgotPassword}/>
-            <Route path='/bakeryFilter' component={BakeryFilter}/>
             <Route path='/checkoutform' component={CheckoutForm} />
             <Route path='/ResetPassword' component={ResetPassword} />
             <Route path='/admin' component={AdminPage} />
+            <Route path='/bakeryFilter' component={BakeryFilter}/>
+            <Route path='/bakeryPage' component={BakeryPage}/>
           </Switch> 
         </BrowserRouter>
     </React.Fragment>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {  Container, Form,  Label } from 'reactstrap';
-import { PRODUCTS_API_URL } from '../constants/api_url_path';
-import BakeryTable from './BakeryTable';
+import { Col, Container, Form, Row, Label } from 'reactstrap';
+import './BakeryPage.css';
+import BakeryModal from './BakeryModal';
+import BakTab from './BakTab';
+import { BAKERIES_API_URL } from '../constants/bakeries_api_url';
 import {connect} from 'react-redux';
-import './BakeryTable.css';
 
-class BakeryFilter extends Component {
+class BakeryPage extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -22,14 +23,14 @@ class BakeryFilter extends Component {
       this.getItems();
     }
     getItems = () => {
-      fetch(PRODUCTS_API_URL)
+      fetch(BAKERIES_API_URL)
         .then(res => res.json())
         .then(res => this.setState({ items: res }))
         .catch(err => console.log(err));
     }
-    addProductToState = product => {
+    addBakeryToState = bakery => {
       this.setState(previous => ({
-        items: [...previous.items, product]
+        items: [...previous.items, bakery]
       }));
     }
     updateState = (id) => {
@@ -40,34 +41,37 @@ class BakeryFilter extends Component {
       this.setState({ items: updated })
     }
     getUnique(array, comparison) {
-      const uniqueBakery = array
+      const uniqueName = array
         .map(element => element[comparison])
         .map((element, index, final) => final.indexOf(element) === index && index)
         .filter(element => array[element])
         .map(element => array[element]);
   
-      return uniqueBakery;
+      return uniqueName;
     }
     render() {
-      const uniqueItem = this.getUnique(this.state.items, "bakery");
+      const uniqueItem = this.getUnique(this.state.items, "name");
+      
       const items = this.state.items;
-       const item = this.state.item;
+      const item = this.state.item;
       const filteredItems = [];
+  
       const filterDropdown = items.filter(function(result) {
-        return result.bakery === item;
+        return result.name === item;
       });
+
       return <Container className="ProductTableContainer">
         <span>
-            <Label className="product-table-title" >PRODUCT LIST</Label>
+            <Label className="bakery-table-title" >Bakery List</Label>
+            <BakeryModal isNew={true} addBakeryToState={this.addBakeryToState} />
         </span>
         <Form>
-          <Label>Choose by bakery: </Label>
-          
+          <Label>Choose by bakery name:</Label>
             <select value={this.state.item} onChange={this.handleChangeItem}>
                 <option value="none">Show all</option>
                 {uniqueItem.map(item => (
-                  <option key={item.id} value={item.bakery}>
-                    {item.bakery}
+                  <option key={item.id} value={item.name}>
+                    {item.name}
                   </option>
                 ))}
             </select>
@@ -76,14 +80,17 @@ class BakeryFilter extends Component {
             ))}
             </div>
         </Form>
-              <BakeryTable
+          <Row>
+            <Col>
+              <BakTab
                 items={items}
                 filteredItems={filteredItems}
                 updateState={this.updateState}
                 deleteItemFromState={this.deleteItemFromState} />
-    
+            </Col>
+          </Row>
         </Container>;
     }
 }
 
-export default connect()(BakeryFilter) ;
+export default connect()(BakeryPage) ;

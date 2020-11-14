@@ -5,12 +5,11 @@ import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
 import { Link } from 'react-router-dom';
 import userprofile from '../userprofile.svg';
-import bakeryprofile from '../bakeryprofile.svg';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
-
+import bakeryprofile from '../bakeryprofile.svg';
 
 function NavBar({cartLength}) {
   let userRole = Cookies.get('role');
@@ -27,7 +26,7 @@ function NavBar({cartLength}) {
       />
     </Nav.Link>;
     } else if (userRole === 'BakeryOwner'){
-      return <Nav.Link as={Link} to="/bakeryDetail">
+      return <Nav.Link as={Link} to="/bakerypage">
       <img
         src={bakeryprofile}
         width="30"
