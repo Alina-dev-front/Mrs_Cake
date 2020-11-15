@@ -1,0 +1,24 @@
+
+.id-column {
+    width: 10% !important;
+}
+.name-column {
+    width: 8% !important;
+}
+
+.address-column {
+    width: 10% !important;
+}
+
+.email-column {
+    width: 5% !important;
+}
+
+.phone-column {
+    width: 10% !important;
+}
+
+.action-column {
+    width: 10% !important;
+} 
+

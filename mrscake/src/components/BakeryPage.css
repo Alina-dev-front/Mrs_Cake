@@ -1,0 +1,11 @@
+.BakeryTableContainer {
+    padding-top: 100px;
+    padding-bottom: 200px;
+    overflow: auto;
+    max-width: 90% !important;
+}
+
+.bakery-table-title {
+    font-size: 1.7rem;
+    font-weight: 500;
+}

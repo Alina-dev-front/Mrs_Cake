@@ -56,7 +56,7 @@ class DataTable extends Component {
           : items.map(item => (
             <tr key={item.id}>
               <td className="image-column">
-                <img src={require('../Images/' + item.imageUrl).default} alt={item.name} className="img_product_table"></img>
+                <img src={process.env.PUBLIC_URL + '/ProductImg/' + item.imageUrl} alt={item.name} className="img_product_table"></img>
               </td>
               <td className="name-column">
                 {item.name}

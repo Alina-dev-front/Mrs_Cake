@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import {connect} from 'react-redux';
-import "./DataTable.css";
+import "./BakeryTable.css";
 
-
-class DataTable extends Component {
-
+class BakeryTable extends Component {
 
   render() {
     let items = this.props.items;
@@ -20,6 +18,7 @@ class DataTable extends Component {
           <th className="name-column">Name</th>
           <th className="bakery-column">Bakery</th>
           <th className="price-column">Price</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -50,4 +49,4 @@ class DataTable extends Component {
     </Table>;
   }
 }
-export default connect()(DataTable) ;
+export default connect()(BakeryTable) ;
