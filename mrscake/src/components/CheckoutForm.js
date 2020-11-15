@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FormControl } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import styled from "@emotion/styled";
 import { CardElement } from "@stripe/react-stripe-js";
 import Row from "./PaymentForm/Row";
@@ -96,7 +96,7 @@ class CheckoutForm extends React.Component {
 
             .then(res => res.json())
             .then(order => {
-                this.props.history.push('/checkout')
+                this.props.history.push('/checkoutform')
             })
             .catch(err => console.log(err));
     }
@@ -228,7 +228,7 @@ class CheckoutForm extends React.Component {
 
         return (
             
-            <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS(); this.mySubmitHandler()}} >
+            <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS()}} >
                 <Row>
                     <FormFieldContainer >
                         <Label htmlFor="name">Name</Label>
