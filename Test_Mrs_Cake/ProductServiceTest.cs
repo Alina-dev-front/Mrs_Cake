@@ -11,30 +11,34 @@ namespace Test_Mrs_Cake
 {
     public class ProductServiceTest
     {
-        private readonly IMongoCollection<Product> _products;
+        private readonly ProductService _productService;
 
         public ProductServiceTest()
         {
-            var client = new MongoClient("mongodb+srv://Alina_Iakimchuk:Greenday15@mrscakecluster.vsx9o.azure.mongodb.net/Mrs_Cake?retryWrites=true&w=majority");
-            var database = client.GetDatabase("Mrs_Cake");
-            _products = database.GetCollection<Product>("Products_Test");
+            IMrsCakeDatabaseSettings settings = new MrsCakeDatabaseSettings();
+            settings.ConnectionString = "mongodb+srv://Alina_Iakimchuk:Greenday15@mrscakecluster.vsx9o.azure.mongodb.net/Mrs_Cake?retryWrites=true&w=majority";
+            settings.DatabaseName = "Mrs_Cake";
+            settings.CollectionName_Products = "Products_Test";
+
+            _productService = new ProductService(settings);
         }
 
         [Fact]
         public void CountProductsInDb()
         {
-            List<Product> testList = _products.Find(product => true).ToList();
+            List<Product> testList = _productService.Get();
 
             int numberOfProductsInTestDB = 18;
-
+            
             Assert.Equal(numberOfProductsInTestDB, testList.Count);
         }
 
-        string testGetById = "5fb2919e77c714150c947f20";
         [Fact]
         public void GetProductById()
         {
-            Product productFromDB = _products.Find<Product>(product => product.Id == testGetById).FirstOrDefault();
+            string testGetById = "5fb2919e77c714150c947f20";
+
+            Product productFromDB = _productService.GetById(testGetById);
 
             Product expectedProduct = new Product();
             expectedProduct.Id = testGetById;
@@ -59,19 +63,20 @@ namespace Test_Mrs_Cake
             testProduct.Price = 100;
             testProduct.imageUrl = "ProductPage_Cakes/Lala.jpg";
 
-            _products.InsertOne(testProduct);
+            _productService.Create(testProduct);
 
-            Product productFromDB = _products.Find<Product>(product => product.Name == testProduct.Name).FirstOrDefault();
+            Product productFromDB = _productService.GetById(testProduct.Id);
 
             Assert.Equal(testProduct.Name, productFromDB.Name);
         }
 
-        string updateTestId = "5fb2919e77c714150c947f2f";
 
         [Fact]
         public void UpdateProductInTestDB()
         {
-            Product productFromDB = _products.Find<Product>(product => product.Id == updateTestId).FirstOrDefault();
+            string updateTestId = "5fb2919e77c714150c947f2f";
+
+            Product productFromDB = _productService.GetById(updateTestId);
 
             Product productWithNewData = new Product();
             productWithNewData.Id = productFromDB.Id;
@@ -82,13 +87,31 @@ namespace Test_Mrs_Cake
             productWithNewData.Price = productFromDB.Price;
             productWithNewData.imageUrl = productFromDB.imageUrl;
 
-            _products.ReplaceOne(product => product.Id == productWithNewData.Id, productWithNewData);
+            _productService.Update(updateTestId, productWithNewData);
 
-            Product updatedProduct = _products.Find<Product>(product => product.Id == productWithNewData.Id).FirstOrDefault();
+            Product updatedProduct = _productService.GetById(productWithNewData.Id);
 
             Assert.Equal(productWithNewData.Name, updatedProduct.Name);
         }
 
+        [Fact]
+        public void DeleteProductInTestDB()
+        {
+            Product testProduct = new Product();
+            testProduct.Name = "TO DELETE";
+            testProduct.ProductType = "Pie";
+            testProduct.Bakery = "Good Test";
+            testProduct.Description = "Perfectly written test";
+            testProduct.Price = 100;
+            testProduct.imageUrl = "ProductPage_Cakes/Lala.jpg";
 
+            _productService.Create(testProduct);
+
+            Product productFromDB = _productService.GetById(testProduct.Id);
+
+            _productService.Remove(productFromDB);
+
+            Assert.DoesNotContain(productFromDB, _productService.Get());
+        }
     }
 }
