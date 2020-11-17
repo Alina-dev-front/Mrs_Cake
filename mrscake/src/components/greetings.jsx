@@ -1,27 +1,27 @@
 import React from "react";
+import './greetings.css'
+import { NavLink } from "react-router-dom";
 
-function FAQ() {
-    return <div>
-        <div class="container theme-container" >
 
+
+function Greetings() {
+    return <div className="parent">
+        
+        <div class="container" >
             <div class="title-wrap space-bottom-20">
-                <div class="col-md-6 col-sm-12">
-                    <p class="Protit" >
-
-
-                    </p>
-
-                </div>
-                <div class="clear"></div>
-                <div class="our-history space-bottom-20 space-top-20"></div>
-                <p>
-                    <b> Thanks for your Purchase</b><br />
-
-                </p>
+               
+                <h1 className="Greetings"> Ordered Confirmed! </h1>
+                <h1 className="Greetings"> Thanks For Your Purchase.</h1>
+               
+                <NavLink className="nav-link" to={"/productpage"}>
+                                <i className="display-4 mt-5 text-center" aria-hidden="false" />
+              CONTINUE EXPLORING OUR PRODUCTS
+            </NavLink>
+            
             </div>
         </div>
+        
     </div>
-
 }
 
-export default FAQ;
+export default Greetings;

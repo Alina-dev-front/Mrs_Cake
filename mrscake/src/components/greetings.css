@@ -1,0 +1,24 @@
+.container {
+    padding-top: 150px;
+    padding-bottom: 200px;
+    overflow: auto;
+    max-width: 90% !important;
+    
+    
+}
+
+.Greetings {
+    font-size: 3.7rem;
+    font-weight: 500;
+    text-align: center;
+    color: rgb(100, 40, 71);
+   
+}
+
+html{
+    background-color: lightblue;
+}
+.parent{
+    background-color:lightblue;
+
+}

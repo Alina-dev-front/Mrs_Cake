@@ -96,7 +96,7 @@ class CheckoutForm extends React.Component {
 
             .then(res => res.json())
             .then(order => {
-                this.props.history.push('/checkoutform')
+                this.props.history.push('/greetings')
             })
             .catch(err => console.log(err));
     }
