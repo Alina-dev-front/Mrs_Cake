@@ -3,14 +3,16 @@ import {
     DECREMENT_CART_ITEM_QUANTITY,
     INCREMENT_CART_ITEM_QUANTITY,
     REMOVE_PRODUCT_FROM_CART,
-    REMOVE_ALL
+    REMOVE_ALL,
+    INCREMENT_ORDER
 } from '../actions';
 import { PRODUCTS_API_URL } from '../constants/api_url_path';
 
 
 const initialState = {
     products:[],
-    cart: []
+    cart: [],
+    orderNumber:0
 };
 
 fetch(PRODUCTS_API_URL)
@@ -21,8 +23,13 @@ fetch(PRODUCTS_API_URL)
 const shopReducer = (state = initialState, action ) => {
     let updatedCart;
     let updatedItemIndex;
+    let updatedOrdrNumber;
 
     switch (action.type) {
+        case INCREMENT_ORDER:
+            updatedOrdrNumber = state.orderNumber;
+            updatedOrdrNumber++;
+            return {...state, orderNumber: updatedOrdrNumber}
         case INCREMENT_CART_ITEM_QUANTITY:
             updatedCart = [...state.cart];
             updatedItemIndex = updatedCart.findIndex(

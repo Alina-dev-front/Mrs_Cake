@@ -1,24 +1,33 @@
 .container {
-    padding-top: 150px;
+    padding-top: 200px;
     padding-bottom: 200px;
     overflow: auto;
     max-width: 90% !important;
-    
-    
 }
-
+.containerChild{
+    box-decoration-break: slice;
+    box-shadow: 20px 20px 30px 30px;
+    background-color:pink;
+}
 .Greetings {
     font-size: 3.7rem;
     font-weight: 500;
     text-align: center;
-    color: rgb(100, 40, 71);
+    color: rgb(250, 249, 249);
+    grid: 10px;
    
 }
 
 html{
-    background-color: lightblue;
+    background-color:pink;
 }
 .parent{
-    background-color:lightblue;
+    background-color:pink;
 
+}
+
+.productsButton{
+            padding: 10px;
+            position: fixed;
+            left: 40%;
 }
