@@ -79,7 +79,15 @@ class CheckoutForm extends React.Component {
     submitNew = async e => {
         e.preventDefault();
         this.props.dispatch(incrementOrderQuantity());
-        
+        //let name = document.getElementById("name").value;
+        let city = document.getElementById("city").value;
+        let Email = document.getElementById("email").value;
+        let Adress = document.getElementById("adress").value;
+        let Country = document.getElementById("country").value;
+        let comments = document.getElementById("comments").value;
+        let zipcode = document.getElementById("zipcode").value;
+
+
         fetch(`${ORDERS_API_URL}`, {
             method: 'post',
             headers: {
@@ -88,9 +96,9 @@ class CheckoutForm extends React.Component {
             body: JSON.stringify({
                 Number: this.props.ordersNumbers,
                 totalPrice: this.props.price + this.state.DeliveryPrice,
-                userId:  this.state.email,
-                address: this.state.adress + "" + this.state.city + "" + this.state.country,
-                comments: "",
+                userId:  Email,
+                address: Adress + "/" + city + "/" + Country + "/" + zipcode,
+                comments: comments,
                 paid: true,
                 DeliveryMethod: this.state.DeliveryMethod,
                 OrderedProducts: this.props.cartItems
@@ -236,27 +244,35 @@ class CheckoutForm extends React.Component {
                 <Row>
                     <FormFieldContainer >
                         <Label htmlFor="name">Name</Label>
-                        <Input type="text" placeholder="name" value={this.state.name === '' ? '' : this.state.name} onChange={this.handleNameChange} required />
+                        <Input id="name" type="text" placeholder="name"  /*onChange={this.handleNameChange}*/ required />
                     </FormFieldContainer>
                     <FormFieldContainer>
                         <Label htmlFor="surname">surname</Label>
-                        <Input name="surname" type="text" placeholder="surname" value={this.state.lastName === '' ? '' : this.state.lastName} onChange={this.handleLastNameChange} required />
+                        <Input id="surname" name="surname" type="text" placeholder="surname"   required />
                     </FormFieldContainer>
                     <FormFieldContainer>
                         <Label htmlFor="email">Email</Label>
-                        <Input name="email" type="text" placeholder="email" value={this.state.email} onChange={this.handleEmailChange} required />
+                        <Input id="email" name="email" type="text" placeholder="email" required />
                     </FormFieldContainer>
                     <FormFieldContainer>
                         <Label htmlFor="adress">adress</Label>
-                        <Input name="adress" type="text" placeholder="adress" value={this.state.adress} onChange={this.handleAdressChange} required />
+                        <Input id="adress" name="adress" type="text" placeholder="adress"   required />
+                    </FormFieldContainer>
+                    <FormFieldContainer>
+                        <Label htmlFor="city">City</Label>
+                        <Input id="city" name="city" type="text" placeholder="City"   required />
                     </FormFieldContainer>
                     <FormFieldContainer>
                         <Label htmlFor="country">Country</Label>
-                        <Input name="country" type="text" placeholder="country" value={this.state.country} onChange={this.handleCountryChange} required />
+                        <Input id="country" name="country" type="text" placeholder="country"  required />
                     </FormFieldContainer>
                     <FormFieldContainer>
                         <Label htmlFor="zipCode">zipCode</Label>
-                        <Input name="zipCode" type="text" placeholder="zipcode" value={this.state.zipcode} onChange={this.handleZipCodeChange} required />
+                        <Input id="zipcode" name="zipCode" type="text" placeholder="zipcode"  required />
+                    </FormFieldContainer>
+                    <FormFieldContainer>
+                        <Label htmlFor="comments">Comments</Label>
+                        <Input id="comments" name="comments" type="text" placeholder="comments"   />
                     </FormFieldContainer>
                 </Row>
                 <GlobalStyles />
@@ -302,7 +318,7 @@ class CheckoutForm extends React.Component {
                 </Row>
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="text" placeholder="45879966522145456   10/22        cvc" maxlength="20" minlength="20" className="mr-sm-2"></Input>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="text" placeholder="45879966522145456   10/22        cvc" maxLength="23" minLength="23" className="mr-sm-2"></Input>
                     </CardElementContainer>
                 </Row>
                 <Row id="Card" style={{ visibility: 'hidden' }}>
@@ -311,8 +327,8 @@ class CheckoutForm extends React.Component {
                     </SubmitButton>
                 </Row>
                 <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
-                    <FormFieldContainer  >
-                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="text" placeholder="070 005 4540" maxlength="10" minlength="10" className="mr-sm-2" ></Input>
+                    <FormFieldContainer   >
+                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="text" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" ></Input>
                     </FormFieldContainer>
                 </Row>
 
