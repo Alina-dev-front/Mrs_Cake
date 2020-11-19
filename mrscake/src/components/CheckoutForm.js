@@ -1,12 +1,12 @@
 import React from "react";
-import { Form, FormControl } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import styled from "@emotion/styled";
 import { CardElement } from "@stripe/react-stripe-js";
 import Row from "./PaymentForm/Row";
 import SubmitButton from "./PaymentForm/SubmitButton";
 import GlobalStyles from "./PaymentForm/GlobalStyles";
 import { ORDERS_API_URL } from '../constants/orders_api_url';
-import { removeAllProducts } from "../actions";
+import { removeAllProducts,incrementOrderQuantity } from "../actions";
 import { connect } from 'react-redux';
 
 
@@ -34,7 +34,7 @@ class CheckoutForm extends React.Component {
             country: "",
             zipcode: "",
             DeliveryMethod: "",
-            CreditCardNumber:""
+            OrderNumber:0
         });
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -75,14 +75,18 @@ class CheckoutForm extends React.Component {
     handleZipCodeChange(e) {
         this.setState({ zipcode: e.target.value });
     }
+     
     submitNew = async e => {
         e.preventDefault();
+        this.props.dispatch(incrementOrderQuantity());
+        
         fetch(`${ORDERS_API_URL}`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                Number: this.props.ordersNumbers,
                 totalPrice: this.props.price + this.state.DeliveryPrice,
                 userId:  this.state.email,
                 address: this.state.adress + "" + this.state.city + "" + this.state.country,
@@ -96,7 +100,7 @@ class CheckoutForm extends React.Component {
 
             .then(res => res.json())
             .then(order => {
-                this.props.history.push('/checkout')
+                this.props.history.push('/greetings')
             })
             .catch(err => console.log(err));
     }
@@ -228,7 +232,7 @@ class CheckoutForm extends React.Component {
 
         return (
             
-            <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS(); this.mySubmitHandler()}} >
+            <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS()}} >
                 <Row>
                     <FormFieldContainer >
                         <Label htmlFor="name">Name</Label>
@@ -320,6 +324,7 @@ class CheckoutForm extends React.Component {
 const mapStateToProps = (state) => {
     return {
         cartItems: state.shop.cart,
+        ordersNumbers : state.shop.orderNumber,
         cartItemCount: state.shop.cart.reduce((count, curItem) => {
             return count + curItem.quantity;
         }, 0),

@@ -3,6 +3,7 @@ export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
 export const INCREMENT_CART_ITEM_QUANTITY = 'INCREMENT_CART_ITEM_QUANTITY';
 export const DECREMENT_CART_ITEM_QUANTITY = 'DECREMENT_CART_ITEM_QUANTITY';
 export const REMOVE_ALL = 'REMOVE_ALL';
+export const INCREMENT_ORDER = 'INCREMENT_ORDER';
 
 export const addProductToCart = product => {
     return {
@@ -31,6 +32,12 @@ export const decrementCartQuantity = productId => {
       payload: productId
   }
 };
+
+export const incrementOrderQuantity = () => {
+    return {
+        type : INCREMENT_ORDER
+    }
+}
 
 
 export const ADD_BRAND_TO_FILTER = 'ADD_BRAND_TO_FILTER';

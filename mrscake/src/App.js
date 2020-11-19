@@ -17,6 +17,7 @@ import { useCookies } from 'react-cookie';
 import AdminPage from './components/AdminPage';
 import BakeryFilter from './components/BakeryFilter';
 import BakeryPage from './components/BakeryPage';
+import Greetings from './components/greetings'
 import './App.css';
 //import orders from './components/orders';
 
@@ -53,6 +54,8 @@ function App() {
             <Route path='/admin' component={AdminPage} />
             <Route path='/bakeryFilter' component={BakeryFilter}/>
             <Route path='/bakeryPage' component={BakeryPage}/>
+            <Route path='/greetings' component={Greetings}/>
+
           </Switch> 
         </BrowserRouter>
     </React.Fragment>
