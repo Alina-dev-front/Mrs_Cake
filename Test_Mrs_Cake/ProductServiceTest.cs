@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using Xunit;
 using Mrs_Cake.Services;
 using Mrs_Cake.Models;
-using System.Linq;
-using MongoDB.Driver;
 using Mrs_Cake.MrsCakeData;
+using FluentAssertions;
 
 namespace Test_Mrs_Cake
 {
@@ -28,7 +27,7 @@ namespace Test_Mrs_Cake
         {
             List<Product> testList = _productService.Get();
 
-            int numberOfProductsInTestDB = 18;
+            int numberOfProductsInTestDB = 11;
             
             Assert.Equal(numberOfProductsInTestDB, testList.Count);
         }
@@ -36,20 +35,20 @@ namespace Test_Mrs_Cake
         [Fact]
         public void GetProductById()
         {
-            string testGetById = "5fb2919e77c714150c947f20";
+            string testGetById = "5fb67bbe7db76a339046b21b";
 
             Product productFromDB = _productService.GetById(testGetById);
 
             Product expectedProduct = new Product();
             expectedProduct.Id = testGetById;
-            expectedProduct.Name = "Belgian Chocolate";
-            expectedProduct.ProductType = "Cake";
-            expectedProduct.Bakery = "Sweet Life";
-            expectedProduct.Description = "Dense sour cream chocolate biscuit sandwiched with delicate sour cream based on aromatic Belgian chocolate";
-            expectedProduct.Price = 11;
-            expectedProduct.imageUrl = "ProductPage_Cakes/Belgian_Chocolate.jpg";
+            expectedProduct.Name = "Carrot";
+            expectedProduct.ProductType = "Pie";
+            expectedProduct.Bakery = "LoveCakes";
+            expectedProduct.Description = "Butter biscuit with the addition of carrots, raisins, walnuts, cinnamon. Cream Cheese, based on curd cheese and natural cream, decorated with marmalade decorations and a chocolate logo";
+            expectedProduct.Price = 23;
+            expectedProduct.imageUrl = "ProductPage_Pies/Carrot.jpg";
 
-            Assert.Equal(expectedProduct.Name, productFromDB.Name);
+            expectedProduct.Should().BeEquivalentTo(productFromDB);
         }
 
         [Fact]
@@ -67,14 +66,14 @@ namespace Test_Mrs_Cake
 
             Product productFromDB = _productService.GetById(testProduct.Id);
 
-            Assert.Equal(testProduct.Name, productFromDB.Name);
+            testProduct.Should().BeEquivalentTo(productFromDB);
         }
 
 
         [Fact]
         public void UpdateProductInTestDB()
         {
-            string updateTestId = "5fb2919e77c714150c947f2f";
+            string updateTestId = "5fb67bbe7db76a339046b229";
 
             Product productFromDB = _productService.GetById(updateTestId);
 
@@ -103,15 +102,15 @@ namespace Test_Mrs_Cake
             testProduct.Bakery = "Good Test";
             testProduct.Description = "Perfectly written test";
             testProduct.Price = 100;
-            testProduct.imageUrl = "ProductPage_Cakes/Lala.jpg";
+            testProduct.imageUrl = "ProductPage_Pies/Lala.jpg";
 
             _productService.Create(testProduct);
 
-            Product productFromDB = _productService.GetById(testProduct.Id);
+            Product testProductFromDB = _productService.GetById(testProduct.Id);
 
-            _productService.Remove(productFromDB);
+            _productService.Remove(testProductFromDB);
 
-            Assert.DoesNotContain(productFromDB, _productService.Get());
+            Assert.DoesNotContain(testProductFromDB, _productService.Get());
         }
     }
 }

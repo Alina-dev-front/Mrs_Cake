@@ -35,12 +35,25 @@ namespace Mrs_Cake.Services
                 if(result.Password == inputPassword)
                 {
                     result.LoginStatus = "Logged in";
+                    Update(result.Id, result);
                     return  result;
                 }
                 result.LoginStatus = "Invalid password";
                 return result;
             }
             return null;
+        }
+
+        public void Update(string id, User user)
+        {
+            User userToUpdate = _users.Find(n => n.Id == id).FirstOrDefault();
+            userToUpdate.FirstName = user.FirstName;
+            userToUpdate.LastName = user.LastName;
+            userToUpdate.Email = user.Email;
+            userToUpdate.Password = user.Password;
+            userToUpdate.LoginStatus = user.LoginStatus;
+
+            _users.ReplaceOne(user => user.Id == id, userToUpdate);
         }
     }
 }
