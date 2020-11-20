@@ -68,7 +68,7 @@ class DataTable extends Component {
                 {item.bakery}
               </td>
               <td className="price-column">
-                {item.price}
+                {item.price} $
               </td>
               <td align="center">
                 <span className="action-column">

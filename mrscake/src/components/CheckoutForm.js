@@ -36,57 +36,22 @@ class CheckoutForm extends React.Component {
             DeliveryMethod: "",
             OrderNumber:0
         });
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleLastNameChange = this.handleLastNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleLastNameChange = this.handleLastNameChange.bind(this);
-        this.handleAdressChange = this.handleAdressChange.bind(this);
-        this.handleCityChange = this.handleCityChange.bind(this);
-        this.handleCountryChange = this.handleCountryChange.bind(this);
-        this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
         this.submitNew = this.submitNew.bind(this);
-        this.mySubmitHandler = this.mySubmitHandler.bind(this);
     }
     removeItemS = () => {
         this.props.dispatch(removeAllProducts());
         this.setState({ DeliveryPrice:0});
     };
-    handleNameChange(e) {
-        this.setState({ name: e.target.value });
-        console.log(this.state.name);
-    }
-
-    handleLastNameChange(e) {
-        this.setState({ lastName: e.target.value });
-    }
-
-    handleEmailChange(e) {
-        this.setState({ email: e.target.value });
-    }
-    handleAdressChange(e) {
-        this.setState({ adress: e.target.value });
-    }
-    handleCityChange(e) {
-        this.setState({ city: e.target.value });
-    }
-    handleCountryChange(e) {
-        this.setState({ country: e.target.value });
-    }
-    handleZipCodeChange(e) {
-        this.setState({ zipcode: e.target.value });
-    }
-     
+   
     submitNew = async e => {
         e.preventDefault();
         this.props.dispatch(incrementOrderQuantity());
-        //let name = document.getElementById("name").value;
         let city = document.getElementById("city").value;
         let Email = document.getElementById("email").value;
         let Adress = document.getElementById("adress").value;
         let Country = document.getElementById("country").value;
         let comments = document.getElementById("comments").value;
         let zipcode = document.getElementById("zipcode").value;
-
 
         fetch(`${ORDERS_API_URL}`, {
             method: 'post',
@@ -102,10 +67,8 @@ class CheckoutForm extends React.Component {
                 paid: true,
                 DeliveryMethod: this.state.DeliveryMethod,
                 OrderedProducts: this.props.cartItems
-
             })
         })
-
             .then(res => res.json())
             .then(order => {
                 this.props.history.push('/greetings')
@@ -135,7 +98,6 @@ class CheckoutForm extends React.Component {
             document.getElementById("customCheck3").checked = false;
             document.getElementById("customCheck2").checked = false;
             document.getElementById("Payment").style.visibility = 'visible';
-
             this.setState({ DeliveryMethod: "Home Delivery" });
             this.setState({ DeliveryPrice: 7 })
         }
@@ -143,7 +105,6 @@ class CheckoutForm extends React.Component {
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck2").checked = false;
             document.getElementById("Payment").style.visibility = 'visible';
-
             this.setState({ DeliveryMethod: "Pick up from store" });
             this.setState({ DeliveryPrice: 10 });
         }
@@ -157,7 +118,6 @@ class CheckoutForm extends React.Component {
         else {
             this.setState({ DeliveryPrice: 0 });
             document.getElementById("Payment").style.visibility = 'hidden';
-            
         }
     };
 
@@ -171,8 +131,6 @@ class CheckoutForm extends React.Component {
             document.getElementById("Card").style.visibility = 'visible';
             document.getElementById("phoneform").required = false;
             document.getElementById("cardform").required = true;
-
-
         }
         else if (name === "Swish" && e.target.checked && name !== "customCheck3") {
             document.getElementById("CreditCard").checked = false;
@@ -181,24 +139,15 @@ class CheckoutForm extends React.Component {
             document.getElementById("PhoneForm").style.visibility = 'visible';
             document.getElementById("phoneform").required = true;
             document.getElementById("cardform").required = false;
-
-
         }
         else {
             document.getElementById("Card").style.visibility = 'hidden';
             document.getElementById("CardForm").style.visibility = 'hidden';
             document.getElementById("PhoneForm").style.visibility = 'hidden';
-
             console.log(name);
         }
-
     };
   
-
-    mySubmitHandler(){
-        this.props.history.push('/')
-      }
-
     render() {
         const FormFieldContainer = styled.div`
     display: -ms-flexbox;
@@ -207,12 +156,10 @@ class CheckoutForm extends React.Component {
     align-items: center;
     margin-left: 15px;
     border-top: 1px solid #FFC0CB	;
-  
     &:first-of-type {
       border-top: none;
     }
   `;
-
         const Label = styled.label`
     width: 20%;
     min-width: 70px;
@@ -237,14 +184,12 @@ class CheckoutForm extends React.Component {
       color: #87bbfd;
     }
   `;
-
         return (
-            
             <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS()}} >
                 <Row>
                     <FormFieldContainer >
                         <Label htmlFor="name">Name</Label>
-                        <Input id="name" type="text" placeholder="name"  /*onChange={this.handleNameChange}*/ required />
+                        <Input id="name" type="text" placeholder="name"   required />
                     </FormFieldContainer>
                     <FormFieldContainer>
                         <Label htmlFor="surname">surname</Label>
