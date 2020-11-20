@@ -32,9 +32,15 @@ namespace Mrs_Cake.Services
         public void Update(string id, User user)
             {
             User foundUser = _users.Find(n => n.Id == id).FirstOrDefault();
+            foundUser.FirstName = user.FirstName;
+            foundUser.LastName = user.LastName;
+            foundUser.Email = user.Email;
+            foundUser.Password = user.Password;
             foundUser.Address = user.Address;
             foundUser.MobilePhone = user.MobilePhone;
             foundUser.CreditCardNumber = user.CreditCardNumber;
+            foundUser.UserRole = user.UserRole;
+            foundUser.LoginStatus = user.LoginStatus;
             _users.ReplaceOne(user => user.Id == id, foundUser);
             }
         public void Remove(User userIn) =>
