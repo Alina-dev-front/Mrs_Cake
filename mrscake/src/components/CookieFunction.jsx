@@ -5,23 +5,31 @@ function CallCookie(user) {
     const history = useHistory();
     const [cookies, setCookie] = useCookies(['name']);
 
+    let loginStatus = user.user.loginStatus;
+
     let userRole = user.user.userRole;
     setCookieLocal();
 
+    function setUserRoleAsCookie() {
+        if(userRole === "BakeryOwner") {
+            setCookie('role', "BakeryOwner", { path: '/' });
+            history.push("/");
+            window.location.reload(true);
+        } else if(userRole === "Admin") {
+            setCookie('role', "Admin", { path: '/' });
+            history.push("/");
+            window.location.reload(true);
+        } else if(userRole === "Customer") {
+            setCookie('role', "Customer", { path: '/' });
+            history.push("/");
+            window.location.reload(true);
+        }
+    }
+
     function setCookieLocal() {
-            if(userRole === "BakeryOwner") {
-                setCookie('role', "BakeryOwner", { path: '/' });
-                history.push("/");
-                window.location.reload(true);
-            } else if(userRole === "Admin") {
-                setCookie('role', "Admin", { path: '/' });
-                history.push("/");
-                window.location.reload(true);
-            } else if(userRole === "Customer") {
-                setCookie('role', "Customer", { path: '/' });
-                history.push("/");
-                window.location.reload(true);
-            }
+        if(loginStatus === "Logged in") {
+            setUserRoleAsCookie();
+        }
         return '';
     }
     if(cookies.role) {

@@ -32,11 +32,11 @@ namespace Test_Mrs_Cake
         }
 
 
-        /*[Fact]
+        [Fact]
         public void LoginTestUserPass()
         {
-            string testUserEmailInput = "lily.lily.aldrin@gmail.com";
-            string testUserPasswordInput = "gvgbg41Q";
+            string testUserEmailInput = "robin-scherbatsky1983@gmail.com";
+            string testUserPasswordInput = "ggtgt790PPi";
             
             _loginService.Login(testUserEmailInput, testUserPasswordInput);
 
@@ -44,19 +44,19 @@ namespace Test_Mrs_Cake
             User result = usersFromDB.Find(user => user.Email == testUserEmailInput);
 
             Assert.True(result.LoginStatus == "Logged in");
-        }*/
+        }
 
         /*[Fact]
         public void LoginTestUserFailWrongPassword()
         {
-            string testUserEmailInput = "lily.lily.aldrin@gmail.com";
-            string testUserPasswordInput = "gvgbg41Q1";
+            string testUserEmailInput = "barney13stinson@gmail.com";
+            string testUserPasswordInput = "frgbgDER43";
 
             Assert.Equal(1, 1);
         }
 
         [Fact]
-        public void LoginTestUserFailUserNotFoud()
+        public void LoginTestUserFailUserNotFound()
         {
             Assert.Equal(1, 1);
         }*/

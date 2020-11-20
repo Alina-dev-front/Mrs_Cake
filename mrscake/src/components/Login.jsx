@@ -34,6 +34,8 @@ class Login extends React.Component {
                 this.props.history.push('/')
             } else if(this.state.user.loginStatus === "Invalid password") {
                 alert(this.state.user.loginStatus)
+            } else {
+                alert("User not found. Check email and password and try again");
             }
         })     
         .catch(err => console.log(err));
