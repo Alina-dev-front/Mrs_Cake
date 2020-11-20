@@ -12,8 +12,7 @@ function CallCookie(user) {
     let loginStatus =  user.user.loginStatus;
     
     if(loginStatus === "Logged in") {
-        let userRole = user.user.userRole;
-        setUserRoleAsCookie(userRole, setCookie, history);
+        setUserRoleAsCookie(user.user, setCookie, history);
     }
     if(cookies.role) {
         return cookies.role;
@@ -21,12 +20,11 @@ function CallCookie(user) {
     return '';
 }
 
-function setUserRoleAsCookie(userRole, setCookie, history) {
-    if(userRole) {
-        setCookie('role', userRole, { path: '/' }); 
-        history.push("/");
-        window.location.reload(true);
-    } 
+function setUserRoleAsCookie(user, setCookie, history) {
+    setCookie('role', user.userRole, { path: '/' }); 
+    setCookie('user_id', user.id, { path: '/' }); 
+    history.push("/");
+    window.location.reload(true);
 }
 
 export default CallCookie;

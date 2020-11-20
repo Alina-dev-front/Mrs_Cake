@@ -31,14 +31,11 @@ class Login extends React.Component {
         })
         .then(userData => {
             this.setState({ user: userData })
-            console.log(this.state.user)
             if(this.state.user && this.state.user.loginStatus === "Logged in") {
                 this.showWelcome(this.state.user.firstName)
                 this.props.history.push('/')
             } else if(this.state.user &&  this.state.user.loginStatus === "Invalid password") {
                 alert(this.state.user.loginStatus)
-            } else {
-                alert("User not found. Check email and password and try again");
             }
         })     
         .catch(err => console.log(err));

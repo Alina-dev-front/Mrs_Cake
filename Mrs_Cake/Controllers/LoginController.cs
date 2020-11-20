@@ -36,7 +36,6 @@ namespace Mrs_Cake.Controllers
                 return authUser; 
             }
             return null;
-            
         }
     }
 }
