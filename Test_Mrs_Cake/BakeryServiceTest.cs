@@ -60,7 +60,7 @@ namespace Test_Mrs_Cake
             Bakery bakeryFromDB = _bakeryService.GetById(updateTestId);
             Bakery BakeryWithNewData = new Bakery();
             BakeryWithNewData.Id = bakeryFromDB.Id;
-            BakeryWithNewData.Name = bakeryFromDB.Name;
+            BakeryWithNewData.Name = "Update bakery "+ bakeryFromDB.Name;
             BakeryWithNewData.Address = "Malmo";
             BakeryWithNewData.Email = bakeryFromDB.Email;
             BakeryWithNewData.Phone = bakeryFromDB.Phone;
