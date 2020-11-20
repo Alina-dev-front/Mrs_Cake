@@ -24,14 +24,14 @@ namespace Test_Mrs_Cake
         [Fact]
         public void GetBakeryById()
         {
-            string testGetById = "5fb6f53924327a507c2178a2";
+            string testGetById = "5fb67c4a7db76a339046b22c";
             Bakery bakeryFromDB = _bakeryService.GetById(testGetById);
             Bakery expectedBakery = new Bakery();
             expectedBakery.Id = testGetById;
-            expectedBakery.Name = "Perfect bakery";
-            expectedBakery.Address = "Gothenburg";
-            expectedBakery.Email = "Parul@gmail.com";
-            expectedBakery.Phone = "111111";
+            expectedBakery.Name = "Sweet Life";
+            expectedBakery.Address = "Sweden, Gothenburg, Vasastan, 51a";
+            expectedBakery.Email = "sweet_life@gmail.com";
+            expectedBakery.Phone = "468822011771";
             expectedBakery.Should().BeEquivalentTo(bakeryFromDB);
         }
         [Fact]
@@ -56,7 +56,7 @@ namespace Test_Mrs_Cake
         [Fact]
         public void UpdateBakeryInTestDB()
         {
-            string updateTestId = "5fb6f53924327a507c2178a2";
+            string updateTestId = "5fb67c4a7db76a339046b22b";
             Bakery bakeryFromDB = _bakeryService.GetById(updateTestId);
             Bakery BakeryWithNewData = new Bakery();
             BakeryWithNewData.Id = bakeryFromDB.Id;
@@ -66,9 +66,21 @@ namespace Test_Mrs_Cake
             BakeryWithNewData.Phone = bakeryFromDB.Phone;
             _bakeryService.Update(updateTestId, BakeryWithNewData);
             Bakery updatedBakery = _bakeryService.GetById(BakeryWithNewData.Id);
-            BakeryWithNewData.Should().BeEquivalentTo(bakeryFromDB);
+            Assert.Equal(BakeryWithNewData.Name, updatedBakery.Name);
         }
-        
+        [Fact]
+        public void DeleteBakeryInTestDB()
+        {
+            Bakery testBakery = new Bakery();
+            testBakery.Name = "TO DELETE";
+            testBakery.Address = "Gothenburg";
+            testBakery.Email = "Parul@gmail.com";
+            testBakery.Phone = "111111";
+            _bakeryService.Create(testBakery);
+            Bakery testbakeryFromDB = _bakeryService.GetById(testBakery.Id);
+            _bakeryService.Remove(testbakeryFromDB);
+            Assert.DoesNotContain(testbakeryFromDB, _bakeryService.Get());
+        }
     }
 }
 
