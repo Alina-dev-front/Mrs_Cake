@@ -31,7 +31,12 @@ namespace Mrs_Cake.Controllers
         [HttpPost]
         public User LoginUser(User user)
         {
-           return _loginService.Login(user.Email, user.Password);
+            User authUser = _loginService.Login(user.Email, user.Password);
+            if (authUser != null) {
+                return authUser; 
+            }
+            return null;
+            
         }
     }
 }
