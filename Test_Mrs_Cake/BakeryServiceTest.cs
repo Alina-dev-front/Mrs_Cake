@@ -21,7 +21,6 @@ namespace Test_Mrs_Cake
 
             _bakeryService = new BakeryService(settings);
         }
-
         [Fact]
         public void GetBakeryById()
         {
@@ -47,7 +46,6 @@ namespace Test_Mrs_Cake
             Bakery bakeryFromDB = _bakeryService.GetById(testBakery.Id);
             testBakery.Should().BeEquivalentTo(bakeryFromDB);
         }
-
         [Fact]
         public void CountBakeriesInDb()
         {
@@ -55,7 +53,21 @@ namespace Test_Mrs_Cake
             int numberOfBakeryInTestDB = 4;
             Assert.Equal(numberOfBakeryInTestDB, testList.Count);
         }
-
+        [Fact]
+        public void UpdateBakeryInTestDB()
+        {
+            string updateTestId = "5fb6f53924327a507c2178a2";
+            Bakery bakeryFromDB = _bakeryService.GetById(updateTestId);
+            Bakery BakeryWithNewData = new Bakery();
+            BakeryWithNewData.Id = bakeryFromDB.Id;
+            BakeryWithNewData.Name = bakeryFromDB.Name;
+            BakeryWithNewData.Address = "Malmo";
+            BakeryWithNewData.Email = bakeryFromDB.Email;
+            BakeryWithNewData.Phone = bakeryFromDB.Phone;
+            _bakeryService.Update(updateTestId, BakeryWithNewData);
+            Bakery updatedBakery = _bakeryService.GetById(BakeryWithNewData.Id);
+            BakeryWithNewData.Should().BeEquivalentTo(bakeryFromDB);
+        }
         
     }
 }
