@@ -147,6 +147,12 @@ class CheckoutForm extends React.Component {
             console.log(name);
         }
     };
+
+    maxLengthCheck = (object) => {
+        if (object.target.value.length > object.target.maxLength) {
+         object.target.value = object.target.value.slice(0, object.target.maxLength)
+          }
+        }
   
     render() {
         const FormFieldContainer = styled.div`
@@ -263,7 +269,13 @@ class CheckoutForm extends React.Component {
                 </Row>
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="text" placeholder="45879966522145456   10/22        cvc" maxLength="23" minLength="23" className="mr-sm-2"></Input>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="23" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck}/>
+                    </CardElementContainer>
+                    <CardElementContainer>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type='number' placeholder="Experation date" maxLength="4" minLength="4" className="mr-sm-2" onInput={this.maxLengthCheck}/>
+                    </CardElementContainer>
+                    <CardElementContainer>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck}/>
                     </CardElementContainer>
                 </Row>
                 <Row id="Card" style={{ visibility: 'hidden' }}>

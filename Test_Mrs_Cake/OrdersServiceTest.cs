@@ -30,7 +30,7 @@ namespace Test_Mrs_Cake
         {
             List<Order> testList = _orderService.Get();
 
-            int numberOfProductsInTestDB = 2;
+            int numberOfProductsInTestDB = 3;
 
             Assert.Equal(numberOfProductsInTestDB, testList.Count);
         }
@@ -88,20 +88,21 @@ namespace Test_Mrs_Cake
             Order orderFromDB = _orderService.GetById(updateTestId);
 
             Order orderWithNewData = new Order();
+            orderWithNewData.Id = orderFromDB.Id;
             orderWithNewData.Number = orderFromDB.Number ;
             orderWithNewData.Paid = orderFromDB.Paid;
             orderWithNewData.TotalPrice = orderFromDB.TotalPrice ;
             orderWithNewData.OrderedProducts = orderFromDB.OrderedProducts;
             orderWithNewData.DeliveryMethod = orderFromDB.DeliveryMethod;
-            orderWithNewData.Comments = orderFromDB.Comments + " y la luna";
-            orderWithNewData.UserId = orderFromDB.UserId;
+            orderWithNewData.Comments =  orderFromDB.Comments ;
+            orderWithNewData.UserId = orderFromDB.UserId + " y la luna";
             orderWithNewData.Address = orderFromDB.Address;
 
             _orderService.Update(updateTestId, orderWithNewData);
 
-            Order updatedProduct = _orderService.GetById(orderWithNewData.Id);
+            Order updatedOrder = _orderService.GetById(orderWithNewData.Id);
 
-            orderWithNewData.Should().BeEquivalentTo(updatedProduct);
+            Assert.Equal(updatedOrder.Number,orderWithNewData.Number);
         }
         
         [Fact]
