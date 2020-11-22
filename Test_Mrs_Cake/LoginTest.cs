@@ -16,7 +16,7 @@ namespace Test_Mrs_Cake
             IMrsCakeDatabaseSettings settings = new MrsCakeDatabaseSettings();
             settings.ConnectionString = "mongodb+srv://Alina_Iakimchuk:Greenday15@mrscakecluster.vsx9o.azure.mongodb.net/Mrs_Cake?retryWrites=true&w=majority";
             settings.DatabaseName = "Mrs_Cake_Test";
-            settings.CollectionName_Users = "Users_Test";
+            settings.CollectionName_Users = "Login_Logout_Test";
 
             _loginService = new LoginService(settings);
         }
@@ -26,17 +26,17 @@ namespace Test_Mrs_Cake
         {
             List<User> testListOfAllUsers = _loginService.Get();
 
-            int numberOfUsersInTestDB = 9;
+            int numberOfUsersInTestDB = 5;
 
             Assert.Equal(numberOfUsersInTestDB, testListOfAllUsers.Count);
         }
 
 
         [Fact]
-        public void LoginTestUserPass()
+        public void LoginTestUserSuccesfulLogin()
         {
-            string testUserEmailInput = "robin-scherbatsky1983@gmail.com";
-            string testUserPasswordInput = "ggtgt790PPi";
+            string testUserEmailInput = "shc@gmail.com";
+            string testUserPasswordInput = "bgtrfvEnhjk7";
             
             _loginService.Login(testUserEmailInput, testUserPasswordInput);
 
@@ -46,19 +46,32 @@ namespace Test_Mrs_Cake
             Assert.True(result.LoginStatus == "Logged in");
         }
 
-        /*[Fact]
-        public void LoginTestUserFailWrongPassword()
+        [Fact]
+        public void LoginTestUserWrongPassword()
         {
-            string testUserEmailInput = "barney13stinson@gmail.com";
-            string testUserPasswordInput = "frgbgDER43";
+            string testUserEmailInput = "coffee-biscuits@gmail.com";
+            string testUserPasswordInput = "dcdcd222dfffFtest";
 
-            Assert.Equal(1, 1);
+            _loginService.Login(testUserEmailInput, testUserPasswordInput);
+
+            List<User> usersFromDB = _loginService.Get();
+            User result = usersFromDB.Find(user => user.Email == testUserEmailInput);
+
+            Assert.True(result.LoginStatus == "Invalid password");
         }
 
         [Fact]
         public void LoginTestUserFailUserNotFound()
         {
-            Assert.Equal(1, 1);
-        }*/
+            string testUserEmailInput = "sweet_life_test@gmail.com";
+            string testUserPasswordInput = "445ttfc668D";
+
+            _loginService.Login(testUserEmailInput, testUserPasswordInput);
+
+            List<User> usersFromDB = _loginService.Get();
+            User result = usersFromDB.Find(user => user.Email == testUserEmailInput);
+
+            Assert.True(result == null);
+        }
     }
 }
