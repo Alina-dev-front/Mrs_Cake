@@ -18,15 +18,24 @@ namespace Mrs_Cake.Controllers
         }
 
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<List<User>> Get()
         {
-            return "get";
+            List<User> usersFromDb = _loginService.Get();
+            if (usersFromDb == null)
+            {
+                return NotFound();
+            }
+            return usersFromDb;
         }
 
         [HttpPost]
         public User LoginUser(User user)
         {
-           return _loginService.Login(user.Email, user.Password);
+            User authUser = _loginService.Login(user.Email, user.Password);
+            if (authUser != null) {
+                return authUser; 
+            }
+            return null;
         }
     }
 }

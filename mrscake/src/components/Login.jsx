@@ -23,16 +23,18 @@ class Login extends React.Component {
             })
         })
         .then(response => {
-            var dbResponse = response.json();
-            return dbResponse;
+            if(response.status === 200) {
+                var dbResponse = response.json();
+                return dbResponse;
+            }
+            alert("User not found. Check email and password and try again");
         })
         .then(userData => {
             this.setState({ user: userData })
-            console.log(this.state.user)
-            if(this.state.user.loginStatus === "Logged in") {
+            if(this.state.user && this.state.user.loginStatus === "Logged in") {
                 this.showWelcome(this.state.user.firstName)
                 this.props.history.push('/')
-            } else if(this.state.user.loginStatus === "Invalid password") {
+            } else if(this.state.user &&  this.state.user.loginStatus === "Invalid password") {
                 alert(this.state.user.loginStatus)
             }
         })     
