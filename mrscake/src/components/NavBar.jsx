@@ -10,9 +10,9 @@ import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 import bakeryprofile from '../bakeryprofile.svg';
+import { LOGOUT_API_URL } from '../constants/api_url_path';
 
 function NavBar({cartLength}) {
-  let userRole = Cookies.get('role');
 
   function ShowUserDetailsSign() {
     if(userRole === 'Customer') {
@@ -41,12 +41,8 @@ function NavBar({cartLength}) {
   }
   const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
+  let userRole = Cookies.get('role');
 
-  function SignOut() {
-    setCookie('role', "Customer", { path: '/' });
-    history.push("/");
-    window.location.reload(true);
-  }
 
   return <Navbar fixed="top" bg="light" variant="light">
         <Nav.Link as={Link} to="/" >
@@ -69,7 +65,7 @@ function NavBar({cartLength}) {
       <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
     <ShowUserDetailsSign />
     <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
-    <Nav.Link as={Link} to="/" onClick={() => SignOut()} ><b>Sign out</b></Nav.Link>
+    <Nav.Link as={Link} to="/" onClick={() => SignOut(history, setCookie)} ><b>Sign out</b></Nav.Link>
     
     <Nav.Link as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> <img 
           width="23px"
@@ -79,6 +75,23 @@ function NavBar({cartLength}) {
 </Navbar>
 }
 
+
+function SignOut(history, setCookie) {
+  fetch(`${LOGOUT_API_URL}`, {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+        id: Cookies.get('user_id'),
+    })
+  })
+  .then(() => {
+    setCookie('role', "Customer", { path: '/' });
+    setCookie('user_id', "", { path: '/' });
+
+    history.push("/");
+    window.location.reload(true);
+  })
+}
 const mapStateToProps = (state) => {
   return {
     cartLength: state.shop.cart.length
