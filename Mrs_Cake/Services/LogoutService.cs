@@ -16,9 +16,15 @@ namespace Mrs_Cake.Services
             _users = database.GetCollection<User>(settings.CollectionName_Users);
         }
 
+        public User GetById(string id)
+        {
+            User userFromDB = _users.Find(user => user.Id == id).FirstOrDefault();
+            return userFromDB;
+        }
+
         public void Logout(string id)
         {
-            User user = _users.Find(n => n.Id == id).FirstOrDefault();
+            User user = GetById(id);
 
             user.LoginStatus = "";
 
