@@ -30,7 +30,7 @@ namespace Test_Mrs_Cake
         {
             List<Order> testList = _orderService.Get();
 
-            int numberOfProductsInTestDB = 3;
+            int numberOfProductsInTestDB = 2;
 
             Assert.Equal(numberOfProductsInTestDB, testList.Count);
         }
@@ -83,7 +83,7 @@ namespace Test_Mrs_Cake
         [Fact]
         public void UpdateOrderInTestDB()
         {
-            string updateTestId = "5fb6b8f6df549c3da0e0be1b";
+            string updateTestId = "5fba23a1e5116b5d12af7be4";
 
             Order orderFromDB = _orderService.GetById(updateTestId);
 
@@ -103,26 +103,26 @@ namespace Test_Mrs_Cake
 
             orderWithNewData.Should().BeEquivalentTo(updatedProduct);
         }
-        /*
+        
         [Fact]
-        public void DeleteProductInTestDB()
+        public void DeleteOrderInTestDB()
         {
-            Order testProduct = new Order();
-            testProduct.Name = "TO DELETE";
-            testProduct.ProductType = "Pie";
-            testProduct.Bakery = "Good Test";
-            testProduct.Description = "Perfectly written test";
-            testProduct.Price = 100;
-            testProduct.imageUrl = "ProductPage_Cakes/Lala.jpg";
+            Order testOrder = new Order();
+            testOrder.Number = 10;
+            testOrder.Paid = false ;
+            testOrder.OrderedProducts = new List<Product>();
+            testOrder.Address = "Somewhere in sweden";
+            testOrder.TotalPrice = 100;
+            testOrder.DeliveryMethod = "Home Delivery";
 
-            _orderService.Create(testProduct);
+            _orderService.Create(testOrder);
 
-            Order productFromDB = _orderService.GetById(testProduct.Id);
+            Order orderFromDB = _orderService.GetById(testOrder.Id);
 
-            _orderService.Remove(productFromDB);
+            _orderService.Remove(orderFromDB);
 
-            Assert.DoesNotContain(productFromDB, _orderService.Get());
+            Assert.DoesNotContain(orderFromDB, _orderService.Get());
         }
-        */
+        
     }
 }

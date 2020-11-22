@@ -18,7 +18,7 @@ namespace Mrs_Cake.Services
         }
 
         public List<Product> Get() =>
-            _products.Find(product => true).ToList();
+             _products.Find(product => true).ToList();
 
         public Product GetById(string id) =>
             _products.Find<Product>(product => product.Id == id).FirstOrDefault();

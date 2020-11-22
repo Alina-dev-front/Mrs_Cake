@@ -29,8 +29,23 @@ namespace Mrs_Cake.Services
             return order;
         }
 
-        public void Update(string id, Order order) =>
+        public void Update(string id, Order order)
+        {
+            Order foundOrder = _orders.Find(n => n.Id == id).FirstOrDefault();
+            foundOrder.Number = order.Number;
+            foundOrder.OrderedProducts = order.OrderedProducts;
+            foundOrder.Paid = order.Paid;
+            foundOrder.TotalPrice = order.TotalPrice;
+            foundOrder.UserId = order.UserId;
+            foundOrder.DeliveryMethod = order.DeliveryMethod;
+            foundOrder.Comments = order.Comments;
+            foundOrder.Address = order.Address;
+
+
             _orders.ReplaceOne(order => order.Id == id, order);
+
+        }
+           
 
         public void Remove(Order orderIn) =>
             _orders.DeleteOne(order => order.Id == orderIn.Id);

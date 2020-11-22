@@ -17,8 +17,8 @@ namespace Test_Mrs_Cake
         {
             IMrsCakeDatabaseSettings settings = new MrsCakeDatabaseSettings();
             settings.ConnectionString = "mongodb+srv://Alina_Iakimchuk:Greenday15@mrscakecluster.vsx9o.azure.mongodb.net/Mrs_Cake?retryWrites=true&w=majority";
-            settings.DatabaseName = "Mrs_Cake";
-            settings.CollectionName_Products = "Products_Test";
+            settings.DatabaseName = "Mrs_Cake_Test";
+            settings.CollectionName_Products = "Product_Test";
 
             _productService = new ProductService(settings);
         }
