@@ -285,7 +285,7 @@ class CheckoutForm extends React.Component {
                 </Row>
                 <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
                     <FormFieldContainer   >
-                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="text" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" ></Input>
+                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="number" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" onInput={this.maxLengthCheck} ></Input>
                     </FormFieldContainer>
                 </Row>
 
