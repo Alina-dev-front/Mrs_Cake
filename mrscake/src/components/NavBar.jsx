@@ -13,6 +13,7 @@ import bakeryprofile from '../bakeryprofile.svg';
 import { LOGOUT_API_URL } from '../constants/api_url_path';
 
 function NavBar({cartLength}) {
+  let userRole = Cookies.get('role');
 
   function ShowUserDetailsSign() {
     if(userRole === 'Customer') {
@@ -41,8 +42,14 @@ function NavBar({cartLength}) {
   }
   const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
-  let userRole = Cookies.get('role');
+  let userId = Cookies.get('user_id');
 
+  function SwitchSignInSignOut() {
+    if(userId == null || userId === "") {
+      return <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
+    }
+    return <Nav.Link as={Link} to="/" onClick={() => SignOut(history, setCookie)} ><b>Sign out</b></Nav.Link>
+  }
 
   return <Navbar fixed="top" bg="light" variant="light">
         <Nav.Link as={Link} to="/" >
@@ -64,9 +71,7 @@ function NavBar({cartLength}) {
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
     <ShowUserDetailsSign />
-    <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
-    <Nav.Link as={Link} to="/" onClick={() => SignOut(history, setCookie)} ><b>Sign out</b></Nav.Link>
-    
+    <SwitchSignInSignOut />
     <Nav.Link as={Link} to="/shoppingCart" className="fa fa-shopping-cart mr-2"> <img 
           width="23px"
           height="23px" src={shoppingCart} alt="shopping cart"
@@ -74,7 +79,6 @@ function NavBar({cartLength}) {
     </Form>
 </Navbar>
 }
-
 
 function SignOut(history, setCookie) {
   fetch(`${LOGOUT_API_URL}`, {
