@@ -30,7 +30,7 @@ namespace Test_Mrs_Cake
         {
             List<Order> testList = _orderService.Get();
 
-            int numberOfProductsInTestDB = 3;
+            int numberOfProductsInTestDB = 2;
 
             Assert.Equal(numberOfProductsInTestDB, testList.Count);
         }
