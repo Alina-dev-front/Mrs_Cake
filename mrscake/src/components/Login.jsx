@@ -23,18 +23,16 @@ class Login extends React.Component {
             })
         })
         .then(response => {
-            if(response.status === 200) {
-                var dbResponse = response.json();
-                return dbResponse;
-            }
-            alert("User not found. Check email and password and try again");
+            var dbResponse = response.json();
+            return dbResponse;
         })
         .then(userData => {
             this.setState({ user: userData })
-            if(this.state.user && this.state.user.loginStatus === "Logged in") {
+            console.log(this.state.user)
+            if(this.state.user.loginStatus === "Logged in") {
                 this.showWelcome(this.state.user.firstName)
                 this.props.history.push('/')
-            } else if(this.state.user &&  this.state.user.loginStatus === "Invalid password") {
+            } else if(this.state.user.loginStatus === "Invalid password") {
                 alert(this.state.user.loginStatus)
             }
         })     
@@ -62,11 +60,9 @@ class Login extends React.Component {
                                     <CardGroup>
                                         <Card className="p-2">
                                             <CardBody style={{paddingBottom: "50px"}}>
-                                                <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
-                                                    <div className="col-sm-12 btn btn-primary">
-                                                        Login
+                                                <div className="links" style={{color: "Black"}}>
+                                                <b>LOGIN PAGE</b>
                                                     </div>
-                                                </Row>
                                                 <FormGroup className="mb-3">
                                                     <Input type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
                                                 </FormGroup>	                                           

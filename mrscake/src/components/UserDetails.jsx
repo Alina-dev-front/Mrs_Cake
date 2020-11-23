@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, CardBody, Card, Container, Row, Col, CardGroup } from 'reactstrap';	  
+import { Button, Form, Input, CardBody, Card, Container, Row, Col, CardGroup , FormGroup} from 'reactstrap';	  
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import './Login.css';
+
 
 class UserDetails extends Component {
   state = 
   {
-    
+    id:'',
+    firstName:'',
+    lastName:'',
+    email:'',
+    password:'',
     mobilePhone: '', 
     address: '',
     crediCardNumber: ''   
@@ -14,8 +19,8 @@ class UserDetails extends Component {
   }
   componentDidMount() {
     if (this.props.user) {
-        const {  mobilePhone, address, creditCardNumber } = this.props.user
-        this.setState({  mobilePhone, address, creditCardNumber });
+        const {  id, firstName, lastName, email, password, mobilePhone, address, creditCardNumber } = this.props.user
+        this.setState({  id, firstName, lastName, email, password, mobilePhone, address, creditCardNumber });
     }
 
   }
@@ -32,6 +37,10 @@ class UserDetails extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+              firstName: this.state.firstName,
+              lastName: this.state.lastName,
+              email: this.state.email,
+              password: this.state.password,
               mobilePhone: this.state.mobilePhone,
               address: this.state.address,
               creditCardNumber: this.state.creditCardNumber, 
@@ -40,12 +49,14 @@ class UserDetails extends Component {
             .then(() => {
                 this.props.toggle();
                 this.props.updateUserIntoState(this.state.id);
-                this.props.history.push('/')
+                
             })
             .catch(err => console.log(err));
     }
         
   render() {
+
+   
         return  <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
                   <div className="app flex-row align-items-center">
                     <Container style={{paddingTop: "100px"}}>
@@ -54,15 +65,33 @@ class UserDetails extends Component {
                           <CardGroup>
                             <Card className="p-2">
                               <CardBody style={{paddingBottom: "50px"}}>
-                                <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
-                                  <div className="col-sm-12 btn btn-primary">
-                                    User Details
+                                  <div className="links" style={{color: "Black"}}>
+                                    <b>USER DETAILS</b>
                                   </div>
-                                </Row>
+                                <FormGroup className="mb-3">
+                                <Input required={true} type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
+                      <Input required={true} type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
+                    </FormGroup>
+
+                    <FormGroup className="mb-3">
+                      <Input required={true} type="email" name="email" onChange={this.handleChange} 
+                      value={this.state.email === '' ? '' : this.state.email} placeholder="Email" />
+                    </FormGroup>
+
+                    <FormGroup className="mb-3">
+                      <Input required={true} type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  onChange={this.handleChange} value={this.state.password === '' ? '' : this.state.password}  placeholder="Password"   />
+                    </FormGroup>
+
+                    <FormGroup className="mb-3">
                                 <Input className="mb-3" type="text" name="address" onChange={this.handleChange} value={this.state.address === '' ? '' : this.state.address} placeholder="Address" />
+                                </FormGroup>
+                                <FormGroup className="mb-3">
                                 <Input className="mb-3"  type="int" name="mobilePhone" onChange={this.handleChange} value={this.state.mobilePhone === '' ? '' : this.state.mobilePhone } placeholder="MobilePhone" />
+                                </FormGroup>
+                                <FormGroup className="mb-3">
                                 <Input className="mb-3" type="int"  name="creditCardNumber" onChange={this.handleChange} value={this.state.credtCardNumber=== '' ? '' : this.state.creditCardNumber} placeholder="CreditCardNumber" />
-                                <Button className="mb-3" onSubmit={this.mySubmitHandler} color="success" block >Submit</Button>
+                                </FormGroup>
+                                <Button color="success" block >Submit</Button>
                               </CardBody>
                             </Card>
                           </CardGroup>
