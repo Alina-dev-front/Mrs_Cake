@@ -88,6 +88,7 @@ const CartItem = (
                         onClick={removeItem}
                         type="button" className="btn btn-outline-danger btn-xs">
                         <i className="fa fa-trash"  />
+                        Delete
                     </button>
                 </div>
             </div>

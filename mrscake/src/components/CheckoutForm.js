@@ -1,4 +1,5 @@
-import React from "react";
+import React  from "react";
+//import billingFormDetails from "./PaymentForm/BillingDetailsFields"
 import { Form } from 'react-bootstrap';
 import styled from "@emotion/styled";
 import { CardElement } from "@stripe/react-stripe-js";
@@ -8,6 +9,7 @@ import GlobalStyles from "./PaymentForm/GlobalStyles";
 import { ORDERS_API_URL } from '../constants/orders_api_url';
 import { removeAllProducts,incrementOrderQuantity } from "../actions";
 import { connect } from 'react-redux';
+import BillingDetailsFields from "./PaymentForm/BillingDetailsFields";
 
 
 const CardElementContainer = styled.div`
@@ -36,50 +38,24 @@ class CheckoutForm extends React.Component {
             DeliveryMethod: "",
             OrderNumber:0
         });
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleLastNameChange = this.handleLastNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleLastNameChange = this.handleLastNameChange.bind(this);
-        this.handleAdressChange = this.handleAdressChange.bind(this);
-        this.handleCityChange = this.handleCityChange.bind(this);
-        this.handleCountryChange = this.handleCountryChange.bind(this);
-        this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
         this.submitNew = this.submitNew.bind(this);
-        this.mySubmitHandler = this.mySubmitHandler.bind(this);
     }
     removeItemS = () => {
         this.props.dispatch(removeAllProducts());
         this.setState({ DeliveryPrice:0});
     };
-    handleNameChange(e) {
-        this.setState({ name: e.target.value });
-        console.log(this.state.name);
-    }
-
-    handleLastNameChange(e) {
-        this.setState({ lastName: e.target.value });
-    }
-
-    handleEmailChange(e) {
-        this.setState({ email: e.target.value });
-    }
-    handleAdressChange(e) {
-        this.setState({ adress: e.target.value });
-    }
-    handleCityChange(e) {
-        this.setState({ city: e.target.value });
-    }
-    handleCountryChange(e) {
-        this.setState({ country: e.target.value });
-    }
-    handleZipCodeChange(e) {
-        this.setState({ zipcode: e.target.value });
-    }
-     
-    submitNew = async e => {
-        e.preventDefault();
+   
+    submitNew = async event => {
+        event.preventDefault();
         this.props.dispatch(incrementOrderQuantity());
-        
+        let city = document.getElementById("city").value;
+        let Email = document.getElementById("email").value;
+        let Adress = document.getElementById("adress").value;
+        let Country = document.getElementById("country").value;
+        let comments = document.getElementById("comments").value;
+        let zipcode = document.getElementById("zipcode").value;
+        console.log(city);
+
         fetch(`${ORDERS_API_URL}`, {
             method: 'post',
             headers: {
@@ -88,16 +64,14 @@ class CheckoutForm extends React.Component {
             body: JSON.stringify({
                 Number: this.props.ordersNumbers,
                 totalPrice: this.props.price + this.state.DeliveryPrice,
-                userId:  this.state.email,
-                address: this.state.adress + "" + this.state.city + "" + this.state.country,
-                comments: "",
+                userId:  Email,
+                address: Adress + "/" + city + "/" + Country + "/" + zipcode,
+                comments: comments,
                 paid: true,
                 DeliveryMethod: this.state.DeliveryMethod,
                 OrderedProducts: this.props.cartItems
-
             })
         })
-
             .then(res => res.json())
             .then(order => {
                 this.props.history.push('/greetings')
@@ -122,24 +96,27 @@ class CheckoutForm extends React.Component {
     }
 
     handleDeliverySelectBox = (e) => {
+        e.preventDefault();
         const name = e.target.id;
         if (name === "HomeBox" && e.target.checked) {
+            e.preventDefault();
+           
             document.getElementById("customCheck3").checked = false;
             document.getElementById("customCheck2").checked = false;
             document.getElementById("Payment").style.visibility = 'visible';
-
             this.setState({ DeliveryMethod: "Home Delivery" });
             this.setState({ DeliveryPrice: 7 })
         }
         else if (name === "customCheck3" && e.target.checked) {
+            e.preventDefault();
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck2").checked = false;
             document.getElementById("Payment").style.visibility = 'visible';
-
             this.setState({ DeliveryMethod: "Pick up from store" });
             this.setState({ DeliveryPrice: 10 });
         }
         else if (name === "customCheck2" && e.target.checked) {
+            e.preventDefault();
             document.getElementById("HomeBox").checked = false;
             document.getElementById("customCheck3").checked = false;
             document.getElementById("Payment").style.visibility = 'visible';
@@ -147,13 +124,14 @@ class CheckoutForm extends React.Component {
             this.setState({ DeliveryPrice: 0 });
         }
         else {
+            e.preventDefault();
             this.setState({ DeliveryPrice: 0 });
             document.getElementById("Payment").style.visibility = 'hidden';
-            
         }
     };
 
     handlePaymentSelectBox = (e) => {
+        e.preventDefault();
         const name = e.target.id;
         //const value = e.target.cheched;
         if (name === "CreditCard" && e.target.checked && name !== "customCheck3") {
@@ -163,8 +141,6 @@ class CheckoutForm extends React.Component {
             document.getElementById("Card").style.visibility = 'visible';
             document.getElementById("phoneform").required = false;
             document.getElementById("cardform").required = true;
-
-
         }
         else if (name === "Swish" && e.target.checked && name !== "customCheck3") {
             document.getElementById("CreditCard").checked = false;
@@ -173,25 +149,23 @@ class CheckoutForm extends React.Component {
             document.getElementById("PhoneForm").style.visibility = 'visible';
             document.getElementById("phoneform").required = true;
             document.getElementById("cardform").required = false;
-
-
         }
         else {
             document.getElementById("Card").style.visibility = 'hidden';
             document.getElementById("CardForm").style.visibility = 'hidden';
             document.getElementById("PhoneForm").style.visibility = 'hidden';
-
             console.log(name);
         }
-
     };
+
+    maxLengthCheck = (object) => {
+        if (object.target.value.length > object.target.maxLength) {
+         object.target.value = object.target.value.slice(0, object.target.maxLength)
+          }
+        }
   
-
-    mySubmitHandler(){
-        this.props.history.push('/')
-      }
-
     render() {
+
         const FormFieldContainer = styled.div`
     display: -ms-flexbox;
     display: flex;
@@ -199,22 +173,20 @@ class CheckoutForm extends React.Component {
     align-items: center;
     margin-left: 15px;
     border-top: 1px solid #FFC0CB	;
-  
     &:first-of-type {
       border-top: none;
     }
   `;
-
-        const Label = styled.label`
-    width: 20%;
-    min-width: 70px;
-    padding: 11px 0;
-    color: #c4f0ff;
-    overflow: hidden;
-    font-size: 16px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-right: 1px solid #819efc;
+  const Label = styled.label`
+  width: 20%;
+  min-width: 70px;
+  padding: 11px 0;
+  color: #c4f0ff;
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-right: 1px solid #819efc;
   `;
 
         const Input = styled.input`
@@ -229,42 +201,11 @@ class CheckoutForm extends React.Component {
       color: #87bbfd;
     }
   `;
-
         return (
-            
-            <Form onSubmit={(e) => {this.submitNew(e); this.removeItemS()}} >
-                <Row>
-                    <FormFieldContainer >
-                        <Label htmlFor="name">Name</Label>
-                        <Input type="text" placeholder="name" value={this.state.name === '' ? '' : this.state.name} onChange={this.handleNameChange} required />
-                    </FormFieldContainer>
-                    <FormFieldContainer>
-                        <Label htmlFor="surname">surname</Label>
-                        <Input name="surname" type="text" placeholder="surname" value={this.state.lastName === '' ? '' : this.state.lastName} onChange={this.handleLastNameChange} required />
-                    </FormFieldContainer>
-                    <FormFieldContainer>
-                        <Label htmlFor="email">Email</Label>
-                        <Input name="email" type="text" placeholder="email" value={this.state.email} onChange={this.handleEmailChange} required />
-                    </FormFieldContainer>
-                    <FormFieldContainer>
-                        <Label htmlFor="adress">adress</Label>
-                        <Input name="adress" type="text" placeholder="adress" value={this.state.adress} onChange={this.handleAdressChange} required />
-                    </FormFieldContainer>
-                    <FormFieldContainer>
-                        <Label htmlFor="country">Country</Label>
-                        <Input name="country" type="text" placeholder="country" value={this.state.country} onChange={this.handleCountryChange} required />
-                    </FormFieldContainer>
-                    <FormFieldContainer>
-                        <Label htmlFor="zipCode">zipCode</Label>
-                        <Input name="zipCode" type="text" placeholder="zipcode" value={this.state.zipcode} onChange={this.handleZipCodeChange} required />
-                    </FormFieldContainer>
-                </Row>
+            <Form onSubmit={(e) => { this.submitNew(e); this.removeItemS()}} >
+                  <BillingDetailsFields></BillingDetailsFields>
                 <GlobalStyles />
-                <head>
-                    <meta charSet="utf-8" />
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                </head>
-                <Row>
+                <Row >
                     <div className="form-group">
                         <div className="custom-control custom-checkbox">
                             <input type="checkbox" className="custom-control-input" id="HomeBox" onInput={this.handleDeliverySelectBox} />
@@ -300,9 +241,17 @@ class CheckoutForm extends React.Component {
                         </div>
                     </div>
                 </Row>
+                
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
+                    <text >Enter your card Information</text>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="text" placeholder="45879966522145456   10/22        cvc" maxlength="20" minlength="20" className="mr-sm-2"></Input>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck}/>
+                    </CardElementContainer>
+                    <CardElementContainer>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type='month' placeholder="Experation date" max="2026-01" min="2020-10" className="mr-sm-2" />
+                    </CardElementContainer>
+                    <CardElementContainer>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck}/>
                     </CardElementContainer>
                 </Row>
                 <Row id="Card" style={{ visibility: 'hidden' }}>
@@ -311,8 +260,8 @@ class CheckoutForm extends React.Component {
                     </SubmitButton>
                 </Row>
                 <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
-                    <FormFieldContainer  >
-                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="text" placeholder="070 005 4540" maxlength="10" minlength="10" className="mr-sm-2" ></Input>
+                    <FormFieldContainer   >
+                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="number" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" onInput={this.maxLengthCheck} ></Input>
                     </FormFieldContainer>
                 </Row>
 
