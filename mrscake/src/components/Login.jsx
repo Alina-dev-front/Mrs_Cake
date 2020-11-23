@@ -62,11 +62,9 @@ class Login extends React.Component {
                                     <CardGroup>
                                         <Card className="p-2">
                                             <CardBody style={{paddingBottom: "50px"}}>
-                                                <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}> 
-                                                    <div className="col-sm-12 btn btn-primary">
-                                                        Login
-                                                    </div>
-                                                </Row>
+                                            <div className="links" style={{color: "Black"}}>
+                                            <b>LOGIN PAGE</b>
+                                            </div>
                                                 <FormGroup className="mb-3">
                                                     <Input type="email" name = "inputEmail"  id="inputEmail" placeholder="Email" />
                                                 </FormGroup>	                                           

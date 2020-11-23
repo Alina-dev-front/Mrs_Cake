@@ -93,9 +93,9 @@ class SignUp extends Component {
               <Card className="mx-4">
                 <CardBody className="p-4">
                
-                    <Row className="mb-2 pageheading" style={{marginLeft: "0px"}}>
-                      <div className="col-sm-12 btn btn-primary">Sign Up</div>
-                    </Row>
+                <div className="links" style={{color: "Black"}}>
+                <b>USER SIGN UP</b>
+                </div> 
 
                     <FormGroup className="mb-3">
                       <Input required={true} type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
