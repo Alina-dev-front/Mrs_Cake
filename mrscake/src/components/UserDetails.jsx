@@ -57,8 +57,7 @@ class UserDetails extends Component {
         
   render() {
     
-    let id = Cookies.get('user_id');
-    if(id == null || id === "") {
+    
   
         return  <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
                     <div className="app flex-row align-items-center">
@@ -104,6 +103,6 @@ class UserDetails extends Component {
                     </div>
                 </Form>;
     }  }   
-}
+
 
 export default UserDetails;
