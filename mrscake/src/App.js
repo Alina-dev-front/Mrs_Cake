@@ -55,7 +55,7 @@ function App() {
             <Route path='/resetpassword' component={ResetPassword} />
             <Route path='/admin' component={AdminPage} />
             <Route path='/bakeryfilter' component={BakeryFilter}/>
-            <Route path='/bakerpPage' component={BakeryPage}/>
+            <Route path='/bakeryPage' component={BakeryPage}/>
             <Route path='/greetings' component={Greetings}/>
            
 
