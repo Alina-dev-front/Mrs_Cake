@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col, Container,  Row } from 'reactstrap';
-import './BakeryPage.css';
 import UserModal from './UserModal';
 import UserDetails from './UserDetails';
 import { USERS_API_URL } from '../constants/user_api_url';

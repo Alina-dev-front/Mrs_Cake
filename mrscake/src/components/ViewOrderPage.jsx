@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Container, Form, Row, Label } from 'reactstrap';
-import './BakeryPage.css';
-
+import { Col, Container, Row, Label } from 'reactstrap';
 import UserOrdersTable from './UserOrdersTable';
 import {  ORDERS_API_URL } from '../constants/orders_api_url';
 import Cookies from 'js-cookie';

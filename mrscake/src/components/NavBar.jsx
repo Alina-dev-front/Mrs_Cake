@@ -18,16 +18,15 @@ function NavBar({cartLength}) {
   function ShowUserDetailsSign() {
     if(userRole === 'Customer') {
       return  <NavDropdown eventKey={1} 
-                title={
-                    
-   < img src= {userprofile}
+      title={
+        < img src= {userprofile}
         width="30"
         height="30"
         className="d-inline-block align-top"
         alt="userprofile_a"/>   
                 } 
                 id="basic-nav-dropdown">
-<Nav.Link as={Link} to="/userprofilepage">
+              <Nav.Link as={Link} to="/userprofilepage">
                 <NavItem eventKey={1.1}><font color="black">User Profile</font></NavItem>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/ViewOrderPage">

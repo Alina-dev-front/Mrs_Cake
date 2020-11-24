@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import {connect} from 'react-redux';
-import "./BakeryTable.css";
+import "./UserOrderTable.css";
 import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
