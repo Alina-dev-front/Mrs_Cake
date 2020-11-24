@@ -21,22 +21,18 @@ class UserModal extends Component {
         let display = ""
         let userRole = Cookies.get('role');
         if(userRole === 'Customer') {
-            display = 'none'
+            display = ''
         }
         let displayVariable = {
             display: display 
         } 
         if (isNew) {
-            title = 'Add User';
-            button = <Button className="add-User-button"
-                onClick={this.toggle}
-                style={displayVariable}>Add new user</Button>;
-        } else {
+            title = 'Edit User';
             button = <Button
                 color="warning"
                 onClick={this.toggle}
                 style={displayVariable}>Edit</Button>;
-        }
+        } 
         return <Fragment>
             {button}
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
