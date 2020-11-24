@@ -31,6 +31,7 @@ class Login extends React.Component {
         })
         .then(userData => {
             this.setState({ user: userData })
+            console.log(this.state.user);
             if(this.state.user && this.state.user.loginStatus === "Logged in") {
                 this.showWelcome(this.state.user.firstName)
                 this.props.history.push('/')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Navbar, Nav, Form, FormControl, NavDropdown,NavItem} from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
@@ -11,7 +11,6 @@ import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 import bakeryprofile from '../bakeryprofile.svg';
 import { LOGOUT_API_URL } from '../constants/api_url_path';
-import { USERS_API_URL } from '../constants/user_api_url';
 
 function NavBar({cartLength}) {
   let userRole = Cookies.get('role');
@@ -60,29 +59,6 @@ function NavBar({cartLength}) {
     return <Nav.Link as={Link} to="/" onClick={() => SignOut(history, setCookie)} ><b>Sign out</b></Nav.Link>
   }
 
-  // const [user, setUser] = useState();
-
-  // function ShowFirstName() {
-  //   if(userId == null || userId === "") {
-  //     return "Hello";
-  //   } else {
-  //     fetch(`${USERS_API_URL}/${userId}`, {
-  //       method: 'get',
-  //       headers: {'Content-Type': 'application/json'},
-  //     })
-  //     .then(response => {
-  //         var dbResponse = response.json();
-  //         return dbResponse;
-  //     })
-  //     .then(userData => {
-  //       setUser({user: userData});
-  //       console.log("!!!!!!!!!!user.user");
-  //       console.log(user.user);
-  //       return user.user.firstName;
-  //     })
-  //   }
-  // }
-
   return <Navbar fixed="top" bg="light" variant="light">
         <Nav.Link as={Link} to="/" >
       <img
@@ -97,7 +73,6 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
     <Nav.Link as={Link} to="/contaktus">Contact Us</Nav.Link>
-    {/* <Button>{ShowFirstName()}</Button> */}
     <Nav.Link as={Link} to="/bakeryFilter" style={{display: userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
     <Nav.Link as={Link} to="/admin" style={{display: userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
