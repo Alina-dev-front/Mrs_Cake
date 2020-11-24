@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap';
+import { Button, Navbar, Nav, Form, FormControl, NavDropdown,NavItem} from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
@@ -17,15 +17,28 @@ function NavBar({cartLength}) {
 
   function ShowUserDetailsSign() {
     if(userRole === 'Customer') {
-      return <Nav.Link as={Link} to="/userdetails">
-      <img
-        src={userprofile}
+      return  <NavDropdown eventKey={1} 
+                title={
+                    
+   < img src= {userprofile}
         width="30"
         height="30"
         className="d-inline-block align-top"
-        alt="userprofile_a"
-      />
-    </Nav.Link>;
+        alt="userprofile_a"/>   
+                } 
+                id="basic-nav-dropdown">
+<Nav.Link as={Link} to="/userprofilepage">
+                <NavItem eventKey={1.1}><font color="black">User Profile</font></NavItem>
+                </Nav.Link>
+                <Nav.Link as={Link} to="/ViewOrderPage">
+                <NavItem eventKey={1.1}>
+                    <font color="black"> View Orders</font>
+                </NavItem>
+                </Nav.Link>
+            </NavDropdown>
+      
+      
+ 
     } else if (userRole === 'BakeryOwner'){
       return <Nav.Link as={Link} to="/bakerypage">
       <img

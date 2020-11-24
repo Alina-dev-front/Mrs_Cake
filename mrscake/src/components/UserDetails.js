@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, CardBody, Card, Container, Row, Col, CardGroup , FormGroup} from 'reactstrap';	  
+import { Button, Form, Input,  Row, FormGroup, CardBody, Card, CardGroup,Col,Container,} from 'reactstrap';	  
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import './Login.css';
-
+import Cookies from 'js-cookie';
 
 class UserDetails extends Component {
   state = 
@@ -28,15 +28,16 @@ class UserDetails extends Component {
     this.setState({ [e.target.name]: e.target.value })
    } 
   
-
     submitEdit = e => { 
         e.preventDefault();
         fetch(`${USERS_API_URL}/${this.state.id}`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json'
+               
             },
             body: JSON.stringify({
+              id: Cookies.get('user_id'),
               firstName: this.state.firstName,
               lastName: this.state.lastName,
               email: this.state.email,
@@ -55,19 +56,21 @@ class UserDetails extends Component {
     }
         
   render() {
-
-   
+    
+    let id = Cookies.get('user_id');
+    if(id == null || id === "") {
+  
         return  <Form onSubmit={this.props.user ? this.submitEdit : this.submitNew}>
-                  <div className="app flex-row align-items-center">
-                    <Container style={{paddingTop: "100px"}}>
-                      <Row className="justify-content-center">
-                        <Col md="9" lg="7" xl="6">
-                          <CardGroup>
-                            <Card className="p-2">
-                              <CardBody style={{paddingBottom: "50px"}}>
-                                  <div className="links" style={{color: "Black"}}>
-                                    <b>USER DETAILS</b>
-                                  </div>
+                    <div className="app flex-row align-items-center">
+                        <Container style={{paddingTop: "100px"}}>
+                            <Row className="justify-content-center">
+                                <Col md="9" lg="7" xl="6">
+                                    <CardGroup>
+                                        <Card className="p-2">
+                                            <CardBody style={{paddingBottom: "50px"}}>
+                                            <div className="links" style={{color: "Black"}}>
+                                            <b>USER PROFILE</b>
+                                            </div>
                                 <FormGroup className="mb-3">
                                 <Input required={true} type="text" name="firstName" onChange={this.handleChange} value={this.state.firstname === '' ? '' : this.state.firstName} placeholder="First Name" />
                       <Input required={true} type="text" name="lastName" onChange={this.handleChange} value={this.state.lastname === '' ? '' : this.state.lastName } placeholder="Last Name" />
@@ -92,15 +95,15 @@ class UserDetails extends Component {
                                 <Input className="mb-3" type="int"  name="creditCardNumber" onChange={this.handleChange} value={this.state.credtCardNumber=== '' ? '' : this.state.creditCardNumber} placeholder="CreditCardNumber" />
                                 </FormGroup>
                                 <Button color="success" block >Submit</Button>
-                              </CardBody>
-                            </Card>
-                          </CardGroup>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </div>
-                </Form>
-    }   
+                                     </CardBody>
+                                        </Card>
+                                    </CardGroup>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
+                </Form>;
+    }  }   
 }
 
 export default UserDetails;
