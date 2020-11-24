@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Navbar, Nav, Form, FormControl, NavDropdown,NavItem} from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
@@ -11,33 +11,29 @@ import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 import bakeryprofile from '../bakeryprofile.svg';
 import { LOGOUT_API_URL } from '../constants/api_url_path';
+import { USERS_API_URL } from '../constants/user_api_url';
 
 function NavBar({cartLength}) {
   let userRole = Cookies.get('role');
 
   function ShowUserDetailsSign() {
     if(userRole === 'Customer') {
-      return  <NavDropdown eventKey={1} 
+      return <NavDropdown 
       title={
-        < img src= {userprofile}
+        <img src={userprofile}
         width="30"
         height="30"
         className="d-inline-block align-top"
         alt="userprofile_a"/>   
-                } 
-                id="basic-nav-dropdown">
-              <Nav.Link as={Link} to="/userdetails">
-                <NavItem eventKey={1.1}><font color="black">User Profile</font></NavItem>
-                </Nav.Link>
-                <Nav.Link as={Link} to="/ViewOrderPage">
-                <NavItem eventKey={1.1}>
-                    <font color="black"> View Orders</font>
-                </NavItem>
-                </Nav.Link>
-            </NavDropdown>
-      
-      
- 
+      } 
+      id="basic-nav-dropdown">
+      <Nav.Link as={Link} to="/userdetails">
+        <NavItem style={{color: "black" }}>User Profile</NavItem>
+        </Nav.Link>
+        <Nav.Link as={Link} to="/ViewOrderPage">
+        <NavItem style={{color: "black" }}>View Orders</NavItem>
+        </Nav.Link>
+    </NavDropdown>
     } else if (userRole === 'BakeryOwner'){
       return <Nav.Link as={Link} to="/bakerypage">
       <img
@@ -52,6 +48,7 @@ function NavBar({cartLength}) {
       return null;
     }
   }
+
   const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
   let userId = Cookies.get('user_id');
@@ -62,6 +59,29 @@ function NavBar({cartLength}) {
     }
     return <Nav.Link as={Link} to="/" onClick={() => SignOut(history, setCookie)} ><b>Sign out</b></Nav.Link>
   }
+
+  // const [user, setUser] = useState();
+
+  // function ShowFirstName() {
+  //   if(userId == null || userId === "") {
+  //     return "Hello";
+  //   } else {
+  //     fetch(`${USERS_API_URL}/${userId}`, {
+  //       method: 'get',
+  //       headers: {'Content-Type': 'application/json'},
+  //     })
+  //     .then(response => {
+  //         var dbResponse = response.json();
+  //         return dbResponse;
+  //     })
+  //     .then(userData => {
+  //       setUser({user: userData});
+  //       console.log("!!!!!!!!!!user.user");
+  //       console.log(user.user);
+  //       return user.user.firstName;
+  //     })
+  //   }
+  // }
 
   return <Navbar fixed="top" bg="light" variant="light">
         <Nav.Link as={Link} to="/" >
@@ -77,6 +97,7 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
     <Nav.Link as={Link} to="/contaktus">Contact Us</Nav.Link>
+    {/* <Button>{ShowFirstName()}</Button> */}
     <Nav.Link as={Link} to="/bakeryFilter" style={{display: userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
     <Nav.Link as={Link} to="/admin" style={{display: userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
@@ -108,6 +129,7 @@ function SignOut(history, setCookie) {
     window.location.reload(true);
   })
 }
+
 const mapStateToProps = (state) => {
   return {
     cartLength: state.shop.cart.length
