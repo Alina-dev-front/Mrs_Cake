@@ -26,7 +26,7 @@ function NavBar({cartLength}) {
         alt="userprofile_a"/>   
                 } 
                 id="basic-nav-dropdown">
-              <Nav.Link as={Link} to="/userprofilepage">
+              <Nav.Link as={Link} to="/userdetails">
                 <NavItem eventKey={1.1}><font color="black">User Profile</font></NavItem>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/ViewOrderPage">

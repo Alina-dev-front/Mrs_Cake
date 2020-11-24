@@ -18,7 +18,7 @@ import AdminPage from './components/AdminPage';
 import BakeryFilter from './components/BakeryFilter';
 import BakeryPage from './components/BakeryPage';
 import Greetings from './components/greetings'
-import UserProfilePage from './components/UserProfilePage'
+import UserDetails from './components/UserDetails'
 
 import './App.css';
 //import orders from './components/orders';
@@ -48,7 +48,7 @@ function App() {
             <Route path='/signup' component={SignUp} /> 
             <Route path="/faq" component={FAQ} /> 
             <Route path="/vieworderpage" component={ViewOrderPage} /> 
-            <Route path="/userprofilepage" component={UserProfilePage} />   
+            <Route path="/userdetails" component={UserDetails} />   
             <Route  path='/forgotpassword' component={ForgotPassword}/>
             <Route path='/CheckOutForm' component={CheckoutForm} />
             <Route path='/checkoutform' component={CheckoutForm} />
