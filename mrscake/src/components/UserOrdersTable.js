@@ -5,6 +5,11 @@ import "./UserOrderTable.css";
 class UserOrdersTable extends Component {
   render() {
     let items = this.props.items  
+    
+    if (this.props.filteredItems.length > 0) {
+      items = this.props.filteredItems;
+    }
+
         return <Table striped>
         
       <thead className="thead-dark">
