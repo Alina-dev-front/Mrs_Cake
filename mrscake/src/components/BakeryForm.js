@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, Row,  FormGroup } from 'reactstrap';	  
 import { BAKERIES_API_URL } from '../constants/bakeries_api_url.js';
-
+import Cookies from 'js-cookie';
 class BakeryForm extends Component {
   state = 
   {
@@ -18,6 +18,25 @@ class BakeryForm extends Component {
       }
     }
 
+    getBakery = () => {
+      let userId = Cookies.get('user_id');
+      fetch(`${BAKERIES_API_URL}/${userId}`, {
+               method: 'get',
+               headers: {'Content-Type': 'application/json'},
+             })
+             .then(response => {
+                 var dbResponse = response.json();
+                 return dbResponse;
+             })
+             .then(userData => {
+               this.setState({user: userData});
+             })
+    }
+
+    updateState = (id) => {
+      console.log("im update")
+      this.getUser();
+    }
      handleChange = e => {
       this.setState({ [e.target.name]: e.target.value })
      }  

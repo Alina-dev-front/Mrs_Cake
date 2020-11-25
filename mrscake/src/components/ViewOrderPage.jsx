@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Label } from 'reactstrap';
+import { Col, Container, Row, Label, Form } from 'reactstrap';
 import UserOrdersTable from './UserOrdersTable';
-import {  ORDERS_API_URL } from '../constants/orders_api_url';
+import {ORDERS_API_URL} from '../constants/orders_api_url';
 
-class UserProfilePage extends Component {
+class ViewOrderPage extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -38,23 +38,42 @@ class UserProfilePage extends Component {
       this.setState({ items: updated })
     }
     getUnique(array, comparison) {
-      const uniqueName = array
+      const uniqueUserId = array
         .map(element => element[comparison])
         .map((element, index, final) => final.indexOf(element) === index && index)
         .filter(element => array[element])
         .map(element => array[element]);
   
-      return uniqueName;
+      return uniqueUserId;
     }
     render() {
+      const uniqueItem = this.getUnique(this.state.items, "userId");
       const items = this.state.items;
       const item = this.state.item;
       const filteredItems = [];
-
-      return <Container className="ProductTableContainer">
+  
+      const filterDropdown = items.filter(function(result) {
+        return result.userId === item;
+      });
+      return <Container className="OrderTableContainer">
         <span>
-            <Label className="bakery-table-title">Users's Order list</Label>
+            <Label className="order-table-title">Users's Order list</Label>
         </span>
+        <Form>
+          <Label>Choose by User Id:</Label>
+            <select value={this.state.item} onChange={this.handleChangeItem}>
+                <option value="none">Show all</option>
+                {uniqueItem.map(item => (
+                  <option key={item.id} value={item.userId}>
+                    {item.userId}
+                  </option>
+                ))}
+            </select>
+            <div style={{display: "none"}}>{filterDropdown.map(item => (
+              filteredItems.push(item)
+            ))}
+            </div>
+        </Form>
           <Row>
             <Col>
               <UserOrdersTable
@@ -68,4 +87,4 @@ class UserProfilePage extends Component {
     }
 }
 
-export default UserProfilePage;
+export default ViewOrderPage;
