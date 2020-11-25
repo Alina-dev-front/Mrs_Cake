@@ -18,8 +18,9 @@ function ContactUs() {
 
     function RenderImages() {
         const contactUsPictures = [contactus, email];
-        return(contactUsPictures.map((item) => 
-        <img style={{paddingTop: "40px"}}
+        
+        return(contactUsPictures.map((item, i) => 
+        <img key={i} style={{paddingTop: "40px"}}
             src={item}
             alt="Contact Us"
             width="150"
