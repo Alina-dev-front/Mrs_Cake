@@ -36,7 +36,6 @@ class UserDetails extends Component {
   }
 
   updateState = (id) => {
-    console.log("im update")
     this.getUser();
   }
 
