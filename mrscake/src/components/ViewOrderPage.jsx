@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Col, Container, Row, Label } from 'reactstrap';
 import UserOrdersTable from './UserOrdersTable';
 import {  ORDERS_API_URL } from '../constants/orders_api_url';
-import Cookies from 'js-cookie';
-import {connect} from 'react-redux';
 
 class UserProfilePage extends Component {
     constructor(props) {
@@ -49,20 +47,14 @@ class UserProfilePage extends Component {
       return uniqueName;
     }
     render() {
-      
-      
       const items = this.state.items;
       const item = this.state.item;
       const filteredItems = [];
-      let userId = Cookies.get('userId');
-      
 
       return <Container className="ProductTableContainer">
         <span>
-            <Label className="bakery-table-title" >Users's Order list</Label>
-            
+            <Label className="bakery-table-title">Users's Order list</Label>
         </span>
-        
           <Row>
             <Col>
               <UserOrdersTable
@@ -76,4 +68,4 @@ class UserProfilePage extends Component {
     }
 }
 
-export default connect()(UserProfilePage) ;
+export default UserProfilePage;

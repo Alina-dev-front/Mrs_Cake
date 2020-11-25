@@ -17,27 +17,22 @@ function NavBar({cartLength}) {
 
   function ShowUserDetailsSign() {
     if(userRole === 'Customer') {
-      return  <NavDropdown eventKey={1} 
+      return <NavDropdown 
       title={
-        < img src= {userprofile}
+        <img src={userprofile}
         width="30"
         height="30"
         className="d-inline-block align-top"
         alt="userprofile_a"/>   
-                } 
-                id="basic-nav-dropdown">
-              <Nav.Link as={Link} to="/userdetails">
-                <NavItem eventKey={1.1}><font color="black">User Profile</font></NavItem>
-                </Nav.Link>
-                <Nav.Link as={Link} to="/ViewOrderPage">
-                <NavItem eventKey={1.1}>
-                    <font color="black"> View Orders</font>
-                </NavItem>
-                </Nav.Link>
-            </NavDropdown>
-      
-      
- 
+      } 
+      id="basic-nav-dropdown">
+      <Nav.Link as={Link} to="/userdetails">
+        <NavItem style={{color: "black" }}>User Profile</NavItem>
+        </Nav.Link>
+        <Nav.Link as={Link} to="/ViewOrderPage">
+        <NavItem style={{color: "black" }}>View Orders</NavItem>
+        </Nav.Link>
+    </NavDropdown>
     } else if (userRole === 'BakeryOwner'){
       return <Nav.Link as={Link} to="/bakerypage">
       <img
@@ -52,6 +47,7 @@ function NavBar({cartLength}) {
       return null;
     }
   }
+
   const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
   let userId = Cookies.get('user_id');
@@ -108,6 +104,7 @@ function SignOut(history, setCookie) {
     window.location.reload(true);
   })
 }
+
 const mapStateToProps = (state) => {
   return {
     cartLength: state.shop.cart.length

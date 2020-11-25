@@ -1,31 +1,10 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-import {connect} from 'react-redux';
 import "./UserOrderTable.css";
-import Cookies from 'js-cookie';
-import { useCookies } from 'react-cookie';
-import { useHistory } from 'react-router-dom';
 
 class UserOrdersTable extends Component {
-
- 
-
-  
-  // this.setState({ user: userData })
-  // if(this.state.user && this.state.user.loginStatus === "Logged in") {
-  //   this.showWelcome(this.state.user.firstName)
-  //   this.props.history.push('/')
   render() {
     let items = this.props.items
-    
-    let userId = Cookies.get('user_id');
-
-  
-     if(userId == userId ) {
-      
-    // if (this.props.filteredItems.length > 0) {
-      // items = this.props.filteredItems;
-    // }    
     return <Table striped>
       <thead className="thead-dark">
         <tr>
@@ -66,5 +45,5 @@ class UserOrdersTable extends Component {
       </tbody>
     </Table>;
   }}
-}
-export default connect()(UserOrdersTable) ;
+
+export default UserOrdersTable;
