@@ -32,7 +32,6 @@ class UserDetails extends Component {
            })
            .then(userData => {
              this.setState({user: userData});
-             console.log(this.state.user)
            })
   }
 
@@ -67,7 +66,7 @@ class UserDetails extends Component {
   }
         
   render() {
-        return  <Form onSubmit={() => this.submitEdit(this.props.user)}>
+        return  <Form onSubmit={() => this.submitEdit()}>
                     <div className="app flex-row align-items-center">
                         <Container style={{paddingTop: "100px"}}>
                             <Row className="justify-content-center">
@@ -75,14 +74,26 @@ class UserDetails extends Component {
                                     <CardGroup>
                                         <Card className="p-2">
                                             <CardBody style={{paddingBottom: "50px"}}>
-                                            <Label style={{color: "black"}}>USER PROFILE</Label>
+                                            <div className="user-profile-title">USER PROFILE</div>
                                             <FormGroup className="mb-3">
                                               <Input className="mb-3" required={true} type="text" name="firstName" onChange={this.handleChange} value={this.state.user.firstName === '' ? '' : this.state.user.firstName} placeholder="First Name" />
+                                            </FormGroup>
+                                            <FormGroup className="mb-3">  
                                               <Input className="mb-3" required={true} type="text" name="lastName" onChange={this.handleChange} value={this.state.user.lastname === '' ? '' : this.state.user.lastName } placeholder="Last Name" />
+                                            </FormGroup>
+                                            <FormGroup className="mb-3">
                                               <Input className="mb-3" required={true} type="email" name="email" onChange={this.handleChange} value={this.state.user.email === '' ? '' : this.state.user.email} placeholder="Email" />
+                                            </FormGroup>
+                                            <FormGroup className="mb-3">
                                               <Input className="mb-3" required={true} type="password" name="password" onChange={this.handleChange} value={this.state.user.password === '' ? '' : this.state.user.password}  placeholder="Password" />
+                                            </FormGroup>
+                                            <FormGroup className="mb-3">
                                               <Input className="mb-3" type="text" name="address" onChange={this.handleChange} value={this.state.user.address === '' ? '' : this.state.user.address} placeholder="Address" />
+                                            </FormGroup>
+                                            <FormGroup className="mb-3">
                                               <Input className="mb-3"  type="int" name="mobilePhone" onChange={this.handleChange} value={this.state.user.mobilePhone === '' ? '' : this.state.user.mobilePhone } placeholder="Mobile Phone" />
+                                            </FormGroup>
+                                            <FormGroup className="mb-3">
                                               <Input className="mb-3" type="int"  name="creditCardNumber" onChange={this.handleChange} value={this.state.user.credtCardNumber=== '' ? '' : this.state.user.creditCardNumber} placeholder="Credit Card Number" />
                                             </FormGroup>
                                             <Button color="success" block >Submit</Button>
