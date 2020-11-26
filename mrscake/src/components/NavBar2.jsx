@@ -1,24 +1,28 @@
 import React, {Component} from 'react';
-import { Button, Navbar, Nav, Form, FormControl, NavDropdown,NavItem} from 'react-bootstrap';
+import { Button, Navbar, Nav, Form, FormControl, NavDropdown, NavItem, Label} from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
 import { Link } from 'react-router-dom';
-import userprofile from '../userprofile.svg';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import bakeryprofile from '../bakeryprofile.svg';
 import { LOGOUT_API_URL } from '../constants/api_url_path';
-
+import { USERS_API_URL } from '../constants/user_api_url.js';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: Cookies.get('user_id'),
-      userRole: Cookies.get('role')
+      userRole: Cookies.get('role'),
+      user: {}
     };
   }
+
+  componentDidMount() {
+    this.getUser();
+}
   
   ShowUserDetailsSign = () => {
     if(this.state.userId == null || this.state.userId === "") {
@@ -26,13 +30,8 @@ class NavBar extends Component {
     } else {
       if(this.state.userRole === 'Customer') {
         return <NavDropdown 
-        title={
-          <img src={userprofile}
-          width="30"
-          height="30"
-          className="d-inline-block align-top"
-          alt="userprofile_a"/>   
-        } 
+        title={this.state.user.firstName}
+        style={{fontWeight: "500"}}
         id="basic-nav-dropdown">
         <Nav.Link as={Link} to="/userdetails">
           <NavItem style={{color: "black" }}>User Profile</NavItem>
@@ -57,6 +56,21 @@ class NavBar extends Component {
     }
   }
 
+  getUser = () => {
+    fetch(`${USERS_API_URL}/${this.state.userId}`, {
+      method: 'get',
+      headers: {'Content-Type': 'application/json'},
+    })
+    .then(response => {
+        var dbResponse = response.json();
+        return dbResponse;
+    })
+    .then(userData => {
+      this.setState({user: userData});
+      return this.state.user;
+    })
+  }
+
   SwitchSignInSignOut = () => {
     if(this.state.userId == null || this.state.userId === "") {
       return <Nav.Link as={Link} to="/login"><b>Sign in</b></Nav.Link>
@@ -79,9 +93,8 @@ render() {
       <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
       <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
       <Nav.Link as={Link} to="/contaktus">Contact Us</Nav.Link>
-      <Button>Hello, {this.state.userId}!</Button>
-      <Nav.Link as={Link} to="/bakeryFilter" style={{display: this.userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
-      <Nav.Link as={Link} to="/admin" style={{display: this.userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
+      <Nav.Link as={Link} to="/bakeryFilter" style={{display: this.state.userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
+      <Nav.Link as={Link} to="/admin" style={{display: this.state.userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
       <Form inline style={{marginLeft:"30%"}}>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-primary"><img src={search1} alt="search button" width="25" height="25" /></Button>
@@ -93,7 +106,7 @@ render() {
             /> ({this.props.cartLength})</Nav.Link>
       </Form>
       </Navbar>
-}
+  }
 }
 
 function SignOut() {
