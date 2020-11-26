@@ -11,7 +11,7 @@ import AboutUs from './components/AboutUs';
 import ContaktUs from './components/ContaktUs';
 import ProductTable from './components/ProductPage';
 import ResetPassword from './components/ResetPassword';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar2';
 import CheckoutForm from "./components/CheckoutForm";
 import { useCookies } from 'react-cookie';
 import AdminPage from './components/AdminPage';
@@ -57,8 +57,6 @@ function App() {
             <Route path='/bakeryfilter' component={BakeryFilter}/>
             <Route path='/bakeryPage' component={BakeryPage}/>
             <Route path='/greetings' component={Greetings}/>
-           
-
           </Switch> 
         </BrowserRouter>
     </React.Fragment>
