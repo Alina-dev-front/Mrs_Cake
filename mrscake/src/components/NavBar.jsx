@@ -14,43 +14,47 @@ import { LOGOUT_API_URL } from '../constants/api_url_path';
 
 function NavBar({cartLength}) {
   let userRole = Cookies.get('role');
+  let userId = Cookies.get('user_id');
 
   function ShowUserDetailsSign() {
-    if(userRole === 'Customer') {
-      return <NavDropdown 
-      title={
-        <img src={userprofile}
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-        alt="userprofile_a"/>   
-      } 
-      id="basic-nav-dropdown">
-      <Nav.Link as={Link} to="/userdetails">
-        <NavItem style={{color: "black" }}>User Profile</NavItem>
-        </Nav.Link>
-        <Nav.Link as={Link} to="/ViewOrderPage">
-        <NavItem style={{color: "black" }}>View Orders</NavItem>
-        </Nav.Link>
-    </NavDropdown>
-    } else if (userRole === 'BakeryOwner'){
-      return <Nav.Link as={Link} to="/bakerypage">
-      <img
-        src={bakeryprofile}
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-        alt="bakeryprofile_a"
-      />
-    </Nav.Link>;
-    } else {
+    if(userId == null || userId === "") {
       return null;
+    } else {
+      if(userRole === 'Customer') {
+        return <NavDropdown 
+        title={
+          <img src={userprofile}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="userprofile_a"/>   
+        } 
+        id="basic-nav-dropdown">
+        <Nav.Link as={Link} to="/userdetails">
+          <NavItem style={{color: "black" }}>User Profile</NavItem>
+          </Nav.Link>
+          <Nav.Link as={Link} to="/ViewOrderPage">
+          <NavItem style={{color: "black" }}>View Orders</NavItem>
+          </Nav.Link>
+      </NavDropdown>
+      } else if (userRole === 'BakeryOwner'){
+        return <Nav.Link as={Link} to="/bakerypage">
+        <img
+          src={bakeryprofile}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="bakeryprofile_a"
+        />
+      </Nav.Link>;
+      } else {
+        return null;
+      }
     }
   }
 
   const [cookies, setCookie] = useCookies(['name']);
   const history = useHistory();
-  let userId = Cookies.get('user_id');
 
   function SwitchSignInSignOut() {
     if(userId == null || userId === "") {

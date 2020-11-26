@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input,  Row, FormGroup, CardBody, Card, CardGroup, Col, Container, Label} from 'reactstrap';	  
+import { Button, Form, Input,  Row, FormGroup, CardBody, Card, CardGroup, Col, Container} from 'reactstrap';	  
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import './UserDetails.css';
 import Cookies from 'js-cookie';
@@ -36,7 +36,6 @@ class UserDetails extends Component {
   }
 
   updateState = (id) => {
-    console.log("im update")
     this.getUser();
   }
 
