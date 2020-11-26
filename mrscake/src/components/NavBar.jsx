@@ -15,6 +15,7 @@ import { LOGOUT_API_URL } from '../constants/api_url_path';
 function NavBar({cartLength}) {
   let userRole = Cookies.get('role');
   let userId = Cookies.get('user_id');
+ 
 
   function ShowUserDetailsSign() {
     if(userId == null || userId === "") {
@@ -38,15 +39,24 @@ function NavBar({cartLength}) {
           </Nav.Link>
       </NavDropdown>
       } else if (userRole === 'BakeryOwner'){
-        return <Nav.Link as={Link} to="/bakerypage">
-        <img
-          src={bakeryprofile}
+         return <NavDropdown 
+         title={
+        <img src={bakeryprofile}
           width="30"
           height="30"
           className="d-inline-block align-top"
-          alt="bakeryprofile_a"
-        />
-      </Nav.Link>;
+          alt="bakeryprofile_a"/>
+        } 
+          id="basic-nav-dropdown">
+          <Nav.Link as={Link} to="/bakerypage">
+            <NavItem style={{color: "black" }}>Bakery Profile</NavItem>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/bakeryFilter"> 
+            <NavItem style= {{color: "black" }}>View Products</NavItem></Nav.Link>
+            <Nav.Link as={Link} to="/ViewOrderPage">
+            <NavItem style={{color: "black" }}>View Orders</NavItem>
+            </Nav.Link>
+        </NavDropdown>
       } else {
         return null;
       }
@@ -77,7 +87,7 @@ function NavBar({cartLength}) {
     <Nav.Link as={Link} to="/productpage">Products</Nav.Link>
     <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
     <Nav.Link as={Link} to="/contaktus">Contact Us</Nav.Link>
-    <Nav.Link as={Link} to="/bakeryFilter" style={{display: userRole === 'BakeryOwner' ? '' : 'none'}}>Bakery</Nav.Link>
+  
     <Nav.Link as={Link} to="/admin" style={{display: userRole === 'Admin' ? '' : 'none'}}>Admin</Nav.Link>
     <Form inline style={{marginLeft:"30%"}}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />

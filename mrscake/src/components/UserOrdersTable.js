@@ -4,16 +4,20 @@ import "./UserOrderTable.css";
 
 class UserOrdersTable extends Component {
   render() {
-    let items = this.props.items
-    return <Table striped>
+    let items = this.props.items  
+    if (this.props.filteredItems.length > 0) {
+      items = this.props.filteredItems;
+    }
+
+        return <Table striped>
+        
       <thead className="thead-dark">
         <tr>
           <th className="id-column">Order Id</th>
+          <th className="number-column">Order Number</th>
           <th className="userId-column">User Id</th>
-          <th className="address-column">Address</th>
-          <th className="deliveryMethod-column">Delivery Method</th>
-          <th className="totalPrice-column"> Total Price</th>
-          <th className="comments-column">Comments</th>
+          <th className="deliveryMethod-column"> Delivery Method</th>
+         
         </tr>
       </thead>
       <tbody>
@@ -21,25 +25,20 @@ class UserOrdersTable extends Component {
           <tr>
           </tr>
           : items.map(item => (
-            <tr key={item.id}>
+            <tr key={item.userId}>
                 <td className="id-column">
                 {item.id}
               </td>
-               <td className="userId-column">
-                {item.userId}
+               <td className="number-column">
+                {item.number}
               </td>
-              <td className="address-column">
-                {item.address}
+              <td className="userId-column">
+                {item.userId}
               </td>
               <td className="deliveryMethod-column">
                 {item.deliveryMethod}
               </td>
-              <td className="totalPrice-column">
-                {item.totalPrice}
-              </td>
-              <td className="comments-column">
-                {item.comments}
-              </td>
+              
             </tr>
           ))}
       </tbody>

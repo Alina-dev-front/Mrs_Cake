@@ -1,26 +1,28 @@
-
 .id-column {
-    width: 10% !important;
+    width: 20% !important;
+}
+
+.number-column {
+    width: 20% !important;
 }
 
 .userId-column {
-    width: 10% !important;
+    width: 20% !important;
 }
-
-.address-column {
-    width: 10% !important;
-}
-
 .deliveryMethod-column {
-    width: 10% !important;
+    width: 20% !important;
 }
 
-.totalPrice-column {
-    width: 10% !important;
+
+.OrderTableContainer {
+    padding-top: 100px;
+    padding-bottom: 200px;
+    overflow: auto;
+    max-width: 90% !important;
 }
 
-.Comments-column {
-    width: 10% !important;
+.order-table-title {
+    font-size: 1.7rem;
+    font-weight: 500;
 }
-
 
