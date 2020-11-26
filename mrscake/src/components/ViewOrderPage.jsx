@@ -57,7 +57,7 @@ class ViewOrderPage extends Component {
       }  
       return privateOrders;   
     }
-  
+    
     render() {
       return <Container className="OrderTableContainer">
           <span>

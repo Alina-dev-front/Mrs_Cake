@@ -20,6 +20,26 @@ namespace Mrs_Cake.Services
         public List<Order> Get() =>
             _orders.Find(order => true).ToList();
 
+        public List<Order> GetOrdersByBakery(string bakeryName)
+        {
+            List<Order> allOrdersFromDB = _orders.Find(order => true).ToList();
+
+            List<Order> ownOrders = new List<Order>();
+
+            foreach(Order order in allOrdersFromDB)
+            {
+                List<Product> products = order.OrderedProducts;
+                foreach(Product product in products)
+                {
+                    if(product.Bakery == bakeryName)
+                    {
+                        ownOrders.Add(order);
+                    }
+                }
+            }
+            return ownOrders;
+        }
+        
         public Order GetById(string id) =>
             _orders.Find<Order>(order => order.Id == id).FirstOrDefault();
 
