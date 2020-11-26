@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Label } from 'reactstrap';
+import { Col, Container, Row, Label, Button } from 'reactstrap';
 import UserOrdersTable from './UserOrdersTable';
 import {ORDERS_API_URL} from '../constants/orders_api_url';
 import { USERS_API_URL } from '../constants/user_api_url.js';
@@ -9,96 +9,63 @@ class ViewOrderPage extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        items: [],
-        item: "",
-        user: { }
+        orders: [],
+        user: {},
+        userId: Cookies.get('user_id'),
+        userRole: Cookies.get('role')
       }
     }
-    
-  
-    handleChangeItem = event => {
-      this.setState({ item: event.target.value });
-    };
   
     componentDidMount() {
-      this.getItems();
+      this.getAllOrders();
       this.getUser();
     }
 
     getUser = () => {
-      let userEmail = Cookies.get('userEmail');
-      fetch(`${USERS_API_URL}/${userEmail}`, {
+      fetch(`${USERS_API_URL}/${this.state.userId}`, {
                method: 'get',
                headers: {'Content-Type': 'application/json'},
              })
-          //    .then(response => {
-          //     var dbResponse = response.json();
-          //     return dbResponse;
-          // })
+              .then(response => {
+              var dbResponse = response.json();
+              return dbResponse;
+          })
           .then(userData => {
             this.setState({user: userData});
           })
-            
+          .catch(err => console.log(err));
     }
-    getItems = () => {
+
+    getAllOrders = () => {
       fetch(ORDERS_API_URL)
         .then(res => res.json())
-        .then(res => this.setState({ items: res }))
+        .then(res => {
+          this.setState({ orders: res })
+        })
         .catch(err => console.log(err));
     }
-    addOrderToState = order => {
-      this.setState(previous => ({
-        items: [...previous.items, order]
-      }));
-    }
-    updateState = (id) => {
-      this.getItems();
-    }
-    deleteItemFromState = id => {
-      const updated = this.state.items.filter(item => item.id !== id);
-      this.setState({ items: updated })
-    }
-    // getUnique(array, comparison) {
-    //   const uniqueUserId = array
-    //     .map(element => element[comparison])
-    //     .map((element, index, final) => final.indexOf(element) === index && index)
-    //     .filter(element => array[element])
-    //     .map(element => array[element]);
-  
-    //   return uniqueUserId;
-    // }
-    render() {
-      // const uniqueItem = this.getUnique(this.state.items, "userId");
-  
-      const items = this.state.items;
-      const item = this.state.item;
-      const filteredItems = [];
-    
-      return <Container className="OrderTableContainer">
-        <span>
-            <Label className="order-table-title">Users's Order list</Label>
-        </span>
-         
-{/*           
-            {items.map(item => {
 
-              if(item.userId === user.email){
-              items.push(item)
-              
-            }
-          }) */}
-          {/* } */}
-       
-      
+    GetExactUserOrders = () => {
+      let privateOrders = [];
+      if(this.state.userRole ==="Customer") {
+        this.state.orders.forEach(order => {
+          if(order.userId === this.state.user.email) {
+            privateOrders.push(order);
+          }
+          
+        })
+      }  
+      return privateOrders;   
+    }
+  
+    render() {
+      return <Container className="OrderTableContainer">
+          <span>
+            <Label className="order-table-title">Users's Order list</Label>
+          </span>
           <Row>
             <Col>
-           
-              <UserOrdersTable
-                items={items}
-                filteredItems
-                updateState={this.updateState}
-                deleteItemFromState={this.deleteItemFromState} />
-                
+              <UserOrdersTable orders={this.GetExactUserOrders()} />
             </Col>
           </Row>
         </Container>;

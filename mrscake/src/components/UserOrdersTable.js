@@ -4,41 +4,35 @@ import "./UserOrderTable.css";
 
 class UserOrdersTable extends Component {
   render() {
-    let items = this.props.items  
-    if (this.props.filteredItems.length > 0) {
-      items = this.props.filteredItems;
-    }
-
+    let orders = this.props.orders  
         return <Table striped>
-        
       <thead className="thead-dark">
         <tr>
           <th className="id-column">Order Id</th>
           <th className="number-column">Order Number</th>
           <th className="userId-column">User Id</th>
           <th className="deliveryMethod-column"> Delivery Method</th>
-         
         </tr>
       </thead>
       <tbody>
-        {!items || items.length <= 0 ?
+        {!orders || orders.length <= 0 ?
           <tr>
+            <td colSpan="6" align="center"><b>You don't have any orders so far...</b></td>
           </tr>
-          : items.map(item => (
-            <tr key={item.userId}>
+          : orders.map(order => (
+            <tr key={order.id}>
                 <td className="id-column">
-                {item.id}
+                {order.id}
               </td>
                <td className="number-column">
-                {item.number}
+                {order.number}
               </td>
               <td className="userId-column">
-                {item.userId}
+                {order.userId}
               </td>
               <td className="deliveryMethod-column">
-                {item.deliveryMethod}
+                {order.deliveryMethod}
               </td>
-              
             </tr>
           ))}
       </tbody>

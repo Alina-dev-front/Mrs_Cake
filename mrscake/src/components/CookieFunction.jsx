@@ -23,7 +23,6 @@ function CallCookie(user) {
 function setUserRoleAsCookie(user, setCookie, history) {
     setCookie('role', user.userRole, { path: '/' }); 
     setCookie('user_id', user.id, { path: '/' }); 
-    setCookie('user_email', user.email, { path: '/' }); 
     history.push("/");
     window.location.reload(true);
 }
