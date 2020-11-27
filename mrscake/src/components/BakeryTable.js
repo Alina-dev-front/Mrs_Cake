@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-import {connect} from 'react-redux';
 import "./BakeryTable.css";
 
 class BakeryTable extends Component {
 
   render() {
-    let items = this.props.items;
-    if (this.props.filteredItems.length > 0) {
-      items = this.props.filteredItems;
-    }    
+    let products = this.props.products;
+      
     return <Table striped>
       <thead className="thead-dark">
         <tr>
@@ -18,35 +15,33 @@ class BakeryTable extends Component {
           <th className="name-column">Name</th>
           <th className="bakery-column">Bakery</th>
           <th className="price-column">Price</th>
-          
         </tr>
       </thead>
       <tbody>
-        {!items || items.length <= 0 ?
+        {!products || products.length <= 0 ?
           <tr>
           </tr>
-          : items.map(item => (
-            <tr key={item.id}>
+          : products.map(product => (
+            <tr key={product.id}>
                 <td className="id-column">
-                {item.id}
+                {product.id}
               </td>
                <td className="productType-column">
-                {item.productType}
+                {product.productType}
               </td>
               <td className="name-column">
-                {item.name}
+                {product.name}
               </td>
               <td className="bakery-column">
-                {item.bakery}
+                {product.bakery}
               </td>
               <td className="price-column">
-                {item.price}
+                {product.price}
               </td>
-              
             </tr>
           ))}
       </tbody>
     </Table>;
   }
 }
-export default connect()(BakeryTable) ;
+export default BakeryTable;

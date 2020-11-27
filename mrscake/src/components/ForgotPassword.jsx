@@ -25,8 +25,6 @@ class ForgotPassword extends Component {
         })
         .then(userData => {
             this.setState({ user: userData })
-            console.log(this.state.user)
-            
         })     
         .catch(err => console.log(err));
     }

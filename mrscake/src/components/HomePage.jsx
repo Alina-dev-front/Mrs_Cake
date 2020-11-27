@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CarouselControlled from "./Carrousel";
-import FooterPage from '../components/Footer';
 import { Card, Col, Row } from 'react-bootstrap';
 import './HomePage.css';
 

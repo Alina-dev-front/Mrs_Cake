@@ -50,25 +50,20 @@ class BakeryPage extends Component {
 
     GetExactUserBakeries = () => {
       let privateBakeries = [];
-      if(this.state.userRole ==="BakeryOwner") {
-        this.state.bakeries.forEach(bakery => {
-          if(bakery.email === this.state.user.email) {
-            privateBakeries.push(bakery);
-          }
-          
-        })
-      }  
+      this.state.bakeries.forEach(bakery => {
+        if(bakery.email === this.state.user.email) {
+          privateBakeries.push(bakery);
+        }
+      })
       return privateBakeries;   
     }
   
     render() {
-     
       return <Container className="BakeryTableContainer">
         <span>
             <Label className="bakery-table-title" >View Bakery Profile</Label>
           <BakeryModal isNew={true} addBakeryToState={this.addBakeryToState} />
         </span>
-        
           <Row>
             <Col>
               <BakTab
