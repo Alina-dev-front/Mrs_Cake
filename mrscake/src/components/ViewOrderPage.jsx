@@ -61,7 +61,7 @@ class ViewOrderPage extends Component {
     render() {
       return <Container className="OrderTableContainer">
           <span>
-            <Label className="order-table-title">Users's Order list</Label>
+            <Label className="order-table-title">ORDER LIST</Label>
           </span>
           <Row>
             <Col>

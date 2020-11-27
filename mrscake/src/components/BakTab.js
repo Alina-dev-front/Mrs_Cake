@@ -6,10 +6,10 @@ import BakeryModal from './BakeryModal';
 
 class BakTab extends Component {
   render() {
-    let items = this.props.items;
-    if (this.props.filteredItems.length > 0) {
-      items = this.props.filteredItems;
-    }    
+    
+    let bakeries = this.props.bakeries  
+
+      
     return <Table striped>
       <thead className="thead-dark">
         <tr>
@@ -22,31 +22,33 @@ class BakTab extends Component {
         </tr>
       </thead>
       <tbody>
-        {!items || items.length <= 0 ?
+        
+      {!bakeries || bakeries.length <= 0 ?
+
           <tr>
           </tr>
-          : items.map(item => (
-            <tr key={item.id}>
+          : bakeries.map(bakery => (
+            <tr key={bakery.id}>
                 <td className="id-column">
-                {item.id}
+                {bakery.id}
               </td>
                <td className="name-column">
-                {item.name}
+                {bakery.name}
               </td>
               <td className="address-column">
-                {item.address}
+                {bakery.address}
               </td>
               <td className="email-column">
-                {item.email}
+                {bakery.email}
               </td>
               <td className="phone-column">
-                {item.phone}
+                {bakery.phone}
               </td>
-              <td align="center">
+              <td >
                 <span className="action-column">
                   <BakeryModal
                     isNew={false}
-                    bakery={item}
+                    bakery={bakery}
                     updateBakeryIntoState={this.props.updateState} />
                    
                 </span>

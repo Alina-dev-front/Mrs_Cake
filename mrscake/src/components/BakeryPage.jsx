@@ -1,96 +1,82 @@
 import React, { Component } from 'react';
-import { Col, Container, Form, Row, Label } from 'reactstrap';
+import { Col, Container, Row, Label } from 'reactstrap';
 import './BakeryPage.css';
 import BakeryModal from './BakeryModal';
 import BakTab from './BakTab';
 import { BAKERIES_API_URL } from '../constants/bakeries_api_url';
-import {connect} from 'react-redux';
+import { USERS_API_URL } from '../constants/user_api_url.js';
+import Cookies from 'js-cookie';
+
 
 class BakeryPage extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        items: [],
-        item: ""
+        bakeries: [],
+        user: {},
+        userId: Cookies.get('user_id'),
+        userRole: Cookies.get('role')
       }
     }
 
-    handleChangeItem = event => {
-      this.setState({ item: event.target.value });
-    };
-  
     componentDidMount() {
-      this.getItems();
+      this.getAllBakeries();
+      this.getUser();
     }
-    getItems = () => {
+
+    getUser = () => {
+      fetch(`${USERS_API_URL}/${this.state.userId}`, {
+               method: 'get',
+               headers: {'Content-Type': 'application/json'},
+             })
+              .then(response => {
+              var dbResponse = response.json();
+              return dbResponse;
+          })
+          .then(userData => {
+            this.setState({user: userData});
+          })
+          .catch(err => console.log(err));
+    }
+    
+    getAllBakeries = () => {
       fetch(BAKERIES_API_URL)
         .then(res => res.json())
-        .then(res => this.setState({ items: res }))
+        .then(res => {
+          this.setState({ bakeries: res })
+        })
         .catch(err => console.log(err));
     }
-    addBakeryToState = bakery => {
-      this.setState(previous => ({
-        items: [...previous.items, bakery]
-      }));
-    }
-    updateState = (id) => {
-      this.getItems();
-    }
-    deleteItemFromState = id => {
-      const updated = this.state.items.filter(item => item.id !== id);
-      this.setState({ items: updated })
-    }
-    getUnique(array, comparison) {
-      const uniqueName = array
-        .map(element => element[comparison])
-        .map((element, index, final) => final.indexOf(element) === index && index)
-        .filter(element => array[element])
-        .map(element => array[element]);
-  
-      return uniqueName;
-    }
-    render() {
-      const uniqueItem = this.getUnique(this.state.items, "name");
-      
-      const items = this.state.items;
-      const item = this.state.item;
-      const filteredItems = [];
-  
-      const filterDropdown = items.filter(function(result) {
-        return result.name === item;
-      });
 
-      return <Container className="ProductTableContainer">
+    GetExactUserBakeries = () => {
+      let privateBakeries = [];
+      if(this.state.userRole ==="BakeryOwner") {
+        this.state.bakeries.forEach(bakery => {
+          if(bakery.email === this.state.user.email) {
+            privateBakeries.push(bakery);
+          }
+          
+        })
+      }  
+      return privateBakeries;   
+    }
+  
+    render() {
+     
+      return <Container className="BakeryTableContainer">
         <span>
-            <Label className="bakery-table-title" >Bakery List</Label>
-            <BakeryModal isNew={true} addBakeryToState={this.addBakeryToState} />
+            <Label className="bakery-table-title" >View Bakery Profile</Label>
+          <BakeryModal isNew={true} addBakeryToState={this.addBakeryToState} />
         </span>
-        <Form>
-          <Label>Choose by bakery name:</Label>
-            <select value={this.state.item} onChange={this.handleChangeItem}>
-                <option value="none">Show all</option>
-                {uniqueItem.map(item => (
-                  <option key={item.id} value={item.name}>
-                    {item.name}
-                  </option>
-                ))}
-            </select>
-            <div style={{display: "none"}}>{filterDropdown.map(item => (
-              filteredItems.push(item)
-            ))}
-            </div>
-        </Form>
+        
           <Row>
             <Col>
               <BakTab
-                items={items}
-                filteredItems={filteredItems}
-                updateState={this.updateState}
-                deleteItemFromState={this.deleteItemFromState} />
+               bakeries={this.GetExactUserBakeries()}  />
             </Col>
           </Row>
         </Container>;
     }
 }
 
-export default connect()(BakeryPage) ;
+export default (BakeryPage) ;
