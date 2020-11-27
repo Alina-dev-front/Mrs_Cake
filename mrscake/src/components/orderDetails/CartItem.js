@@ -21,8 +21,7 @@ const CartItem = (
     return (
         <div className="row align-items-center mb-3">
             <div className="col-12 col-sm-12 col-md-2 text-center">
-                <img className="img-responsive" src={process.env.PUBLIC_URL + '/ProductImg/' + imageUrl} style={{height: '60%', width: '60%'}} alt={imageUrl}
-                      />
+                <img className="img-responsive" src={process.env.PUBLIC_URL + '/ProductImg/' + imageUrl} style={{height: '60%', width: '60%'}} alt={imageUrl} />
             </div>
             <div className="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
                 <h4 className="product-name"><strong>{(name)}</strong></h4>
@@ -44,7 +43,6 @@ const CartItem = (
                                    size="4" />
                     </div>
                 </div>
-                
             </div>
         </div>
     );
