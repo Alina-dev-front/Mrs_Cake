@@ -5,7 +5,6 @@ import email from '../email.svg';
 import { BAKERIES_API_URL } from '../constants/bakeries_api_url';
 
 function ContactUs() {
-  
     const [allBakeries, setAllBakeries] = useState(null)
     ShowAllBakeries();
   

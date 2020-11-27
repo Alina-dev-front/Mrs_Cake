@@ -28,7 +28,6 @@ export class HomePage extends Component{
                             </Row>
                         </Card.Body>
                     </Card>
-                    <FooterPage />
                 </React.Fragment>
         );
     }

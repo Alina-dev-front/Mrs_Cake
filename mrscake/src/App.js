@@ -21,6 +21,7 @@ import Greetings from './components/greetings'
 import UserDetails from './components/UserDetails'
 
 import './App.css';
+import FooterPage from './components/Footer';
 //import orders from './components/orders';
 
 function App() {
@@ -58,7 +59,9 @@ function App() {
             <Route path='/bakeryPage' component={BakeryPage}/>
             <Route path='/greetings' component={Greetings}/>
           </Switch> 
+          
         </BrowserRouter>
+        <BrowserRouter><FooterPage/></BrowserRouter>
     </React.Fragment>
     );
   }

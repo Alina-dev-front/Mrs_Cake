@@ -38,7 +38,7 @@ namespace Test_Mrs_Cake
         [Fact]
         public void GetOrderById()
         {
-            string testGetById = "5fb69b1e152b429ef5df89b8";
+            string testGetById = "5fc0c2769f55cb735beddb39";
 
             Order orderFromDB = _orderService.GetById(testGetById);
             List<Product> products = orderFromDB.OrderedProducts;
@@ -48,9 +48,9 @@ namespace Test_Mrs_Cake
             expectedÓrder.Number = 0;
             expectedÓrder.Paid = true;
             expectedÓrder.OrderedProducts = products;
-            expectedÓrder.TotalPrice = 4331;
-            expectedÓrder.UserId= "parul@gmail.com";
-            expectedÓrder.Address = "Drottningsgatan/Göteborg/Sweden/12154";
+            expectedÓrder.TotalPrice = 1748;
+            expectedÓrder.UserId= "abdiachir@gmail.com";
+            expectedÓrder.Address = "Ahrenbergsgatan 12A/Göteborg/Sverige/41673";
             expectedÓrder.Comments = "I wish extra Chocolate in the chocolate cakes";
             expectedÓrder.DeliveryMethod = "Home Delivery";
 
@@ -83,7 +83,7 @@ namespace Test_Mrs_Cake
         [Fact]
         public void UpdateOrderInTestDB()
         {
-            string updateTestId = "5fba23a1e5116b5d12af7be4";
+            string updateTestId = "5fc0c2769f55cb735beddb39";
 
             Order orderFromDB = _orderService.GetById(updateTestId);
 

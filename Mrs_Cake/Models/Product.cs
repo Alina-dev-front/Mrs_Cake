@@ -14,5 +14,6 @@ namespace Mrs_Cake.Models
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string imageUrl { get; set; }
+        public double Quantity { get; set; }
     }
 }

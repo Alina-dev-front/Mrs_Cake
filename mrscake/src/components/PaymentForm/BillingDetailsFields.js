@@ -36,7 +36,7 @@ background-color: transparent;
 animation: 1ms void-animation-out;
 
 &::placeholder {
-  color: #87bbfd;
+  color: black;
 }
 `;
 
