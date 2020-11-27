@@ -47,15 +47,17 @@ class ViewOrderPage extends Component {
 
     GetExactUserOrders = () => {
       let privateOrders = [];
-      if(this.state.userRole ==="Customer") {
+      if(this.state.userRole === "Customer") {
         this.state.orders.forEach(order => {
           if(order.userId === this.state.user.email) {
             privateOrders.push(order);
           }
           
         })
-      }  
-      return privateOrders;   
+         return privateOrders;
+      } else if (this.state.userRole === "BakeryOwner") {
+          return this.state.orders;
+      }
     }
     
     render() {
