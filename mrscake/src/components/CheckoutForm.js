@@ -161,6 +161,8 @@ class CheckoutForm extends React.Component {
             document.getElementById("PhoneForm").style.visibility = 'visible';
             document.getElementById("phoneform").required = true;
             document.getElementById("cardform").required = false;
+            document.getElementById("cardformDate").required = false;
+            document.getElementById("cardformCvc").required = false;
         }
         else {
             document.getElementById("Card").style.visibility = 'hidden';
@@ -248,25 +250,26 @@ class CheckoutForm extends React.Component {
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
                     <h1 inline className="CardHeader">Enter your card Information</h1>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck} required/>
+                    <Input required inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck}/>
                     </CardElementContainer>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type="month"  max="2026-01" min="2020-10" className="cardDate" required />
+                    <Input required inline style={{ marginLeft: "20%" }} id="cardformDate" type='month'  max="2026-01" min="2020-10" className="mr-sm-2" />
                     </CardElementContainer>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck} required/>
+                    <Input required inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck}/>
                     </CardElementContainer>
+                </Row>
+                <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
+                    <FormFieldContainer   >
+                            <Input required inline style={{ marginLeft: "20%" }} id="phoneform" type="number" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" onInput={this.maxLengthCheck} ></Input>
+                    </FormFieldContainer>
                 </Row>
                 <Row id="Card" style={{ visibility: 'hidden' }}>
                     <SubmitButton disabled={this.isProcessing || this.props.price === 0 ||CardElement.value === null } id="CardButton"  >
                         {this.isProcessing ? "SUCCEFULLY PAID" : `Pay $${this.props.price + this.state.DeliveryPrice}`}
                     </SubmitButton>
                 </Row>
-                <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
-                    <FormFieldContainer   >
-                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="number" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" onInput={this.maxLengthCheck} ></Input>
-                    </FormFieldContainer>
-                </Row>
+                
 
             </Form>
             </div>
