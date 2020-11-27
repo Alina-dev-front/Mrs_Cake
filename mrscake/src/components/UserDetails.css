@@ -1,0 +1,10 @@
+.App {
+    text-align: center;
+    }
+    
+    .user-profile-title {
+      text-align: center !important;
+      margin-bottom: 3%;
+      font-weight: 500;
+      color: black;
+    }

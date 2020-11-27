@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import facebook_sign from '../facebook_sign.svg';
 import insta from '../insta.svg';
 import './Footer.css';
@@ -9,29 +9,25 @@ function FooterPage() {
     return (
             <Navbar bg="light" variant="light" className="fixed-bottom">
                 <Container>
-                <div className="row">
-                    <div className="column"><div>
+                <Row>
+                    <Col>
                         <div>MRS CAKE</div> 
                         <div>
                             <img src={insta} alt="Contact us on Instagram" className="footer-img" />
                             <img src={facebook_sign} alt="Contact us on Facebook" className="footer-img" />
                         </div>
-                    </div></div>
-                    <div className="column">
+                    </Col>
+                    <Col>
                         <div margin-bottom="10%" ><font color="black">Customer Service</font></div>
                         <font color="black">Privacy policy</font><br/>
                         <font color="black">Payment and delivery</font><br/>
-                    </div>
-                    <div className="column">
+                    </Col>
+                    <Col>
                         <div><font color="black">Information</font></div>
-                      
-                            <Link to="/faq"><font color="black">FAQ</font></Link><br/>
-                    
-                      
-                     
+                        <Link to="/faq"><font color="black">FAQ</font></Link><br/>
                         <font color="black">For organizations</font><br/>
-                    </div>
-                </div>
+                    </Col>
+                </Row>
                 </Container>
             </Navbar>
     );

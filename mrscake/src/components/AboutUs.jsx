@@ -1,40 +1,28 @@
 import React from "react";
 import cakestore from '../cakestore.jpg';
+import { Container } from 'reactstrap';	  
+
 function AboutUs() {
-         return <div>
-         <div class="container theme-container" >   
-      
-            <div class="title-wrap space-bottom-20">
-            <div class="col-md-6 col-sm-12">
-                <p class="italic" >
+         return <Container>
                
-                 <h2   style={{color: "Red", paddingTop: "100px"}}>Who are  we? </h2> 
-                </p> 
-                <div className="col-md-3 center" style={{paddingTop: "100px"}}>
+                <h2 style={{color: "Red", paddingTop: "100px"}}>Who are we?</h2> 
                 
-                <img style={{paddingTop: "80px"}}
-         src={cakestore}
-        width="300"
-        height="300"
-        className="d-inline-block align-top"
-        alt="Min cake"
-      />
-      </div>
-            </div>
-            <div class="clear"></div>
-            <div class="our-history space-bottom-20 space-top-20">
-               <p> <h5>
-                <b> MrsCake</b>   Shop is a famous brand that started as a small business. 
-                The owners are <b> Parul, Alina and Abel </b>and MrsCake supported by owner and staff.<br /><br />
+                <img 
+                src={cakestore}
+                width="480"
+                height="250"
+                alt="Min cake"
+                />
+
+                <p style={{fontSize: "100%"}} >
+                <b> MrsCake</b> shop is a famous brand that started as a small business. 
+                The owners are <b>Parul</b>, <b>Alina</b> and <b>Abel</b>and MrsCake supported by owner and staff.<br /><br />
                 Although not small any more,  our products and staff consider each customer 
                 a member in this family of cake shoppers.
-                Our mission is to make people happy.Keeping our prices reasonable are all different ways to achieve this goal.
-                </h5>  </p>
-            </div>
-        </div>
-</div>
-</div>
+                Our mission is to make people happy.<br /> Keeping our prices reasonable are all different ways to achieve this goal.
+                </p>
 
+                </Container>
 }
 
 export default AboutUs;
