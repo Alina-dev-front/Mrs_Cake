@@ -189,17 +189,7 @@ class CheckoutForm extends React.Component {
       border-top: none;
     }
   `;
-  const Label = styled.label`
-  width: 20%;
-  min-width: 70px;
-  padding: 11px 0;
-  color: #c4f0ff;
-  overflow: hidden;
-  font-size: 16px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  border-right: 1px solid #819efc;
-  `;
+
 
         const Input = styled.input`
     font-size: 15px;
@@ -258,13 +248,13 @@ class CheckoutForm extends React.Component {
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
                     <h1 inline className="CardHeader">Enter your card Information</h1>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck}/>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck} required/>
                     </CardElementContainer>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type='month' value="Experation date" max="2026-01" min="2020-10" className="mr-sm-2" />
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type="month"  max="2026-01" min="2020-10" className="cardDate" required />
                     </CardElementContainer>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck}/>
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck} required/>
                     </CardElementContainer>
                 </Row>
                 <Row id="Card" style={{ visibility: 'hidden' }}>
