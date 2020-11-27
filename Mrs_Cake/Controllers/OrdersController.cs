@@ -27,13 +27,6 @@ namespace Mrs_Cake.Controllers
             return ordersFromDB;
         }
 
-        [HttpGet("{bakeryName}")]
-        public ActionResult<List<Order>> GetOrdersByBakery(string bakeryName)
-        {
-            return _orderService.GetOrdersByBakery(bakeryName);
-        }
-
-
         [HttpGet("{id:length(24)}", Name = "GetOrder")]
         public ActionResult<Order> GetById(string id)
         {
