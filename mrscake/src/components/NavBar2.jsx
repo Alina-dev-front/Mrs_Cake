@@ -41,19 +41,29 @@ class NavBar extends Component {
           </Nav.Link>
       </NavDropdown>
       } else if (this.state.userRole === 'BakeryOwner'){
-        return <Nav.Link as={Link} to="/bakerypage">
-        <img
-          src={bakeryprofile}
-          width="30"
-          height="30"
-          className="d-inline-block align-top"
-          alt="bakeryprofile_a"
-        />
-      </Nav.Link>;
+        
+        return <NavDropdown   
+       title={this.state.user.firstName}
+       style={{fontWeight: "500"}}  
+        
+       
+      id="basic-nav-dropdown">
+
+     
+<Nav.Link as={Link} to="/bakerypage">
+            <NavItem style={{color: "black" }}>Bakery Profile</NavItem>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/bakeryFilter"> 
+            <NavItem style= {{color: "black" }}>View Products</NavItem></Nav.Link>
+            <Nav.Link as={Link} to="/ViewOrderPage">
+            <NavItem style={{color: "black" }}>View Orders</NavItem>
+            </Nav.Link>
+        </NavDropdown>
       } else {
         return null;
       }
     }
+
   }
 
   getUser = () => {
