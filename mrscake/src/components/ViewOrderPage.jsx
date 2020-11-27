@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Label, Button } from 'reactstrap';
+import { Col, Container, Row, Label } from 'reactstrap';
 import UserOrdersTable from './UserOrdersTable';
-import {ORDERS_API_URL} from '../constants/orders_api_url';
+import { ORDERS_API_URL } from '../constants/orders_api_url';
 import { USERS_API_URL } from '../constants/user_api_url.js';
 import Cookies from 'js-cookie';
 
@@ -52,7 +52,6 @@ class ViewOrderPage extends Component {
           if(order.userId === this.state.user.email) {
             privateOrders.push(order);
           }
-          
         })
          return privateOrders;
       } else if (this.state.userRole === "BakeryOwner") {

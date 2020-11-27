@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import { Button, Navbar, Nav, Form, FormControl, NavDropdown, NavItem, Label} from 'react-bootstrap';
+import { Button, Navbar, Nav, Form, FormControl, NavDropdown, NavItem } from 'react-bootstrap';
 import cake from '../cake.svg';
 import search1 from '../search1.svg';
 import shoppingCart from '../ShoppingCart.png';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
-import bakeryprofile from '../bakeryprofile.svg';
 import { LOGOUT_API_URL } from '../constants/api_url_path';
 import { USERS_API_URL } from '../constants/user_api_url.js';
 
