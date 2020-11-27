@@ -1,5 +1,4 @@
 import React  from "react";
-//import billingFormDetails from "./PaymentForm/BillingDetailsFields"
 import { Form } from 'react-bootstrap';
 import styled from "@emotion/styled";
 import { CardElement } from "@stripe/react-stripe-js";
@@ -7,10 +6,11 @@ import Row from "./PaymentForm/Row";
 import SubmitButton from "./PaymentForm/SubmitButton";
 import GlobalStyles from "./PaymentForm/GlobalStyles";
 import { ORDERS_API_URL } from '../constants/orders_api_url';
+import { USERS_API_URL } from '../constants/user_api_url';
 import { removeAllProducts,incrementOrderQuantity } from "../actions";
 import { connect } from 'react-redux';
 import BillingDetailsFields from "./PaymentForm/BillingDetailsFields";
-
+import "./checkoutForm.css";
 
 const CardElementContainer = styled.div`
   height: 50px;
@@ -36,16 +36,17 @@ class CheckoutForm extends React.Component {
             country: "",
             zipcode: "",
             DeliveryMethod: "",
-            OrderNumber:0
+            OrderNumber:0,
+            Users:[{}]
         });
-        this.submitNew = this.submitNew.bind(this);
+        this.submitNew = this.submitNewOrder.bind(this);
     }
     removeItemS = () => {
         this.props.dispatch(removeAllProducts());
         this.setState({ DeliveryPrice:0});
     };
    
-    submitNew = async event => {
+    submitNewOrder = async event => {
         event.preventDefault();
         this.props.dispatch(incrementOrderQuantity());
         let city = document.getElementById("city").value;
@@ -56,6 +57,7 @@ class CheckoutForm extends React.Component {
         let zipcode = document.getElementById("zipcode").value;
         console.log(city);
 
+        //Save A Order
         fetch(`${ORDERS_API_URL}`, {
             method: 'post',
             headers: {
@@ -79,6 +81,17 @@ class CheckoutForm extends React.Component {
             .catch(err => console.log(err));
     }
 
+    //Get users
+    getUsers = () => {
+        fetch(USERS_API_URL)
+          .then(res => res.json())
+          .then(res => this.setState({ Users: res }))
+          .catch(err => console.log(err));
+
+          this.state.Users.map(user =>(console.log(user.id,user.firstName,user.lastName,user.email)));
+         
+      }
+
      cardnumber()
     {
         //document.getElementsByName("cardForm").value = this.state.CreditCardNumber;
@@ -100,7 +113,6 @@ class CheckoutForm extends React.Component {
         const name = e.target.id;
         if (name === "HomeBox" && e.target.checked) {
             e.preventDefault();
-           
             document.getElementById("customCheck3").checked = false;
             document.getElementById("customCheck2").checked = false;
             document.getElementById("Payment").style.visibility = 'visible';
@@ -198,11 +210,12 @@ class CheckoutForm extends React.Component {
     animation: 1ms void-animation-out;
   
     &::placeholder {
-      color: #87bbfd;
+      color: black;
     }
   `;
         return (
-            <Form onSubmit={(e) => { this.submitNew(e); this.removeItemS()}} >
+            <div className="Mainform">
+            <Form  style={{margin:"auto"}} onSubmit={(e) => { this.submitNewOrder(e); this.removeItemS()}} >
                   <BillingDetailsFields></BillingDetailsFields>
                 <GlobalStyles />
                 <Row >
@@ -243,12 +256,12 @@ class CheckoutForm extends React.Component {
                 </Row>
                 
                 <Row id="CardForm" style={{ visibility: 'hidden' }} >
-                    <text >Enter your card Information</text>
+                    <h1 inline className="CardHeader">Enter your card Information</h1>
                     <CardElementContainer>
                     <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck}/>
                     </CardElementContainer>
                     <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type='month' placeholder="Experation date" max="2026-01" min="2020-10" className="mr-sm-2" />
+                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type='month' value="Experation date" max="2026-01" min="2020-10" className="mr-sm-2" />
                     </CardElementContainer>
                     <CardElementContainer>
                     <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck}/>
@@ -266,6 +279,7 @@ class CheckoutForm extends React.Component {
                 </Row>
 
             </Form>
+            </div>
         );
     };
 }

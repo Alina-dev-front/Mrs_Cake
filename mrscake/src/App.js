@@ -19,6 +19,7 @@ import BakeryFilter from './components/BakeryFilter';
 import BakeryPage from './components/BakeryPage';
 import Greetings from './components/greetings'
 import './App.css';
+import FooterPage from './components/Footer';
 //import orders from './components/orders';
 
 function App() {
@@ -55,9 +56,10 @@ function App() {
             <Route path='/bakeryFilter' component={BakeryFilter}/>
             <Route path='/bakeryPage' component={BakeryPage}/>
             <Route path='/greetings' component={Greetings}/>
-
           </Switch> 
+          
         </BrowserRouter>
+        <BrowserRouter><FooterPage/></BrowserRouter>
     </React.Fragment>
     );
   }

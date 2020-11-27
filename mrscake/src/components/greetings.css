@@ -1,13 +1,18 @@
 .containerGreetings {
     padding-top: 200px;
     padding-bottom: 200px;
-    overflow: auto;
     max-width: 90% !important;
+    
+    
 }
 .containerChild{
     box-decoration-break: slice;
-    box-shadow: 20px 20px 30px 30px;
+    box-shadow: 20px 20px 30px 30px rgb(247, 121, 142);
+    border-radius: 25px;
     background-color:pink;
+    left:65px;
+    position: relative;
+    
 }
 .Greetings {
     font-size: 3.7rem;
@@ -15,7 +20,7 @@
     text-align: center;
     color: rgb(250, 249, 249);
     grid: 10px;
-   
+    
 }
 .parent{
     background-color:pink;
@@ -25,9 +30,40 @@
     top:0px;
     left:0px;
     z-index:1000;
+    overflow: auto;
+    
 }
 .productsButton{
             padding: 10px;
-            position: fixed;
+            position: absolute;
             left: 40%;
+}
+
+.orderButton{
+    padding: 60px;
+    position: absolute;
+    left: 40%;
+}
+
+.orderBox{
+    box-decoration-break: slice;
+    border-radius: 25px;
+    left:65px;
+    background-color:pink;
+    left:65px;
+    position: relative;
+}
+.orderText{
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: left;
+    color: rgb(14, 10, 10);
+    grid: 10px;
+}
+.Text{
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: left;
+    color: rgb(250, 249, 249);
+    grid: 10px;
 }

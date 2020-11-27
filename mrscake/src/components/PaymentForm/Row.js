@@ -5,9 +5,9 @@ const Row = styled.div`
   margin: 30px auto;
   box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 #829fff;
-    box-shadow: 20px 20px 30px 30px;
+    box-shadow: 20px 20px 30px 30px rgb(247, 121, 142);
   border-radius: 10px;
-  background-color: brown;
+  background-color: violet;
   position: relative;
 `;
 
