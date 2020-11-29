@@ -1,13 +1,11 @@
-import React  from "react";
+import React from "react";
 import { Form } from 'react-bootstrap';
 import styled from "@emotion/styled";
-import { CardElement } from "@stripe/react-stripe-js";
 import Row from "./PaymentForm/Row";
 import SubmitButton from "./PaymentForm/SubmitButton";
 import GlobalStyles from "./PaymentForm/GlobalStyles";
 import { ORDERS_API_URL } from '../constants/orders_api_url';
-import { USERS_API_URL } from '../constants/user_api_url';
-import { removeAllProducts,incrementOrderQuantity } from "../actions";
+import { removeAllProducts, incrementOrderQuantity } from "../actions";
 import { connect } from 'react-redux';
 import BillingDetailsFields from "./PaymentForm/BillingDetailsFields";
 import "./checkoutForm.css";
@@ -36,16 +34,16 @@ class CheckoutForm extends React.Component {
             country: "",
             zipcode: "",
             DeliveryMethod: "",
-            OrderNumber:0,
-            Users:[{}]
+            OrderNumber: 0,
+            Users: [{}]
         });
         this.submitNew = this.submitNewOrder.bind(this);
     }
     removeItemS = () => {
         this.props.dispatch(removeAllProducts());
-        this.setState({ DeliveryPrice:0});
+        this.setState({ DeliveryPrice: 0 });
     };
-   
+
     submitNewOrder = async event => {
         event.preventDefault();
         this.props.dispatch(incrementOrderQuantity());
@@ -55,7 +53,9 @@ class CheckoutForm extends React.Component {
         let Country = document.getElementById("country").value;
         let comments = document.getElementById("comments").value;
         let zipcode = document.getElementById("zipcode").value;
-        console.log(city);
+        var min = 1;
+        var max = 1000;
+        var rand = min + (Math.random() * (max - min));
 
         //Save A Order
         fetch(`${ORDERS_API_URL}`, {
@@ -64,9 +64,9 @@ class CheckoutForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                Number: this.props.ordersNumbers,
+                Number: parseInt(rand),
                 totalPrice: this.props.price + this.state.DeliveryPrice,
-                userId:  Email,
+                userId: Email,
                 address: Adress + "/" + city + "/" + Country + "/" + zipcode,
                 comments: comments,
                 paid: true,
@@ -81,31 +81,17 @@ class CheckoutForm extends React.Component {
             .catch(err => console.log(err));
     }
 
-    //Get users
-    getUsers = () => {
-        fetch(USERS_API_URL)
-          .then(res => res.json())
-          .then(res => this.setState({ Users: res }))
-          .catch(err => console.log(err));
 
-          this.state.Users.map(user =>(console.log(user.id,user.firstName,user.lastName,user.email)));
-         
-      }
-
-     cardnumber()
-    {
-        //document.getElementsByName("cardForm").value = this.state.CreditCardNumber;
-        //this.setState({CreditCardNumber : document.getElementById("formCard").value});
-      var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-      if(this.state.CreditCardNumber.match(cardno))
-            {
-          return true;
-            }
-          else
-            {
+    cardnumber() {
+      
+        var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+        if (this.state.CreditCardNumber.match(cardno)) {
+            return true;
+        }
+        else {
             alert("Not a valid Visa credit card number!");
             return false;
-            }
+        }
     }
 
     handleDeliverySelectBox = (e) => {
@@ -145,7 +131,6 @@ class CheckoutForm extends React.Component {
     handlePaymentSelectBox = (e) => {
         e.preventDefault();
         const name = e.target.id;
-        //const value = e.target.cheched;
         if (name === "CreditCard" && e.target.checked && name !== "customCheck3") {
             document.getElementById("Swish").checked = false;
             document.getElementById("PhoneForm").style.visibility = 'hidden';
@@ -161,6 +146,8 @@ class CheckoutForm extends React.Component {
             document.getElementById("PhoneForm").style.visibility = 'visible';
             document.getElementById("phoneform").required = true;
             document.getElementById("cardform").required = false;
+            document.getElementById("cardformDate").required = false;
+            document.getElementById("cardformCvc").required = false;
         }
         else {
             document.getElementById("Card").style.visibility = 'hidden';
@@ -172,10 +159,10 @@ class CheckoutForm extends React.Component {
 
     maxLengthCheck = (object) => {
         if (object.target.value.length > object.target.maxLength) {
-         object.target.value = object.target.value.slice(0, object.target.maxLength)
-          }
+            object.target.value = object.target.value.slice(0, object.target.maxLength)
         }
-  
+    }
+
     render() {
 
         const FormFieldContainer = styled.div`
@@ -205,70 +192,69 @@ class CheckoutForm extends React.Component {
   `;
         return (
             <div className="Mainform">
-            <Form  style={{margin:"auto"}} onSubmit={(e) => { this.submitNewOrder(e); this.removeItemS()}} >
-                  <BillingDetailsFields></BillingDetailsFields>
-                <GlobalStyles />
-                <Row >
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="HomeBox" onInput={this.handleDeliverySelectBox} />
-                            <label className="custom-control-label" htmlFor="HomeBox">Home delivery</label>
+                <Form style={{ margin: "auto" }} onSubmit={(e) => { this.submitNewOrder(e); this.removeItemS() }} >
+                    <BillingDetailsFields></BillingDetailsFields>
+                    <GlobalStyles />
+                    <Row >
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="HomeBox" onInput={this.handleDeliverySelectBox} />
+                                <label className="custom-control-label" htmlFor="HomeBox">Home delivery</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="customCheck2" onInput={this.handleDeliverySelectBox} />
-                            <label className="custom-control-label" htmlFor="customCheck2">Pick up from bakery</label>
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="customCheck2" onInput={this.handleDeliverySelectBox} />
+                                <label className="custom-control-label" htmlFor="customCheck2">Pick up from bakery</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="customCheck3" onInput={this.handleDeliverySelectBox} />
-                            <label className="custom-control-label" htmlFor="customCheck3">Pick up from the closest store</label>
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="customCheck3" onInput={this.handleDeliverySelectBox} />
+                                <label className="custom-control-label" htmlFor="customCheck3">Pick up from the closest store</label>
+                            </div>
                         </div>
-                    </div>
-                </Row>
-                <Row id="Payment" style={{ visibility: 'hidden' }} >
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
+                    </Row>
+                    <Row id="Payment" style={{ visibility: 'hidden' }} >
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
 
-                            <input type="checkbox" className="custom-control-input" id="CreditCard" onInput={this.handlePaymentSelectBox} />
-                            <label className="custom-control-label" htmlFor="CreditCard">Credit card</label>
+                                <input type="checkbox" className="custom-control-input" id="CreditCard" onInput={this.handlePaymentSelectBox} />
+                                <label className="custom-control-label" htmlFor="CreditCard">Credit card</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
 
-                            <input type="checkbox" className="custom-control-input" id="Swish" onInput={this.handlePaymentSelectBox} />
-                            <label className="custom-control-label" htmlFor="Swish">Swish</label>
+                                <input type="checkbox" className="custom-control-input" id="Swish" onInput={this.handlePaymentSelectBox} />
+                                <label className="custom-control-label" htmlFor="Swish">Swish</label>
+                            </div>
                         </div>
-                    </div>
-                </Row>
-                
-                <Row id="CardForm" style={{ visibility: 'hidden' }} >
-                    <h1 inline className="CardHeader">Enter your card Information</h1>
-                    <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number"  minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck} required/>
-                    </CardElementContainer>
-                    <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformDate" type="month"  max="2026-01" min="2020-10" className="cardDate" required />
-                    </CardElementContainer>
-                    <CardElementContainer>
-                    <Input inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck} required/>
-                    </CardElementContainer>
-                </Row>
-                <Row id="Card" style={{ visibility: 'hidden' }}>
-                    <SubmitButton disabled={this.isProcessing || this.props.price === 0 ||CardElement.value === null } id="CardButton"  >
-                        {this.isProcessing ? "SUCCEFULLY PAID" : `Pay $${this.props.price + this.state.DeliveryPrice}`}
-                    </SubmitButton>
-                </Row>
-                <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
-                    <FormFieldContainer   >
-                            <Input inline style={{ marginLeft: "20%" }} id="phoneform" type="number" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" onInput={this.maxLengthCheck} ></Input>
-                    </FormFieldContainer>
-                </Row>
+                    </Row>
 
-            </Form>
+                    <Row id="CardForm" style={{ visibility: 'hidden' }} >
+                        <h1 inline className="CardHeader">Enter your card Information</h1>
+                        <CardElementContainer>
+                            <Input required inline style={{ marginLeft: "20%" }} id="cardform" type="number" placeholder="Card Number" minLength="16" maxLength="23" className="mr-sm-2" onInput={this.maxLengthCheck} />
+                        </CardElementContainer>
+                        <CardElementContainer>
+                            <Input required inline style={{ marginLeft: "20%" }} id="cardformDate" type='month' max="2026-01" min="2020-10" className="mr-sm-2" />
+                        </CardElementContainer>
+                        <CardElementContainer>
+                            <Input required inline style={{ marginLeft: "20%" }} id="cardformCvc" type='number' placeholder="CVC" maxLength="3" minLength="3" className="mr-sm-2" onInput={this.maxLengthCheck} />
+                        </CardElementContainer>
+                    </Row>
+                    <Row id="PhoneForm" style={{ visibility: 'hidden' }}>
+                        <FormFieldContainer   >
+                            <Input required inline style={{ marginLeft: "20%" }} id="phoneform" type="number" placeholder="070 005 4540" maxLength="10" minLength="10" className="mr-sm-2" onInput={this.maxLengthCheck} ></Input>
+                        </FormFieldContainer>
+                    </Row>
+                    <Row id="Card" style={{ visibility: 'hidden' }}>
+                        <SubmitButton disabled={this.isProcessing || this.props.price === 0} id="CardButton"  >
+                            {this.isProcessing ? "SUCCEFULLY PAID" : `Pay $${this.props.price + this.state.DeliveryPrice}`}
+                        </SubmitButton>
+                    </Row>
+                </Form>
             </div>
         );
     };
@@ -277,7 +263,7 @@ class CheckoutForm extends React.Component {
 const mapStateToProps = (state) => {
     return {
         cartItems: state.shop.cart,
-        ordersNumbers : state.shop.orderNumber,
+        ordersNumbers: state.shop.orderNumber,
         cartItemCount: state.shop.cart.reduce((count, curItem) => {
             return count + curItem.quantity;
         }, 0),

@@ -30,36 +30,6 @@ class Greetings extends React.Component {
         console.log(this.props.cartItems);
     }
 
-    //Count the amount of the same product in an order
-
-    occurrence = function (array) {
-
-        var result = {};
-        if (array instanceof Array) { // Check if input is array.
-            array.forEach(function (v, i) {
-                if (!result[v]) { // Initial object property creation.
-                    result[v] = [i]; // Create an array for that property.
-                } else { // Same occurrences found.
-                    result[v].push(i); // Fill the array.
-                }
-            });
-        }
-        return result;
-    };
-
-    //count products
-
-    counts = function (array) {
-        let a = array;
-        let result = {};
-        for (var i = 0; i < a.length; ++i) {
-            if (!result[a[i]])
-                result[a[i]] = 0;
-            ++result[a[i]];
-        }
-
-    }
-
     render() {
 
 
