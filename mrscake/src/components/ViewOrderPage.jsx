@@ -1,71 +1,76 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Label } from 'reactstrap';
 import UserOrdersTable from './UserOrdersTable';
-import {  ORDERS_API_URL } from '../constants/orders_api_url';
+import { ORDERS_API_URL } from '../constants/orders_api_url';
+import { USERS_API_URL } from '../constants/user_api_url.js';
+import Cookies from 'js-cookie';
 
-class UserProfilePage extends Component {
+class ViewOrderPage extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        items: [],
-        item: ""
+        orders: [],
+        user: {},
+        userId: Cookies.get('user_id'),
+        userRole: Cookies.get('role')
       }
     }
-
-    handleChangeItem = event => {
-      this.setState({ item: event.target.value });
-    };
   
     componentDidMount() {
-      this.getItems();
+      this.getAllOrders();
+      this.getUser();
     }
-    getItems = () => {
+
+    getUser = () => {
+      fetch(`${USERS_API_URL}/${this.state.userId}`, {
+               method: 'get',
+               headers: {'Content-Type': 'application/json'},
+             })
+              .then(response => {
+              var dbResponse = response.json();
+              return dbResponse;
+          })
+          .then(userData => {
+            this.setState({user: userData});
+          })
+          .catch(err => console.log(err));
+    }
+
+    getAllOrders = () => {
       fetch(ORDERS_API_URL)
         .then(res => res.json())
-        .then(res => this.setState({ items: res }))
+        .then(res => {
+          this.setState({ orders: res })
+        })
         .catch(err => console.log(err));
     }
-    addOrderToState = order => {
-      this.setState(previous => ({
-        items: [...previous.items, order]
-      }));
-    }
-    updateState = (id) => {
-      this.getItems();
-    }
-    deleteItemFromState = id => {
-      const updated = this.state.items.filter(item => item.id !== id);
-      this.setState({ items: updated })
-    }
-    getUnique(array, comparison) {
-      const uniqueName = array
-        .map(element => element[comparison])
-        .map((element, index, final) => final.indexOf(element) === index && index)
-        .filter(element => array[element])
-        .map(element => array[element]);
-  
-      return uniqueName;
-    }
-    render() {
-      const items = this.state.items;
-      const item = this.state.item;
-      const filteredItems = [];
 
-      return <Container className="ProductTableContainer">
-        <span>
-            <Label className="bakery-table-title">Users's Order list</Label>
-        </span>
+    GetExactUserOrders = () => {
+      let privateOrders = [];
+      if(this.state.userRole === "Customer") {
+        this.state.orders.forEach(order => {
+          if(order.userId === this.state.user.email) {
+            privateOrders.push(order);
+          }
+        })
+         return privateOrders;
+      } else if (this.state.userRole === "BakeryOwner") {
+          return this.state.orders;
+      }
+    }
+    
+    render() {
+      return <Container className="OrderTableContainer">
+          <span>
+            <Label className="order-table-title">ORDER LIST</Label>
+          </span>
           <Row>
             <Col>
-              <UserOrdersTable
-                items={items}
-                filteredItems={filteredItems}
-                updateState={this.updateState}
-                deleteItemFromState={this.deleteItemFromState} />
+              <UserOrdersTable orders={this.GetExactUserOrders()} />
             </Col>
           </Row>
         </Container>;
     }
 }
 
-export default UserProfilePage;
+export default ViewOrderPage;
