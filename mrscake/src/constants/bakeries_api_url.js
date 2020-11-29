@@ -1,1 +1,1 @@
-export const BAKERIES_API_URL = 'https://localhost:5001/api/bakeries';
+export const BAKERIES_API_URL = 'https://localhost:44315/api/bakeries';
